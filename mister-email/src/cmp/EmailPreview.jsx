@@ -8,7 +8,7 @@ export function EmailPreview({ id, subject, body, isRead, isStarred, sentAt, fro
 
     function toggleHover() {
         setIsHover((prevIsHover) => !prevIsHover);
-    }
+    } // Why using this function caused unwanted behavior? (in onMouseHover & onMouseOut)
 
     function toggleSelected() {
         setIsSelected((prevIsSelected) => !prevIsSelected);
@@ -24,23 +24,22 @@ export function EmailPreview({ id, subject, body, isRead, isStarred, sentAt, fro
 
 
     let dynDataForHovered;
-    console.log("isHover: ", isHover)
     if (isHover) {
-        dynDataForHovered = <span>
+        dynDataForHovered = <span className="">
             <i className="preview-icon icon-archive" onClick={dummy}></i>
             <i className="preview-icon icon-delete" onClick={dummy}></i>
             <i className={"preview-icon " + (isRead ? "icon-mark-unread" : "icon-mark-read")} onClick={dummy}></i>
             <i className="preview-icon icon-snooze" onClick={dummy}></i>
         </span>
     } else {
-        dynDataForHovered = <span>
+        dynDataForHovered = <span className="">
             <span className="preview-empty-indent" onClick={dummy}></span>
             <time className="preview-time">{calcTime}</time>
         </span>
     }
 
     return (
-        <section className={"email-preview" + (isRead ? "" : " unread-email")} onMouseOver={toggleHover} onMouseOut={toggleHover}>
+        <section className={"email-preview" + (isRead ? "" : " unread-email")} onMouseOver={() => setIsHover(true)} onMouseOut={() => setIsHover(false)}>
             <i className="preview-icon icon-drag" onClick={dummy}></i>
             <i className={"preview-icon " + (isSelected ? "icon-checked" : "icon-unchecked")} onClick={dummy}></i>
             <i className={"preview-icon " + (isStarred ? "icon-star" : "icon-unstarred")} onClick={dummy}></i>

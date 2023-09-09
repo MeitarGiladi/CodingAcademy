@@ -8,6 +8,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+    text-overflow: ellipsis;
     align-items: center;
 }
 
@@ -26,13 +27,15 @@
 
 .preview-main-data {
     height: 20px;
-    width: 170px;
+    /* width: 170px; */
     display: inline-flex;
     flex: 1 1 auto;
+    overflow: hidden;
 }
 
 .preview-subject, .preview-body {
     display: flex;
+    overflow: hidden;
 }
 
 
@@ -40,6 +43,7 @@
 .preview-icon {
     opacity: 0.32;
     display: inline-flex;
+    /* padding-top: 10px; */
 }
 
 .preview-icon:hover {
