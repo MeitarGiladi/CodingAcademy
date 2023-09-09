@@ -1,0 +1,30 @@
+body {
+    background-color: rgb(213, 253, 212);
+    color: rgb(0, 0, 0);
+    margin: 0;
+}
+
+main {
+    margin-left: 10px;
+}
+
+.nav-links {
+    background-color: #0f0f0f;
+    color: #f1f1f1;
+    font-family: 'Source Sans Pro Topnav', sans-serif;
+    font-size: 17px;
+    letter-spacing: 1px;
+    line-height: 2;
+    width: 100%;
+    /* z-index: 2; */
+}
+
+.nav-links a {
+    padding: 12px;
+    color: rgba(157, 223, 243, 0.671);
+}
+
+.nav-links a:hover, .nav-links a:link, .nav-links a:visited, .nav-links a:hover, .nav-links a:active {
+    color: rgba(157, 223, 243, 0.637);
+}
+

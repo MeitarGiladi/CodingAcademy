@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="css/default.css">
+    <title>PlaceKeeper</title>
+</head>
+<body onload="onHomeInit()">
+    <header>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="user-prefs.html">Settings</a>
+            <a href="map.html">Map</a>
+        </nav>
+    </header>
+    <main>
+        <h1>
+            Welcome to your map!
+        </h1>
+        <p>
+            Here you can keep track on all your favorite places
+        </p>
+        <section class="my-data" hidden>
+            <h2>Your data:</h2>
+            <div class="curr-user-data"></div>
+        </section>
+    </main>
+
+    <script type="module" src="js/index.controller.js"></script>
+</body>
+</html>

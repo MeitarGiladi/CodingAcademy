@@ -1,0 +1,9 @@
+form label {
+    padding: 5px;
+    display: inline-block;
+    width: 250px;
+}
+
+form label input {
+    float: right;
+}

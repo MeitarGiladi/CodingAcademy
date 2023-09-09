@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="css/default.css">
+    <link type="text/css" rel="stylesheet" href="css/map.css">
+    <title>PlaceKeeper - Your Map</title>
+</head>
+<body onload="onInit()">
+    <header>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="user-prefs.html">Settings</a>
+            <a href="map.html">Map</a>
+        </nav>
+    </header>
+    <main>
+        <div class="map split"></div>
+        <section class="places-sidebar split">
+            <h2>Places</h2>
+            <ul class="places-list"></ul>
+            <button onclick="onDownloadCSV(event)">Download as CSV</button>
+        </section>
+        <div class="user-msg" hidden></div>
+    </main>
+
+    <script type="module" src="js/place.controller.js"></script>
+</body>
+</html>

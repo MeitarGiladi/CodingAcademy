@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="css/default.css">
+    <link type="text/css" rel="stylesheet" href="css/user-prefs.css">
+    <title>PlaceKeeper - Settings</title>
+</head>
+
+<body>
+    <header>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="user-prefs.html">Settings</a>
+            <a href="map.html">Map</a>
+        </nav>
+    </header>
+    <main>
+        <form onsubmit="onSaveUser(event)" class="user-data">
+
+            <section>
+                <h1>Private Data</h1>
+                <label>
+                    E-Mail<sup>*</sup>
+                    <input type="email" class="email" placeholder="Insert your email here" required>
+                </label><br>
+                <label>
+                    Age
+                    <input type="number" class="age" min="1" max="130">
+                </label><br>
+                <label>
+                    Birth Date
+                    <input type="date" class="birthDate">
+                </label><br>
+                <label>
+                    Birth Time
+                    <input type="time" class="birthTime">
+                </label><br>
+            </section>
+
+            <section>
+                <h1>Colors</h1>
+                <label>
+                    Set Background Color<sup>*</sup>
+                    <input type="color" class="bgColor" value="#D5FDD4" required>
+                </label><br>
+                <label>
+                    Set Text Color<sup>*</sup>
+                    <input type="color" class="txtColor" value="#000000" required>
+                </label><br>
+            </section>
+
+            <br><br>
+            <button>Save</button>
+
+        </form>
+
+        <div class="user-msg" hidden></div>
+    </main>
+
+    <script type="module" src="js/user.controller.js"></script>
+</body>
+
+</html>
