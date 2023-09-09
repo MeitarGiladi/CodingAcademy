@@ -105,7 +105,7 @@ function _createEmails() {
                 id: 'e3',
                 subject: 'heyhey!',
                 body: 'stop',
-                isRead: false,
+                isRead: true,
                 isStarred: false,
                 sentAt: 1551133940594,
                 removedAt: null, //for later use
@@ -138,7 +138,7 @@ function _createEmails() {
                 id: 'e6',
                 subject: 'zzzzz!',
                 body: 'wassaps',
-                isRead: false,
+                isRead: true,
                 isStarred: false,
                 sentAt: 1551133939594,
                 removedAt: null, //for later use

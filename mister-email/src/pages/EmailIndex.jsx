@@ -14,18 +14,10 @@ export function EmailIndex() {
         loadEmails();
     }, []);
 
-    useEffect(() => {
-        sortEmails();
-    }, [emails]);
-
 
     async function loadEmails() {
         const updatedEmails = await emailService.query();
         setEmails(updatedEmails);
-    }
-
-    function sortEmails() {
-        // Sort according to some fields.
     }
 
     function updateEmail(emailId, updatedFields) {
@@ -45,7 +37,6 @@ export function EmailIndex() {
     function delEmail() {
 
     }
-
 
 
     return (

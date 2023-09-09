@@ -1,0 +1,103 @@
+.email-preview {
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    line-height: 20px;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    align-items: center;
+}
+
+.unread-email {
+    color: rgb(255, 255, 255, 0.7);
+    font-weight: 400;
+}
+
+
+.preview-from {
+    padding-left: 5px;
+    height: 20px;
+    width: 170px;
+    display: inline-flex;
+}
+
+.preview-main-data {
+    height: 20px;
+    width: 170px;
+    display: inline-flex;
+    flex: 1 1 auto;
+}
+
+.preview-subject, .preview-body {
+    display: flex;
+}
+
+
+
+.preview-icon {
+    opacity: 0.32;
+    display: inline-flex;
+}
+
+.preview-icon:hover {
+    border-style: double;
+    border-color: white;
+    border-radius: 50%;
+    border-width: 1px;
+}
+
+.email-preview:hover .preview-icon {
+    opacity: 1;
+}
+
+
+.icon-drag {
+    content: url("//www.gstatic.com/images/icons/material/system_gm/1x/drag_indicator_white_20dp.png");
+}
+
+.icon-checked {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/check_box_white_20dp.png");
+}
+.icon-unchecked {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/check_box_outline_blank_white_20dp.png");
+}
+
+.icon-star {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/star_fill_googyellow500_20dp.png");
+}
+.icon-unstarred {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/star_white_20dp.png");
+}
+
+.icon-important {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/label_important_fill_googyellow500_20dp.png");
+}
+.icon-unimportant {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/label_important_white_20dp.png");
+}
+
+.icon-archive {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/archive_white_20dp.png");
+}
+
+.icon-delete {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/delete_white_20dp.png");
+}
+
+.icon-mark-read {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/drafts_white_20dp.png");
+}
+.icon-mark-unread {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/mail_white_20dp.png");
+}
+
+.icon-snooze {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/schedule_white_20dp.png");
+}
+
+
+
+
