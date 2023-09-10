@@ -20,13 +20,10 @@ export function EmailIndex() {
         setEmails(updatedEmails);
     }
 
-    function updateEmail(emailId, updatedFields) {
-        const emailIdx = emails.findIndex(em => em.id === emailId);
-        emailService.save(emails[emailIdx]);
+    async function updateEmail(email) {
+        const updatedEmail = await emailService.save(email);
         setEmails((prevEmails) => {
-            const newEmails = [...prevEmails];  // The indexes remain the same so we can still use 'emailIdx'
-            newEmails[emailIdx] = { ...newEmails[emailIdx], ...updatedFields };
-            return newEmails;
+            prevEmails.map((em) => (em.id === updatedEmail.id ? updatedEmail : em))
         });
     }
 
