@@ -13,17 +13,17 @@ export function EmailList({ emails, CbUpdateEmail }) {
 
             {emails.map((em, idx) => <li key={idx + em.id} className="email-li">
 
-                <i className="preview-icon icon-drag" onClick={dummy}></i>
-                <i className={"preview-icon " + (isSelected ? "icon-checked" : "icon-unchecked")} onClick={dummy}></i>
-                <i className={"preview-icon " + (em.isStarred ? "icon-star" : "icon-unstarred")} onClick={dummy}></i>
-                <i className={"preview-icon " + (isImportant ? "icon-important" : "icon-unimportant")} onClick={dummy}></i>
+                <i className="preview-icon preview-icon-left icon-drag" onClick={dummy}></i>
+                <i className={"preview-icon preview-icon-left " + (isSelected ? "icon-checked" : "icon-unchecked")} onClick={dummy}></i>
+                <i className={"preview-icon preview-icon-left " + (em.isStarred ? "icon-star" : "icon-unstarred")} onClick={dummy}></i>
+                <i className={"preview-icon preview-icon-left " + (isImportant ? "icon-important" : "icon-unimportant")} onClick={dummy}></i>
 
                 <EmailPreview email={em} />
 
-                <i className="preview-icon icon-archive" onClick={dummy}></i>
-                <i className="preview-icon icon-delete" onClick={dummy}></i>
-                <i className={"preview-icon " + (em.isRead ? "icon-mark-unread" : "icon-mark-read")} onClick={dummy}></i>
-                <i className="preview-icon icon-snooze" onClick={dummy}></i>
+                <i className="preview-icon preview-icon-right icon-archive" onClick={dummy}></i>
+                <i className="preview-icon preview-icon-right icon-delete" onClick={dummy}></i>
+                <i className={"preview-icon preview-icon-right " + (em.isRead ? "icon-mark-unread" : "icon-mark-read")} onClick={dummy}></i>
+                <i className="preview-icon preview-icon-right icon-snooze" onClick={dummy}></i>
 
             </li>
             )}

@@ -104,7 +104,7 @@ function _createEmails() {
             {
                 id: 'e3',
                 subject: 'heyhey!',
-                body: 'stop',
+                body: 'stop8756666668764824555555555555555552346347456700000098790000000000',
                 isRead: true,
                 isStarred: false,
                 sentAt: 1551133940594,
@@ -137,7 +137,7 @@ function _createEmails() {
             {
                 id: 'e6',
                 subject: 'zzzzz!',
-                body: 'wassaps',
+                body: 'wassaps67555555555555555555555555555555555555558',
                 isRead: true,
                 isStarred: false,
                 sentAt: 1551133939594,
@@ -148,7 +148,7 @@ function _createEmails() {
             {
                 id: 'e7',
                 subject: 'jjjjj!',
-                body: 'wassaps',
+                body: 'wassapsfgdsssssssssssssssssssssssssssssssssssssssssssssssfgfgfsgfsg',
                 isRead: false,
                 isStarred: false,
                 sentAt: 1551133939594,

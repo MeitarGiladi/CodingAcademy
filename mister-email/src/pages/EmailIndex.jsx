@@ -39,7 +39,15 @@ export function EmailIndex() {
     return (
         <section className="email-index">
 
-            <EmailList emails={emails} CbUpdateEmail={updateEmail} />
+                <header className="email-index-header">
+                    <i className="email-li-header-icon icon-unchecked"></i>
+                </header>
+
+                <EmailList emails={emails} CbUpdateEmail={updateEmail} />
+                
+                <footer className="email-index-footer">
+                    <p>list-footer</p>
+                </footer>
 
         </section>
     )

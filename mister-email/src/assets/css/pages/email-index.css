@@ -1,0 +1,129 @@
+
+.email-index {
+    background-color: rgba(51, 51, 51, 0.8);
+    color: rgb(255, 255, 255);
+    border-radius: 16px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.email-index-header {
+    border-color: rgba(128, 128, 128);
+    box-shadow: rgba(255, 255, 255, 0.12) 0px -1px 0px 0px inset;
+    height: 40px;
+}
+
+.email-index-footer {
+    margin: 16px;
+}
+
+.email-li-header-icon {
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+}
+
+/* .email-list {
+
+} */
+
+.email-li {
+    display: inline-flex;
+    font-weight: 700;
+    box-shadow: rgba(255, 255, 255, 0.12) 0px -1px 0px 0px inset;
+    border-color: rgba(128, 128, 128);
+    border-collapse: collapse;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.email-li:hover {
+    box-shadow: inset 1px 0 0 rgba(255,255,255,0.2), inset -1px 0 0 rgba(255,255,255,0.2), 0 0 4px 0 rgba(95,99,104,.6), 0 0 6px 2px rgba(95,99,104,.6);
+}
+
+.email-li:hover .preview-icon {
+    opacity: 1;
+}
+
+.email-li:hover .preview-icon-right {
+    display: inline-flex;
+}
+
+.email-li:hover .preview-time {
+    display: none;
+}
+
+.email-preview {
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    white-space: nowrap;
+    /* outline: none; */
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.read-email {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgb(255, 255, 255, 0.7);
+    font-weight: 400;
+}
+
+
+.preview-from {
+    padding-left: 5px;
+    padding-right: 32px;
+    max-width:0cqi 168px;
+    height: 20px;
+    flex-basis: 168px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    /* display: inline-flex; */
+}
+
+.preview-subject-n-body {
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.preview-subject {
+
+}
+
+.preview-body {
+
+}
+
+.preview-time {
+
+}
+
+.preview-icon {
+    opacity: 0.32;
+}
+
+.preview-icon-right {
+    display: none;
+}
+
+.preview-icon:hover {
+    border-style: double;
+    border-color: white;
+    border-radius: 50%;
+    border-width: 1px;
+}
+
+
+
+
+
