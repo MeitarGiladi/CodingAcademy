@@ -37,6 +37,9 @@ async function query(filterBy = { txt: "", isRead: null, status: null }) {
             case 'star':
                 emails = emails.filter(em => em.isStarred);
                 break;
+            case 'important':
+                emails = emails.filter(em => em.isImportant);
+                break;
             case 'trash':
                 emails = emails.filter(em => em.removedAt);
                 break;
@@ -85,6 +88,7 @@ function _createEmails() {
                 body: 'Would love to catch up sometimes',
                 isRead: true,
                 isStarred: false,
+                isImportant: false,
                 sentAt: 1551133930594,
                 removedAt: null, //for later use
                 from: 'momo@momo.com',
@@ -95,7 +99,8 @@ function _createEmails() {
                 subject: 'Miss you too!',
                 body: 'yayy',
                 isRead: false,
-                isStarred: false,
+                isStarred: true,
+                isImportant: false,
                 sentAt: 1551133931700,
                 removedAt: null, //for later use
                 from: 'user@appsus.com',
@@ -107,6 +112,7 @@ function _createEmails() {
                 body: 'stop8756666668764824555555555555555552346347456700000098790000000000',
                 isRead: true,
                 isStarred: false,
+                isImportant: true,
                 sentAt: 1551133940594,
                 removedAt: null, //for later use
                 from: 'bla@momo.com',
@@ -117,7 +123,8 @@ function _createEmails() {
                 subject: 'kkk!',
                 body: 'wassaps',
                 isRead: false,
-                isStarred: false,
+                isStarred: true,
+                isImportant: false,
                 sentAt: 1551133939594,
                 removedAt: null, //for later use
                 from: 'bla@momo.com',
@@ -128,7 +135,8 @@ function _createEmails() {
                 subject: 'iiiiii!',
                 body: 'stop',
                 isRead: false,
-                isStarred: false,
+                isStarred: true,
+                isImportant: false,
                 sentAt: 1551133940594,
                 removedAt: null, //for later use
                 from: 'bla@momo.com',
@@ -140,6 +148,7 @@ function _createEmails() {
                 body: 'wassaps67555555555555555555555555555555555555558',
                 isRead: true,
                 isStarred: false,
+                isImportant: true,
                 sentAt: 1551133939594,
                 removedAt: null, //for later use
                 from: 'bla@momo.com',
@@ -150,7 +159,8 @@ function _createEmails() {
                 subject: 'jjjjj!',
                 body: 'wassapsfgdsssssssssssssssssssssssssssssssssssssssssssssssfgfgfsgfsg',
                 isRead: false,
-                isStarred: false,
+                isStarred: true,
+                isImportant: true,
                 sentAt: 1551133939594,
                 removedAt: null, //for later use
                 from: 'bla@momo.com',
