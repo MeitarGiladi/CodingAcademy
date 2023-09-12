@@ -28,6 +28,7 @@ export function EmailPreview({ email }) {
         }
     }
 
+
     return (
         <section className="email-preview">
             <span className="preview-from">{email.from}</span>

@@ -23,7 +23,7 @@ export function EmailIndex() {
     async function updateEmail(email) {
         const updatedEmail = await emailService.save(email);
         setEmails((prevEmails) => {
-            prevEmails.map((em) => (em.id === updatedEmail.id ? updatedEmail : em))
+            return prevEmails.map((em) => (em.id === updatedEmail.id ? updatedEmail : em))
         });
     }
 
@@ -52,7 +52,7 @@ export function EmailIndex() {
                 </footer>
 
             </section>
-            
+
         </section>
     )
 }

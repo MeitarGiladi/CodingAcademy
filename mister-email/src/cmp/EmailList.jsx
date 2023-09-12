@@ -23,7 +23,7 @@ export function EmailList({ emails, CbUpdateEmail }) {
         CbUpdateEmail(updatedEmail);
     }
 
-
+    
     return (
         <ul className="email-list">
 
