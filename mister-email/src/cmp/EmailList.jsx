@@ -1,52 +1,20 @@
 import { useState, useEffect } from 'react';
 
-import { EmailPreview } from "./EmailPreview"
+import { EmailPreviewMain } from "./EmailPreviewMain"
+import { EmailPreviewStart } from "./EmailPreviewStart"
+import { EmailPreviewEnd } from "./EmailPreviewEnd"
 
 export function EmailList({ emails, CbUpdateEmail }) {
 
-    function dummy(ev) { console.log("clicked ! ", ev) };  //dummy
-    const isSelected = false;  //dummy
-
-    
-    function toggleStar(email) {
-        const updatedEmail = { ...email, isStarred: !email.isStarred };
-        CbUpdateEmail(updatedEmail);
-    }
-
-    function toggleImportant(email) {
-        const updatedEmail = { ...email, isImportant: !email.isImportant };
-        CbUpdateEmail(updatedEmail);
-    }
-
-    function toggleRead(email) {
-        const updatedEmail = { ...email, isRead: !email.Read };
-        CbUpdateEmail(updatedEmail);
-    }
-
-    
     return (
         <ul className="email-list">
 
-            {emails.map((em, idx) => <li key={idx + em.id} className="email-item">
-
-                <i className="icon-drag"></i>
-                <span className="email-preview-left-icons">
-                    <i className={"preview-icon " + (isSelected ? "icon-checked" : "icon-unchecked")} onClick={dummy}></i>
-                    <i className={"preview-icon " + (em.isStarred ? "icon-star" : "icon-unstarred")} onClick={() => toggleStar(em)}></i>
-                    <i className={"preview-icon " + (em.isImportant ? "icon-important" : "icon-unimportant")} onClick={() => toggleImportant(em)}></i>
-                </span>
-
-                <EmailPreview email={em} />
-
-                <span className="email-preview-right-icons">
-                    <i className="preview-icon icon-archive" onClick={dummy}></i>
-                    <i className="preview-icon icon-delete" onClick={dummy}></i>
-                    <i className={"preview-icon " + (em.isRead ? "icon-mark-unread" : "icon-mark-read")} onClick={() => toggleRead(em)}></i>
-                    <i className="preview-icon icon-snooze" onClick={dummy}></i>
-                </span>
-
-
-            </li>
+            {emails.map((em, idx) =>
+                <li key={idx + em.id} className="email-item">
+                    <EmailPreviewStart email={em} CbUpdateEmail={CbUpdateEmail} />
+                    <EmailPreviewMain email={em} />
+                    <EmailPreviewEnd email={em} CbUpdateEmail={CbUpdateEmail} />
+                </li>
             )}
 
         </ul>

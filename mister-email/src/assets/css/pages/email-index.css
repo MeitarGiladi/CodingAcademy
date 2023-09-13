@@ -37,23 +37,28 @@
 
 .email-preview-left-icons {
     padding-left: 16px;
+    /* flex: 0, 0, auto; */
+    flex-basis: auto;
+    flex-grow: 0;
     flex-shrink: 0;
 }
 
 .email-preview-right-icons {
     display: none;
+    flex-basis: auto;
+    flex-grow: 0;
     flex-shrink: 0;
 }
 
 .email-preview {
     margin: 0;
     padding: 0;
-    display: inline-flex;
-    /* overflow: hidden; */
-    /* text-overflow: ellipsis; */
+    display: flex;
+    /* overflow: hidden;
+    text-overflow: ellipsis; */
     white-space: nowrap;
-    /* outline: none; */
-    flex-basis: 0;
+    outline: none;
+    flex-basis: auto;
     flex-grow: 1;
     flex-shrink: 1;
 }
@@ -76,7 +81,7 @@
 }
 
 .preview-subject-n-body {
-    flex-basis: 0;
+    flex-basis: auto;
     flex-grow: 1;
     flex-shrink: 1;
 }
@@ -93,6 +98,9 @@
     font-size: 12px;
     font-family: "Google Sans",Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     padding-right: 16px;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 .preview-icon {
