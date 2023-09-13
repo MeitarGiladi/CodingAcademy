@@ -7,17 +7,30 @@ import { EmailPreviewEnd } from "./EmailPreviewEnd"
 export function EmailList({ emails, CbUpdateEmail }) {
 
     return (
-        <ul className="email-list">
+        <section className="email-list">
 
-            {emails.map((em, idx) =>
-                <li key={idx + em.id} className="email-item">
-                    <EmailPreviewStart email={em} CbUpdateEmail={CbUpdateEmail} />
-                    <EmailPreviewMain email={em} />
-                    <EmailPreviewEnd email={em} CbUpdateEmail={CbUpdateEmail} />
-                </li>
-            )}
+            <header className="email-list-header">
+                <i className="email-list-header-icon icon-unchecked"></i>
+            </header>
 
-        </ul>
+            <ul className="email-list-main">
+
+                {emails.map((em, idx) =>
+                    <li key={idx + em.id} className={"email-item" + (em.isRead ? " read-email" : "")}>
+                        <EmailPreviewStart email={em} CbUpdateEmail={CbUpdateEmail} />
+                        <EmailPreviewMain email={em} />
+                        <EmailPreviewEnd email={em} CbUpdateEmail={CbUpdateEmail} />
+                    </li>
+                )}
+
+            </ul>
+
+            <footer className="email-list-footer">
+                <p>list-footer</p>
+            </footer>
+
+        </section>
+
     )
 }
 

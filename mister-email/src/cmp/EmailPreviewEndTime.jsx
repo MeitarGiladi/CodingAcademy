@@ -30,9 +30,7 @@ export function EmailPreviewEndTime({ sentAt }) {
 
 
     return (
-        <span className="email-preview-end-time">
-            <time className="preview-time">{calcTime}</time>
-        </span>
+        <time className="email-preview-end-time">{calcTime}</time>
     )
 }
 

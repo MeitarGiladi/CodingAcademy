@@ -1,10 +1,11 @@
-
-.email-index-main {
+/* Main structure */
+.email-list {
     background-color: rgba(51, 51, 51, 0.8);
     color: rgb(255, 255, 255);
     border-radius: 16px;
     padding: 0px;
     margin: 0px;
+    font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
 }
 
 .email-list-header {
@@ -24,101 +25,107 @@
 }
 
 .email-item {
+    height: 28px;
     display: flex;
-    align-items: center;
     font-weight: 700;
     font-size: 14px;
-    height: 28px;
+    align-items: center;
     box-shadow: rgba(255, 255, 255, 0.12) 0px -1px 0px 0px inset;
     border-color: rgba(128, 128, 128);
-    padding-top: 4px;
-    padding-bottom: 4px;
 }
 
-.email-preview-left-icons {
-    padding-left: 16px;
+.email-item.read-email {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgb(255, 255, 255, 0.7);
+}
+
+.email-preview-start {
+    height: 28px;
+    padding-left: 13px;
     /* flex: 0, 0, auto; */
     flex-basis: auto;
     flex-grow: 0;
     flex-shrink: 0;
 }
 
-.email-preview-right-icons {
+.email-preview-start .icon-drag {
     display: none;
-    flex-basis: auto;
-    flex-grow: 0;
-    flex-shrink: 0;
+    position: absolute;
+    box-sizing: content-box;
+    height: 20px;
+    margin: 4px;
+    left: -2px;
 }
 
-.email-preview {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    /* overflow: hidden;
-    text-overflow: ellipsis; */
-    white-space: nowrap;
-    outline: none;
-    flex-basis: auto;
-    flex-grow: 1;
-    flex-shrink: 1;
-}
-
-.read-email {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: rgb(255, 255, 255, 0.7);
-    font-weight: 400;
-}
-
-
-.preview-from {
-    padding-left: 5px;
+.email-preview-from {
+    box-sizing: content-box;
+    padding-left: 4px;
     padding-right: 32px;
-    max-width:0cqi 168px;
     height: 20px;
     flex-basis: 168px;
     flex-grow: 0;
     flex-shrink: 0;
 }
 
-.preview-subject-n-body {
+.email-preview-main {
+    white-space: nowrap;
+    outline: none;
+    display: flex;
+    align-items: center;
     flex-basis: auto;
     flex-grow: 1;
     flex-shrink: 1;
 }
 
-/* .preview-subject {
-
+.email-preview-main .preview-subject {
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
-.preview-body {
+.email-preview-main .preview-body {
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-} */
+.email-preview-end {
+    height: 28px;
+    align-items: center;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
 
-.preview-time {
+.email-preview-end-time {
     font-size: 12px;
-    font-family: "Google Sans",Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
     padding-right: 16px;
     flex-basis: auto;
     flex-grow: 0;
     flex-shrink: 0;
 }
 
+.email-preview-end-icons {
+    display: none;
+}
+
+
+/* Preview icons */
 .preview-icon {
     opacity: 0.32;
+    padding: 4px;
 }
 
-.email-preview-left-icons .preview-icon {
-    margin-right: 10px;
+.email-preview-start-icons .preview-icon {
+    margin-right: 2px;
 }
 
-.email-preview-right-icons .preview-icon {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.icon-drag {
-    display: none;
-    position: absolute;
+.email-preview-end-icons .preview-icon {
+    margin-left: 6px;
+    margin-right: 6px;
 }
 
 .email-item .icon-checked,
@@ -128,9 +135,9 @@
 }
 
 
-
+/* Hovering */
 .email-item:hover {
-    box-shadow: inset 1px 0 0 rgba(255,255,255,0.2), inset -1px 0 0 rgba(255,255,255,0.2), 0 0 4px 0 rgba(95,99,104,.6), 0 0 6px 2px rgba(95,99,104,.6);
+    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.2), inset -1px 0 0 rgba(255, 255, 255, 0.2), 0 0 4px 0 rgba(95, 99, 104, .6), 0 0 6px 2px rgba(95, 99, 104, .6);
 }
 
 .email-item:hover .preview-icon {
@@ -142,21 +149,18 @@
     display: inline-block;
 }
 
-.email-item:hover .email-preview-right-icons {
-    display: inline-flex;
-}
-
-.email-item:hover .preview-time {
+.email-item:hover .email-preview-end-time {
     display: none;
 }
 
-.preview-icon:hover {
-    border-style: double;
-    border-color: white;
-    border-radius: 50%;
-    border-width: 1px;
+.email-item:hover .email-preview-end-icons {
+    display: inline-flex;
 }
 
-
-
-
+.preview-icon:hover {
+    border-style: none;
+    border-color: white;
+    border-radius: 50%;
+    border-width: 0px;
+    background-color: rgba(255, 255, 255, 0.2);
+}

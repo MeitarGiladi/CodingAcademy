@@ -3,6 +3,7 @@
 export function EmailPreviewStart({ email }) {
 
     function dummy(ev) { console.log("clicked ! ", ev) };  //dummy
+    const isSelected = false;  //dummy
 
     function toggleStar(email) {
         const updatedEmail = { ...email, isStarred: !email.isStarred };
@@ -17,7 +18,7 @@ export function EmailPreviewStart({ email }) {
     return (
         <span className="email-preview-start">
             <i className="icon-drag"></i>
-            <span className="email-preview-left-icons">
+            <span className="email-preview-start-icons">
                 <i className={"preview-icon " + (isSelected ? "icon-checked" : "icon-unchecked")} onClick={dummy}></i>
                 <i className={"preview-icon " + (email.isStarred ? "icon-star" : "icon-unstarred")} onClick={() => toggleStar(email)}></i>
                 <i className={"preview-icon " + (email.isImportant ? "icon-important" : "icon-unimportant")} onClick={() => toggleImportant(email)}></i>
