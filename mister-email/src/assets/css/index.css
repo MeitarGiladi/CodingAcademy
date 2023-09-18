@@ -1,6 +1,7 @@
 /*  Basics */
 @import "basics/base.css";
 @import "basics/icons.css";
+@import "basics/fonts.css";
 
 /* Pages */
 @import "./pages/home.css";
@@ -9,6 +10,8 @@
 
 /* Components */
 @import "./cmps/app-header.css";
+@import "./cmps/email-list.css";
+
 
 
 

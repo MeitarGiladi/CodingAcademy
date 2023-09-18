@@ -1,11 +1,12 @@
-import { NavLink } from "react-router-dom"
+import React from 'react'
 
-export function EmailIndex() {
+export function EmailCompose() {
+
     return (
-        <section className="email-index">
-            
-            <EmailList />
+        
+        <React.Fragment>
 
-        </section>
+        </React.Fragment>
+
     )
 }

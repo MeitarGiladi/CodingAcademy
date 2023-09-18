@@ -3,11 +3,15 @@ import { useState, useEffect } from 'react';
 
 import { emailService } from "../services/email.service";
 
+import { EmailNavBar } from "../cmp/EmailNavBar";
+import { EmailFolderMenu } from "../cmp/EmailFolderMenu";
 import { EmailList } from "../cmp/EmailList";
+import { EmailSideBar } from "../cmp/EmailSideBar";
 
 
 export function EmailIndex() {
 
+    const [currFilter, setCurrFilter] = useState({})
     const [emails, setEmails] = useState([]);
 
     useEffect(() => {
@@ -15,8 +19,8 @@ export function EmailIndex() {
     }, []);
 
 
-    async function loadEmails() {
-        const updatedEmails = await emailService.query();
+    async function loadEmails(filterBy) {
+        const updatedEmails = await emailService.query(filterBy);
         setEmails(updatedEmails);
     }
 
@@ -35,12 +39,25 @@ export function EmailIndex() {
 
     }
 
+    async function filterEmails(filterBy) {
+        await loadEmails(filterBy);
+        setCurrFilter((prevFilter) => {
+            return { ...prevFilter, ...filterBy }
+        });
+    }
+
 
     return (
-        <section className="email-index">
+        <main className="email-index">
 
-            <EmailList emails={emails} CbUpdateEmail={updateEmail} />
+            <EmailNavBar />
 
-        </section>
+            <div className="email-index-main">
+                <EmailFolderMenu cbFilterEmails={(newFilter) => filterEmails(newFilter)} />
+                <EmailList emails={emails} CbUpdateEmail={updateEmail} />
+                <EmailSideBar />
+            </div>
+
+        </main>
     )
 }

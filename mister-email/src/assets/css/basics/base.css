@@ -107,3 +107,11 @@ a.active {
     color: rgb(84, 17, 147);
     font-weight: 600;
 }
+
+
+svg {
+    fill: white;
+    box-sizing: content-box;
+    height: 24px;
+    width: 24px;
+}

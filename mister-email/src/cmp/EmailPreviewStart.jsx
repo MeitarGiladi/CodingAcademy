@@ -1,6 +1,6 @@
 
 
-export function EmailPreviewStart({ email }) {
+export function EmailPreviewStart({ email, CbUpdateEmail}) {
 
     function dummy(ev) { console.log("clicked ! ", ev) };  //dummy
     const isSelected = false;  //dummy

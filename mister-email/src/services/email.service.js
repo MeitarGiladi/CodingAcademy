@@ -6,14 +6,17 @@ export const emailService = {
     save,
     remove,
     getById,
+    getFolders,
     getCurruser
 }
 
 const STORAGE_KEY = 'emails'
 const STORAGE_KEY_USER = 'loggedInUser' // Added a validation in async-storage so each user can see only his emails.
+const STORAGE_KEY_FOLDER = 'folders'
 
 
 _createEmails()
+_createUserFolders()
 _createLoggedInUser()
 
 
@@ -74,13 +77,17 @@ function save(emailToSave) {
 //     }
 // }
 
+function getFolders() {
+    return utilService.loadFromStorage(STORAGE_KEY_FOLDER);
+}
+
 function getCurruser() {
     return utilService.loadFromStorage(STORAGE_KEY_USER);
 }
 
 function _createEmails() {
     let emails = utilService.loadFromStorage(STORAGE_KEY)
-    if (!emails || !emails.length || true) {  // remove the 'true' if you want to not overwrite the emails
+    if (!emails || !emails.length || true) { // add 'true' if you want to overwrite
         emails = [
             {
                 id: 'e1',
@@ -171,14 +178,29 @@ function _createEmails() {
     }
 }
 
+
+function _createUserFolders() {
+    let userFolders = utilService.loadFromStorage(STORAGE_KEY_FOLDER)
+    if (!userFolders) {
+        const folders = [
+            {name: "inbox", filter: {status: "inbox"}},
+            {name: "sent", filter: {status: "sent"}},
+            {name: "star", filter: {status: "star"}},
+            {name: "important", filter: {status: "important"}},
+            {name: "trash", filter: {status: "trash"}}
+        ];
+        utilService.saveToStorage(STORAGE_KEY_FOLDER, folders)
+    }
+}
+
 function _createLoggedInUser() {
     let loggedUser = utilService.loadFromStorage(STORAGE_KEY_USER)
     if (!loggedUser) {
-        const loggedinUser = {
+        const loggedInUser = {
             email: 'user@appsus.com',
             fullname: 'Mahatma Appsus'
         };
-        utilService.saveToStorage(STORAGE_KEY_USER, loggedinUser)
+        utilService.saveToStorage(STORAGE_KEY_USER, loggedInUser)
     }
 }
 

@@ -42,3 +42,43 @@
 .icon-snooze {
     content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/schedule_white_20dp.png");
 }
+
+.icon-google-calender {
+    content: url("//www.gstatic.com/companion/icon_assets/calendar_2020q4_2x.png");
+}
+
+.icon-google-keep {
+    content: url("//www.gstatic.com/companion/icon_assets/keep_2020q4v3_2x.png");
+}
+
+.icon-google-tasks {
+    content: url("//www.gstatic.com/companion/icon_assets/tasks_2021_2x.png");
+}
+
+.icon-google-contacts {
+    content: url("//www.gstatic.com/companion/icon_assets/contacts_2022_2x.png");
+}
+
+.icon-add-white {
+    content: url("//www.gstatic.com/images/icons/material/system/1x/add_white_24dp.png");
+}
+
+.icon-add-white {
+    content: url("//www.gstatic.com/images/icons/material/system/1x/add_white_24dp.png");
+}
+
+.icon-gmail-sign {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r5.png");
+}
+
+.icon-mail-compose {
+    content: url("//www.gstatic.com/images/icons/material/system_gm/1x/create_gm_grey_20dp.png");
+}
+
+
+
+
+
+
+
+
