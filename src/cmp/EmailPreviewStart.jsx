@@ -1,18 +1,18 @@
 
 
-export function EmailPreviewStart({ email, CbUpdateEmail}) {
+export function EmailPreviewStart({ email, cbUpdateEmail}) {
 
-    function dummy(ev) { console.log("clicked ! ", ev) };  //dummy
+    function dummy(ev) { console.log("clicked ! ", ev.target) };  //dummy
     const isSelected = false;  //dummy
 
     function toggleStar(email) {
         const updatedEmail = { ...email, isStarred: !email.isStarred };
-        CbUpdateEmail(updatedEmail);
+        cbUpdateEmail(updatedEmail);
     }
 
     function toggleImportant(email) {
         const updatedEmail = { ...email, isImportant: !email.isImportant };
-        CbUpdateEmail(updatedEmail);
+        cbUpdateEmail(updatedEmail);
     }
 
     return (

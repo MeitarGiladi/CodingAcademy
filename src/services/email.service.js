@@ -7,26 +7,30 @@ export const emailService = {
     remove,
     getById,
     getFolders,
+    getLabelFolders,
     getCurruser
 }
 
 const STORAGE_KEY = 'emails'
 const STORAGE_KEY_USER = 'loggedInUser' // Added a validation in async-storage so each user can see only his emails.
-const STORAGE_KEY_FOLDER = 'folders'
+const STORAGE_KEY_FOLDERS = 'folders'
+const STORAGE_KEY_LABEL_FOLDERS = 'label_folders'
 
 
+const CREATE_AGAIN = true;
 _createEmails()
 _createUserFolders()
+_createUserLabelFolders()
 _createLoggedInUser()
 
 
-async function query(filterBy = { txt: "", isRead: null, status: null }) {
+async function query(filterBy = { txt: "", isRead: null, status: null, label: "" }) {
 
     let emails = await storageService.query(STORAGE_KEY)
     if (!emails) return emails;
 
     if (filterBy) {
-        const { status, txt, isRead } = filterBy
+        const { txt, isRead, status, label } = filterBy
         if (txt) emails = emails.filter(em => (em.subject + em.body + em.from + em.to).toLowerCase().includes(txt.toLowerCase()));
         if (isRead !== null) emails = emails.filter(em => em.isRead === isRead);
         const currUserEmail = getCurruser().email; // Should I validate again that the currUser isn't null or empty?
@@ -35,7 +39,7 @@ async function query(filterBy = { txt: "", isRead: null, status: null }) {
                 emails = emails.filter(em => em.to === currUserEmail);
                 break;
             case 'sent':
-                emails = emails.filter(em => em.from === currUserEmail);
+                emails = emails.filter(em => em.from == currUserEmail);
                 break;
             case 'star':
                 emails = emails.filter(em => em.isStarred);
@@ -46,8 +50,12 @@ async function query(filterBy = { txt: "", isRead: null, status: null }) {
             case 'trash':
                 emails = emails.filter(em => em.removedAt);
                 break;
+            case 'label':
+                console.log("new emails: ", label, emails)
+                emails = emails.filter(em => em.labels.indexOf(label) > -1);
+                break;
             default:
-                console.log("error - invalid query")
+                console.log("invalid status in filter");
         }
     }
     return emails
@@ -78,7 +86,11 @@ function save(emailToSave) {
 // }
 
 function getFolders() {
-    return utilService.loadFromStorage(STORAGE_KEY_FOLDER);
+    return utilService.loadFromStorage(STORAGE_KEY_FOLDERS);
+}
+
+function getLabelFolders() {
+    return utilService.loadFromStorage(STORAGE_KEY_LABEL_FOLDERS);
 }
 
 function getCurruser() {
@@ -87,7 +99,7 @@ function getCurruser() {
 
 function _createEmails() {
     let emails = utilService.loadFromStorage(STORAGE_KEY)
-    if (!emails || !emails.length || true) { // add 'true' if you want to overwrite
+    if (!emails || !emails.length || CREATE_AGAIN) { // add 'true' if you want to overwrite
         emails = [
             {
                 id: 'e1',
@@ -98,6 +110,7 @@ function _createEmails() {
                 isImportant: false,
                 sentAt: 1551133930594,
                 removedAt: null, //for later use
+                labels: ["games"],
                 from: 'momo@momo.com',
                 to: 'user@appsus.com'
             },
@@ -110,6 +123,7 @@ function _createEmails() {
                 isImportant: false,
                 sentAt: 1551133931700,
                 removedAt: null, //for later use
+                labels: [],
                 from: 'user@appsus.com',
                 to: 'momo@momo.com'
             },
@@ -122,6 +136,7 @@ function _createEmails() {
                 isImportant: true,
                 sentAt: 1551133940594,
                 removedAt: null, //for later use
+                labels: ["checkins", "games"],
                 from: 'bla@momo.com',
                 to: 'user@appsus.com'
             },
@@ -134,6 +149,7 @@ function _createEmails() {
                 isImportant: false,
                 sentAt: 1551133939594,
                 removedAt: null, //for later use
+                labels: [],
                 from: 'bla@momo.com',
                 to: 'user@appsus.com'
             },
@@ -146,6 +162,7 @@ function _createEmails() {
                 isImportant: false,
                 sentAt: 1551133940594,
                 removedAt: null, //for later use
+                labels: [],
                 from: 'bla@momo.com',
                 to: 'hey@appsus.com'
             },
@@ -158,6 +175,7 @@ function _createEmails() {
                 isImportant: true,
                 sentAt: 1551133939594,
                 removedAt: null, //for later use
+                labels: [],
                 from: 'bla@momo.com',
                 to: 'way@appsus.com'
             },
@@ -170,6 +188,7 @@ function _createEmails() {
                 isImportant: true,
                 sentAt: 1551133939594,
                 removedAt: null, //for later use
+                labels: [],
                 from: 'bla@momo.com',
                 to: 'user@appsus.com'
             }
@@ -178,24 +197,36 @@ function _createEmails() {
     }
 }
 
-
 function _createUserFolders() {
-    let userFolders = utilService.loadFromStorage(STORAGE_KEY_FOLDER)
-    if (!userFolders) {
+    let userFolders = utilService.loadFromStorage(STORAGE_KEY_FOLDERS)
+    if (!userFolders || CREATE_AGAIN) {
         const folders = [
-            {name: "inbox", filter: {status: "inbox"}},
-            {name: "sent", filter: {status: "sent"}},
-            {name: "star", filter: {status: "star"}},
-            {name: "important", filter: {status: "important"}},
-            {name: "trash", filter: {status: "trash"}}
+            { name: "inbox", filter: { status: "inbox" }, iconClass: "" },
+            { name: "sent", filter: { status: "sent" }, iconClass: "" },
+            { name: "star", filter: { status: "star" }, iconClass: "" },
+            { name: "important", filter: { status: "important" }, iconClass: "" },
+            { name: "trash", filter: { status: "trash" }, iconClass: "" }
         ];
-        utilService.saveToStorage(STORAGE_KEY_FOLDER, folders)
+        utilService.saveToStorage(STORAGE_KEY_FOLDERS, folders)
+    }
+}
+
+function _createUserLabelFolders() {
+    let userLabelFolders = utilService.loadFromStorage(STORAGE_KEY_LABEL_FOLDERS)
+    if (!userLabelFolders || CREATE_AGAIN) {
+        const labelFolders = [
+            "amsterdam",
+            "checkins",
+            "games",
+            "bills"
+        ];
+        utilService.saveToStorage(STORAGE_KEY_LABEL_FOLDERS, labelFolders)
     }
 }
 
 function _createLoggedInUser() {
     let loggedUser = utilService.loadFromStorage(STORAGE_KEY_USER)
-    if (!loggedUser) {
+    if (!loggedUser || CREATE_AGAIN) {
         const loggedInUser = {
             email: 'user@appsus.com',
             fullname: 'Mahatma Appsus'

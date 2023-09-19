@@ -1,12 +1,16 @@
 import { EmailPreviewEndTime } from "./EmailPreviewEndTime"
 
-export function EmailPreviewEnd({ email }) {
+export function EmailPreviewEnd({ email, cbUpdateEmail }) {
 
-    function dummy(ev) { console.log("clicked ! ", ev) };  //dummy
+    function dummy(ev) { console.log("clicked ! ", ev.target) };  //dummy
 
     function toggleRead(email) {
-        const updatedEmail = { ...email, isRead: !email.Read };
-        CbUpdateEmail(updatedEmail);
+        const updatedEmail = { ...email, isRead: !email.isRead };
+        cbUpdateEmail(updatedEmail);
+    }
+
+    function deleteEmail(email) {
+
     }
 
     return (

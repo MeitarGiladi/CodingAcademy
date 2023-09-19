@@ -11,12 +11,12 @@ import { EmailSideBar } from "../cmp/EmailSideBar";
 
 export function EmailIndex() {
 
-    const [currFilter, setCurrFilter] = useState({})
+    const [currFilter, setCurrFilter] = useState({ txt: "", isRead: null, status: "inbox", label: "" })
     const [emails, setEmails] = useState([]);
 
     useEffect(() => {
-        loadEmails();
-    }, []);
+        loadEmails(currFilter);
+    }, [currFilter]);
 
 
     async function loadEmails(filterBy) {
@@ -39,8 +39,7 @@ export function EmailIndex() {
 
     }
 
-    async function filterEmails(filterBy) {
-        await loadEmails(filterBy);
+    async function updateFilter(filterBy) {
         setCurrFilter((prevFilter) => {
             return { ...prevFilter, ...filterBy }
         });
@@ -53,8 +52,8 @@ export function EmailIndex() {
             <EmailNavBar />
 
             <div className="email-index-main">
-                <EmailFolderMenu cbFilterEmails={(newFilter) => filterEmails(newFilter)} />
-                <EmailList emails={emails} CbUpdateEmail={updateEmail} />
+                <EmailFolderMenu cbFilterEmails={(newFilter) => updateFilter(newFilter)} />
+                <EmailList emails={emails} cbUpdateEmail={updateEmail} />
                 <EmailSideBar />
             </div>
 
