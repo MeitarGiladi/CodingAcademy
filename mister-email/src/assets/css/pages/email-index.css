@@ -31,7 +31,7 @@
     max-width: 720px;
     border-radius: 24px;
     border-color: rgba(255, 255, 255, 0.87);
-    background-color: rgba(241, 243, 244, 0.24);
+    background-color: rgb(69,69,70);
     display: grid;
     grid-template-columns: auto 1fr auto;
 }
@@ -40,15 +40,24 @@
     padding: 12px;
 }
 
-.email-nav-bar-middle .email-nav-bar-search-box{
+.email-nav-bar-middle .email-nav-bar-search-box {
     font-size: 16px;
-    border-color: rgba(241, 243, 244, 0.24);
-    background-color: rgba(241, 243, 244, 0.24);
+    color: rgba(255, 255, 255, 0.87);
+    border-style: none;
+    background-color: rgb(69,69,70);
+}
+
+.email-nav-bar-middle .email-nav-bar-search-box::placeholder {
+    color: rgba(255, 255, 255, 0.87);
 }
 
 .email-nav-bar-middle .email-nav-bar-search .svg-icon-filter {
     padding: 11px 16px 13px 56px;
     opacity: 0.87;
+}
+
+.email-nav-bar-right {
+    margin-left: 10px;
 }
 
 .email-nav-bar-right .svg-icon-support,
