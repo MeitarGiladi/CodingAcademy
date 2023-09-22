@@ -5,10 +5,10 @@ import { emailService } from '../services/email.service.js'
 import { EmailFolder } from "./EmailFolder";
 
 
-export function EmailFolderMenu({ cbFilterEmails }) {
+export function EmailFolderMenu({ isFolderMenuOpen, cbFilterEmails }) {
     const [folders, setFolders] = useState([]);
     const [labelFolders, setLabelFolders] = useState([]);
-    const [currFolder, setCurrFolder] = useState("inbox");
+    const [currFolder, setCurrFolder] = useState("Inbox");
 
     useEffect(() => {
         getFolders()
@@ -33,7 +33,7 @@ export function EmailFolderMenu({ cbFilterEmails }) {
 
     // Warning - The label name might be equal to a folder name.
     return (
-        <section className="email-menu">
+        <section className={"email-menu" + (isFolderMenuOpen ? " folder-menu-open" : "")}>
             <i className="icon-mail-compose"></i>
 
             {
@@ -52,7 +52,7 @@ export function EmailFolderMenu({ cbFilterEmails }) {
                     <EmailFolder key={idx + label}
                         folderName={label}
                         isCurrFolder={(label) === currFolder ? true : false}
-                        iconClassName="icon-label-folder"
+                        iconClassName="icon-folder-label"
                         cbChangeFolder={() => changeFolder(label, { status: "label", label: label })} />
                 )
             }

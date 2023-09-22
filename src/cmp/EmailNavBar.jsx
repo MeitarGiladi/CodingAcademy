@@ -1,12 +1,14 @@
 
-export function EmailNavBar({}) {
+export function EmailNavBar({cbToggleIsFolderMenuOpen}) {
 
     function dummy(ev) { console.log("clicked ! ", ev.target) };  //dummy
+
+
 
     return (
         <nav className="email-nav-bar">
             <div className="email-nav-bar-left">
-                <svg className="svg-image svg-icon-3-lines" onClick={dummy}>
+                <svg className="svg-image svg-icon-3-lines" onClick={cbToggleIsFolderMenuOpen}>
                     <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
                 </svg>
                 <i className="icon-gmail-sign" onClick={dummy}></i>

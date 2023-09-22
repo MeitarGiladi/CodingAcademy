@@ -13,6 +13,7 @@ export function EmailIndex() {
 
     const [currFilter, setCurrFilter] = useState({ txt: "", isRead: null, status: "inbox", label: "" })
     const [emails, setEmails] = useState([]);
+    const [isFolderMenuOpen, setIsFolderMenuOpen] = useState(false);
 
     useEffect(() => {
         loadEmails(currFilter);
@@ -45,18 +46,22 @@ export function EmailIndex() {
         });
     }
 
+    function toggleIsFolderMenuOpen() {
+        setIsFolderMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
+    }
+
 
     return (
-        <main className="email-index">
+        <div className="email-index">
 
-            <EmailNavBar />
+            <EmailNavBar cbToggleIsFolderMenuOpen={toggleIsFolderMenuOpen} />
 
             <div className="email-index-main">
-                <EmailFolderMenu cbFilterEmails={(newFilter) => updateFilter(newFilter)} />
+                <EmailFolderMenu isFolderMenuOpen={isFolderMenuOpen} cbFilterEmails={(newFilter) => updateFilter(newFilter)} />
                 <EmailList emails={emails} cbUpdateEmail={updateEmail} />
                 <EmailSideBar />
             </div>
 
-        </main>
+        </div>
     )
 }

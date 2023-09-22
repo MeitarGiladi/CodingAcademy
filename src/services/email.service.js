@@ -34,28 +34,42 @@ async function query(filterBy = { txt: "", isRead: null, status: null, label: ""
         if (txt) emails = emails.filter(em => (em.subject + em.body + em.from + em.to).toLowerCase().includes(txt.toLowerCase()));
         if (isRead !== null) emails = emails.filter(em => em.isRead === isRead);
         const currUserEmail = getCurruser().email; // Should I validate again that the currUser isn't null or empty?
-        if (status) switch (status) {
-            case 'inbox':
-                emails = emails.filter(em => em.to === currUserEmail);
-                break;
-            case 'sent':
-                emails = emails.filter(em => em.from == currUserEmail);
-                break;
-            case 'star':
-                emails = emails.filter(em => em.isStarred);
-                break;
-            case 'important':
-                emails = emails.filter(em => em.isImportant);
-                break;
-            case 'trash':
+        if (status) {
+            if (status === 'bin') {
                 emails = emails.filter(em => em.removedAt);
-                break;
-            case 'label':
-                console.log("new emails: ", label, emails)
-                emails = emails.filter(em => em.labels.indexOf(label) > -1);
-                break;
-            default:
-                console.log("invalid status in filter");
+                return emails;
+            }
+            emails = emails.filter(em => !em.removedAt);  // We want to see deleted emails onyl at the Bin.
+
+            if (status === 'drafts') {
+                emails = emails.filter(em => em.isDraft);
+                return emails;
+            }
+            emails = emails.filter(em => !em.isDraft);  // Important, so user cannot see drafts of other user (written for the first user).
+
+            switch (status) {
+                case 'inbox':
+                    emails = emails.filter(em => em.to === currUserEmail);
+                    break;
+                case 'sent':
+                    emails = emails.filter(em => em.from == currUserEmail);
+                    break;
+                case 'star':
+                    emails = emails.filter(em => em.isStarred);
+                    break;
+                case 'important':
+                    emails = emails.filter(em => em.isImportant);
+                    break;
+                case 'all-mail':
+                    // emails = emails.filter(em => true);
+                    break;
+                case 'label':
+                    console.log("new emails: ", label, emails)
+                    emails = emails.filter(em => em.labels.indexOf(label) > -1);
+                    break;
+                default:
+                    console.log("invalid status in filter");
+            }
         }
     }
     return emails
@@ -201,11 +215,13 @@ function _createUserFolders() {
     let userFolders = utilService.loadFromStorage(STORAGE_KEY_FOLDERS)
     if (!userFolders || CREATE_AGAIN) {
         const folders = [
-            { name: "inbox", filter: { status: "inbox" }, iconClass: "" },
-            { name: "sent", filter: { status: "sent" }, iconClass: "" },
-            { name: "star", filter: { status: "star" }, iconClass: "" },
-            { name: "important", filter: { status: "important" }, iconClass: "" },
-            { name: "trash", filter: { status: "trash" }, iconClass: "" }
+            { name: "Inbox", filter: { status: "inbox" }, iconClass: "icon-folder-inbox" },
+            { name: "Starred", filter: { status: "star" }, iconClass: "icon-folder-starred" },
+            { name: "Important", filter: { status: "important" }, iconClass: "icon-folder-important" },
+            { name: "Sent", filter: { status: "sent" }, iconClass: "icon-folder-sent" },
+            { name: "Drafts", filter: { status: "drafts" }, iconClass: "icon-folder-drafts" },
+            { name: "All Mail", filter: { status: "all-mail" }, iconClass: "icon-folder-allmail" },
+            { name: "Bin", filter: { status: "bin" }, iconClass: "icon-folder-bin" }
         ];
         utilService.saveToStorage(STORAGE_KEY_FOLDERS, folders)
     }

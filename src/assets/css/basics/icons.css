@@ -63,10 +63,6 @@
     content: url("//www.gstatic.com/images/icons/material/system/1x/add_white_24dp.png");
 }
 
-.icon-add-white {
-    content: url("//www.gstatic.com/images/icons/material/system/1x/add_white_24dp.png");
-}
-
 .icon-gmail-sign {
     content: url("//ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r5.png");
 }
@@ -74,6 +70,72 @@
 .icon-mail-compose {
     content: url("//www.gstatic.com/images/icons/material/system_gm/1x/create_gm_grey_20dp.png");
 }
+
+.icon-folder-inbox {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/inbox_white_20dp.png");
+}
+
+.icon-folder-starred {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/star_white_20dp.png");
+}
+
+.icon-folder-important {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/label_important_white_20dp.png");
+}
+
+.icon-folder-sent {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/send_white_20dp.png");
+}
+
+.icon-folder-drafts {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/draft_white_20dp.png");
+}
+
+.icon-folder-allmail {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/stacked_email_white_20dp.png");
+}
+
+.icon-folder-bin {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/delete_white_20dp.png");
+}
+
+.icon-folder-label {
+    content: url("//www.gstatic.com/images/icons/material/system_gm_filled/1x/label_gm_grey_24dp.png");
+}
+
+.icon-folder-inbox-filled {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/inbox_fill_white_20dp.png");
+}
+
+.icon-folder-starred-filled {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/star_fill_white_20dp.png");
+}
+
+.icon-folder-important-filled {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/label_important_fill_white_20dp.png");
+}
+
+.icon-folder-sent-filled {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/send_fill_white_20dp.png");
+}
+
+.icon-folder-drafts-filled {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/draft_fill_white_20dp.png");
+}
+
+.icon-folder-allmail-filled {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/stacked_email_fill_white_20dp.png");
+}
+
+.icon-folder-bin-filled {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/delete_fill_white_20dp.png");
+}
+
+.icon-folder-label-filled {
+    content: url("//www.gstatic.com/images/icons/material/system_gm_filled/1x/label_gm_grey_24dp.png");
+}
+
+
 
 
 
