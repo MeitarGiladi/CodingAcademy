@@ -1,28 +1,32 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate, createSearchParams, useParams, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 import { emailService } from "../services/email.service";
 
 import { EmailNavBar } from "../cmp/EmailNavBar";
 import { EmailFolderMenu } from "../cmp/EmailFolderMenu";
-import { EmailList } from "../cmp/EmailList";
 import { EmailSideBar } from "../cmp/EmailSideBar";
 
 
 export function EmailIndex() {
 
-    const [currFilter, setCurrFilter] = useState({ txt: "", isRead: null, status: "inbox", label: "" })
+    const navigate = useNavigate();
+
+    const params = useParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+
     const [emails, setEmails] = useState([]);
+    const [currFilter, setCurrFilter] = useState(emailService.getFilterFromParams(params.folderName, searchParams))  // need to fix 'getFilterFromParams'
     const [isFolderMenuOpen, setIsFolderMenuOpen] = useState(false);
 
     useEffect(() => {
         loadEmails(currFilter);
     }, [currFilter]);
 
-
     async function loadEmails(filterBy) {
         const updatedEmails = await emailService.query(filterBy);
         setEmails(updatedEmails);
+        setSearchParams(emailService.getRelevantSearchParam(filterBy));
     }
 
     async function updateEmail(email) {
@@ -33,7 +37,7 @@ export function EmailIndex() {
     }
 
     function addEmail() {
-
+        
     }
 
     function delEmail() {
@@ -43,6 +47,16 @@ export function EmailIndex() {
     async function updateFilter(filterBy) {
         setCurrFilter((prevFilter) => {
             return { ...prevFilter, ...filterBy }
+        });
+        updateUrlFilter(filterBy);  // Is updating the URL should rerender the EmailIndex element? Why not? Isn't it easier to maintain everything with searchParams only?
+    }
+
+    function updateUrlFilter(filterBy) {
+        const newFolderPath = '/mail/' + filterBy.folder;
+        const newSearchParams = emailService.getRelevantSearchParam(filterBy);
+        navigate({
+            pathname: newFolderPath,
+            search: createSearchParams(newSearchParams).toString()
         });
     }
 
@@ -57,8 +71,9 @@ export function EmailIndex() {
             <EmailNavBar cbToggleIsFolderMenuOpen={toggleIsFolderMenuOpen} />
 
             <div className="email-index-main">
-                <EmailFolderMenu isFolderMenuOpen={isFolderMenuOpen} cbFilterEmails={(newFilter) => updateFilter(newFilter)} />
-                <EmailList emails={emails} cbUpdateEmail={updateEmail} />
+                <EmailFolderMenu currFolder={params.folder} isFolderMenuOpen={isFolderMenuOpen} cbFilterEmails={(newFilter) => updateFilter(newFilter)} />
+                <Outlet context={{ emails: emails, cbUpdateEmail: updateEmail }} />
+                {/* <EmailList emails={emails} cbUpdateEmail={updateEmail} /> */}
                 <EmailSideBar />
             </div>
 

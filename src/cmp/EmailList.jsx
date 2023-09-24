@@ -1,9 +1,13 @@
 
+import { Link, useNavigate, useOutletContext, useParams } from "react-router-dom";
+
 import { EmailPreviewMain } from "./EmailPreviewMain"
 import { EmailPreviewStart } from "./EmailPreviewStart"
 import { EmailPreviewEnd } from "./EmailPreviewEnd"
 
-export function EmailList({ emails, cbUpdateEmail }) {
+export function EmailList() {
+
+    const {emails, cbUpdateEmail} = useOutletContext();
 
     return (
         <section className="email-list">
@@ -15,7 +19,7 @@ export function EmailList({ emails, cbUpdateEmail }) {
             <ul className="email-list-main">
 
                 {emails.map((em, idx) =>
-                    <li key={idx + em.id} className={"email-item" + (em.isRead ? " read-email" : "")}>
+                    <li key={idx + em.id} className={"email-item" + (em.isRead === 1 ? " read-email" : "")} onClick={() => console.log("yayyyy")}>
                         <EmailPreviewStart email={em} cbUpdateEmail={cbUpdateEmail} />
                         <EmailPreviewMain email={em} />
                         <EmailPreviewEnd email={em} cbUpdateEmail={cbUpdateEmail} />

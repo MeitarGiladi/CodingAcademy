@@ -31,7 +31,7 @@
     max-width: 720px;
     border-radius: 24px;
     border-color: rgba(255, 255, 255, 0.87);
-    background-color: rgb(69,69,70);
+    background-color: rgb(69, 69, 70);
     display: grid;
     grid-template-columns: auto minmax(0px, 1fr) auto;
 }
@@ -44,7 +44,7 @@
     font-size: 16px;
     color: rgba(255, 255, 255, 0.87);
     border-style: none;
-    background-color: rgb(69,69,70);
+    background-color: rgb(69, 69, 70);
 }
 
 .email-nav-bar-middle .email-nav-bar-search-box::placeholder {
@@ -83,18 +83,30 @@
 
 .email-index-main {
     display: grid;
-    /* grid-template-columns: 256px 1fr 56px; */
+    grid-template-columns: 256px 1fr 56px;
     /* grid-template-columns: 72px 1fr 56px; */
-    grid-template-columns: auto 1fr 56px;
+    /* grid-template-columns: auto 1fr 56px; */
     grid-template-rows: minmax(386px, 90vh);
-    min-width: 780px; /* when 780, the side bar icons will disappear */
+    min-width: 780px;
+    /* when 780, the side bar icons will disappear */
+    font-size: 14px;
+}
+
+.email-menu .email-menu-scrollable {
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
 .email-menu .email-folder {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto minmax(0, 1fr);
     grid-template-rows: 24px;
+    align-items: center;
+    border-radius: 0px 12px 12px 0px;
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-right: 16px;
 }
 
 .email-menu .email-folder i {
@@ -103,6 +115,16 @@
     width: 20px;
     margin-left: 26px;
     margin-right: 18px;
+}
+
+
+.email-menu-labels .email-folder i {
+    /* Make white */
+    filter: brightness(0) invert(1);
+}
+
+.email-menu .email-folder-name {
+
 }
 
 
@@ -137,7 +159,3 @@
     border-top-width: 1px;
     margin: 16px 18px 0px 18px;
 }
-
-
-
-

@@ -2,10 +2,14 @@ import { EmailPreviewEndTime } from "./EmailPreviewEndTime"
 
 export function EmailPreviewEnd({ email, cbUpdateEmail }) {
 
-    function dummy(ev) { console.log("clicked ! ", ev.target) };  //dummy
+    function dummy(ev) { 
+        ev.stopPropagation(); 
+        console.log("clicked ! ", ev.target) 
+    };  //dummy
 
-    function toggleRead(email) {
-        const updatedEmail = { ...email, isRead: !email.isRead };
+    function toggleRead(ev, email) {
+        ev.stopPropagation();
+        const updatedEmail = { ...email, isRead: 1 - email.isRead };
         cbUpdateEmail(updatedEmail);
     }
 
@@ -19,7 +23,7 @@ export function EmailPreviewEnd({ email, cbUpdateEmail }) {
             <span className="email-preview-end-icons">
                 <i className="preview-icon icon-archive" onClick={dummy}></i>
                 <i className="preview-icon icon-delete" onClick={dummy}></i>
-                <i className={"preview-icon " + (email.isRead ? "icon-mark-unread" : "icon-mark-read")} onClick={() => toggleRead(email)}></i>
+                <i className={"preview-icon " + (email.isRead === 1 ? "icon-mark-unread" : "icon-mark-read")} onClick={(ev) => toggleRead(ev, email)}></i>
                 <i className="preview-icon icon-snooze" onClick={dummy}></i>
             </span>
         </span>
