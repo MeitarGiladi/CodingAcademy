@@ -5,7 +5,7 @@ import { emailService } from '../services/email.service.js'
 import { EmailFolder } from "./EmailFolder";
 
 
-export function EmailFolderMenu({ currFolder, isFolderMenuOpen, cbFilterEmails }) {
+export function EmailFolderMenu({ currFolder, currLabel, isFolderMenuOpen, cbFilterEmails }) {
     const [folders, setFolders] = useState([]);
     const [labelFolders, setLabelFolders] = useState([]);
 
@@ -35,8 +35,11 @@ export function EmailFolderMenu({ currFolder, isFolderMenuOpen, cbFilterEmails }
 
     // Warning - The label name might be equal to a folder name.
     return (
-        <section className={"email-menu" + (isFolderMenuOpen ? " folder-menu-open" : "")}>
-            <i className="icon-mail-compose"></i>
+        <section className={"email-menu" + (isFolderMenuOpen ? " menu-open" : " menu-close")}>
+            <div className="email-menu-compose">
+                <i className="icon-mail-compose"></i>
+                <span></span>
+            </div>
 
             <div className="email-menu-scrollable">
                 <div className="email-menu-folders">
@@ -51,12 +54,12 @@ export function EmailFolderMenu({ currFolder, isFolderMenuOpen, cbFilterEmails }
                     }
                 </div>
                 <div className="email-menu-labels">
-                    <br /><h2>labels: </h2>
+                    <br /><h2>Labels: </h2>
                     {
                         labelFolders.map((label, idx) =>
                             <EmailFolder key={idx + label}
                                 folderText={label}
-                                isCurrFolder={(label) === currFolder ? true : false}
+                                isCurrFolder={currFolder === "label" && currLabel === label ? true : false}
                                 iconClassName="icon-folder-label"
                                 cbChangeFolder={() => changeFolder(label, true)} />
                         )

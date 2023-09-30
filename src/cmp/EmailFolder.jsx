@@ -5,7 +5,7 @@ export function EmailFolder({ folderText, isCurrFolder, iconClassName, cbChangeF
 
         <section className={"email-folder" + (isCurrFolder ? " current-folder" : "")} onClick={cbChangeFolder}>
             <i className={iconClassName + (isCurrFolder ? "-filled" : "")}></i>
-            <p className="email-folder-name">{folderText} {isCurrFolder && "TRUE"}</p>
+            <span className="email-folder-name">{folderText}</span>
         </section>
 
     )

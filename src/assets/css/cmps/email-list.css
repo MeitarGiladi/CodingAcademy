@@ -3,7 +3,7 @@
     background-color: rgba(51, 51, 51, 0.8);
     border-radius: 16px;
     padding: 0px;
-    margin: 0px;
+    margin-bottom: 16px;
     min-width: 636px; /* need to pass to parent */
 }
 
@@ -36,6 +36,7 @@
     align-items: center;
     box-shadow: rgba(255, 255, 255, 0.12) 0px -1px 0px 0px inset;
     border-color: rgba(128, 128, 128);
+    cursor: pointer;
 }
 
 .email-preview-start {
@@ -68,12 +69,7 @@
     grid-template-columns: auto auto 1fr;
     overflow: hidden;
     padding-right: 10px;
-    align-items: center;
 }
-
-/* .email-preview-main .preview-subject {
-
-} */
 
 .email-preview-main .preview-hyphen{
     color: rgb(255, 255, 255, 0.5);
@@ -89,16 +85,15 @@
 
 .email-preview-end {
     height: 28px;
+    display: grid;
     align-items: center;
 }
 
 .email-preview-end-time {
     font-size: 12px;
-    text-align: right;
     width: 56px;
-    align-items: center;
-    padding-right: 16px;
-    padding-left: 28px;
+    margin-right: 16px;
+    margin-left: 28px;
 }
 
 .email-preview-end-icons {
@@ -107,7 +102,7 @@
 }
 
 
-/* Read emails */
+/* ******* Read emails ******* */
 .email-item.read-email .email-preview-from,
 .email-item.read-email .preview-subject {
     color: rgb(255, 255, 255, 0.7);

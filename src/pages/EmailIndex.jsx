@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate, createSearchParams, useParams, useSearchParams } from "react-router-dom";
+import { Outlet, useNavigate, createSearchParams, useParams, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 import { emailService } from "../services/email.service";
@@ -6,6 +6,7 @@ import { emailService } from "../services/email.service";
 import { EmailNavBar } from "../cmp/EmailNavBar";
 import { EmailFolderMenu } from "../cmp/EmailFolderMenu";
 import { EmailSideBar } from "../cmp/EmailSideBar";
+import { EmailList } from "../cmp/EmailList";
 
 
 export function EmailIndex() {
@@ -16,7 +17,7 @@ export function EmailIndex() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const [emails, setEmails] = useState([]);
-    const [currFilter, setCurrFilter] = useState(emailService.getFilterFromParams(params.folderName, searchParams))  // need to fix 'getFilterFromParams'
+    const [currFilter, setCurrFilter] = useState(emailService.getFilterFromParams(params.folderName, searchParams))
     const [isFolderMenuOpen, setIsFolderMenuOpen] = useState(false);
 
     useEffect(() => {
@@ -37,7 +38,7 @@ export function EmailIndex() {
     }
 
     function addEmail() {
-        
+
     }
 
     function delEmail() {
@@ -48,9 +49,11 @@ export function EmailIndex() {
         setCurrFilter((prevFilter) => {
             return { ...prevFilter, ...filterBy }
         });
-        updateUrlFilter(filterBy);  // Is updating the URL should rerender the EmailIndex element? Why not? Isn't it easier to maintain everything with searchParams only?
+        updateUrlFilter(filterBy);
     }
 
+    // navigate to the URL is not enough to render the page again because the use of 'Outlet' and 'route'.
+    // We will update the filter & navigate (change url)
     function updateUrlFilter(filterBy) {
         const newFolderPath = '/mail/' + filterBy.folder;
         const newSearchParams = emailService.getRelevantSearchParam(filterBy);
@@ -64,16 +67,19 @@ export function EmailIndex() {
         setIsFolderMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
     }
 
+    function displayEmail(email) {
+        console.log("yayy: ", email);
+    }
 
+    console.log("params:", params)
     return (
         <div className="email-index">
 
             <EmailNavBar cbToggleIsFolderMenuOpen={toggleIsFolderMenuOpen} />
 
             <div className="email-index-main">
-                <EmailFolderMenu currFolder={params.folder} isFolderMenuOpen={isFolderMenuOpen} cbFilterEmails={(newFilter) => updateFilter(newFilter)} />
-                <Outlet context={{ emails: emails, cbUpdateEmail: updateEmail }} />
-                {/* <EmailList emails={emails} cbUpdateEmail={updateEmail} /> */}
+                <EmailFolderMenu currFolder={params.folderName} currLabel={currFilter.label} isFolderMenuOpen={isFolderMenuOpen} cbFilterEmails={(newFilter) => updateFilter(newFilter)} />
+                <EmailList emails={emails} cbUpdateEmail={updateEmail} cbDisplayEmail={displayEmail} />
                 <EmailSideBar />
             </div>
 

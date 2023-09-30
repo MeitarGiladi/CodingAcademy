@@ -33,45 +33,45 @@ async function query(filterBy = { txt: "", isRead: "", folder: "", label: "" }) 
 
     if (filterBy) {
         const { txt, isRead, folder, label } = filterBy
+        const currUserEmail = getCurruser().email; // Should I validate again that the currUser isn't null or empty?
+        
         if (txt) emails = emails.filter(em => (em.subject + em.body + em.from + em.to).toLowerCase().includes(txt.toLowerCase()));
         if (isRead) emails = emails.filter(em => em.isRead === isRead);
-        const currUserEmail = getCurruser().email; // Should I validate again that the currUser isn't null or empty?
-        if (folder) {
-            if (folder === 'bin') {
-                emails = emails.filter(em => em.removedAt);
-                return emails;
-            }
-            emails = emails.filter(em => !em.removedAt);  // We want to see deleted emails onyl at the Bin.
 
-            if (folder === 'drafts') {
-                emails = emails.filter(em => em.isDraft);
-                return emails;
-            }
-            emails = emails.filter(em => !em.isDraft);  // Important, so user cannot see drafts of other user (written for the first user).
+        if (folder === 'bin') {
+            emails = emails.filter(em => em.removedAt);
+            return emails;
+        }
+        emails = emails.filter(em => !em.removedAt);  // We want to see deleted emails onyl at the Bin.
 
-            switch (folder) {
-                case 'inbox':
-                    emails = emails.filter(em => em.to === currUserEmail);
-                    break;
-                case 'sent':
-                    emails = emails.filter(em => em.from == currUserEmail);
-                    break;
-                case 'star':
-                    emails = emails.filter(em => em.isStarred);
-                    break;
-                case 'important':
-                    emails = emails.filter(em => em.isImportant);
-                    break;
-                case 'all-mail':
-                    // emails = emails.filter(em => true);
-                    break;
-                case 'label':
-                    console.log("new emails: ", label, emails)
-                    emails = emails.filter(em => em.labels.indexOf(label) > -1);
-                    break;
-                default:
-                    console.log("invalid folder in filter");
-            }
+        if (folder === 'drafts') {
+            emails = emails.filter(em => em.isDraft);
+            return emails;
+        }
+        emails = emails.filter(em => !em.isDraft);  // Important, so user cannot see drafts of other user (written for the first user).
+
+        switch (folder) {
+            case 'inbox':
+                emails = emails.filter(em => em.to === currUserEmail);
+                break;
+            case 'sent':
+                emails = emails.filter(em => em.from == currUserEmail);
+                break;
+            case 'starred':
+                emails = emails.filter(em => em.isStarred);
+                break;
+            case 'important':
+                emails = emails.filter(em => em.isImportant);
+                break;
+            case 'all-mail':
+                // emails = emails.filter(em => true);
+                break;
+            case 'label':
+                emails = emails.filter(em => em.labels.indexOf(label) > -1);
+                break;
+            default:
+                console.log("invalid folder in filter");
+                emails = [];
         }
     }
     return emails
@@ -119,7 +119,7 @@ function getFilterFromParams(currFolder, searchParams) {
         isRead: "",
         label: ""
     };
-    const filterBy = {...defaultFilter, folder: (currFolder ? currFolder : "inbox")};
+    const filterBy = { ...defaultFilter, folder: currFolder };
     for (const field in defaultFilter) {
         let value = searchParams.get(field);
         if (value) filterBy[field] = value;

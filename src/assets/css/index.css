@@ -8,9 +8,11 @@
 @import "./pages/about-us.css";
 @import "./pages/email-index.css";
 
-/* Components */
-@import "./cmps/app-header.css";
+/* Email-Index Components */
+@import "./cmps/email-nav-bar.css";
+@import "./cmps/email-menu.css";
 @import "./cmps/email-list.css";
+@import "./cmps/email-side-bar.css";
 
 
 

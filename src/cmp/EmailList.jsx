@@ -5,9 +5,7 @@ import { EmailPreviewMain } from "./EmailPreviewMain"
 import { EmailPreviewStart } from "./EmailPreviewStart"
 import { EmailPreviewEnd } from "./EmailPreviewEnd"
 
-export function EmailList() {
-
-    const {emails, cbUpdateEmail} = useOutletContext();
+export function EmailList({emails, cbUpdateEmail, cbDisplayEmail}) {
 
     return (
         <section className="email-list">
@@ -19,7 +17,7 @@ export function EmailList() {
             <ul className="email-list-main">
 
                 {emails.map((em, idx) =>
-                    <li key={idx + em.id} className={"email-item" + (em.isRead === 1 ? " read-email" : "")} onClick={() => console.log("yayyyy")}>
+                    <li key={idx + em.id} className={"email-item" + (em.isRead === 1 ? " read-email" : "")} onClick={() => cbDisplayEmail(em)}>
                         <EmailPreviewStart email={em} cbUpdateEmail={cbUpdateEmail} />
                         <EmailPreviewMain email={em} />
                         <EmailPreviewEnd email={em} cbUpdateEmail={cbUpdateEmail} />

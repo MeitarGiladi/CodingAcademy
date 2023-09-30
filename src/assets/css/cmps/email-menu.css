@@ -1,0 +1,109 @@
+/********************************************/
+/* ************* EMAIL-MENU *************** */
+
+.email-menu-compose {
+    background-color: white;
+    color: rgb(95, 99, 104);
+    font-weight: 500;
+    border-color: rgb(95, 99, 104);
+    border-radius: 16px;
+    margin: 8px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 40px;
+    align-items: center;
+}
+
+.email-menu .email-menu-scrollable {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+
+.email-menu .email-folder {
+    display: grid;
+    grid-template-columns: auto 0px;
+    grid-template-rows: 24px;
+    align-items: center;
+    border-radius: 50%;
+    margin-left: 24px;
+    margin-right: 24px;
+    cursor: pointer;
+}
+
+.email-menu .email-folder i {
+    box-sizing: content-box;
+    opacity: 0.7;
+    height: 20px;
+    width: 20px;
+    padding: 2px;
+    margin: 0px;
+}
+
+.email-menu-labels .email-folder i {
+    filter: brightness(0) invert(1);  /* Make white */
+}
+
+.email-menu-labels h2 {
+    font-size: 16px;
+    font-weight: 500;
+    visibility: hidden;
+}
+
+.email-menu .email-folder-name {
+    visibility: hidden;
+    white-space: nowrap;
+}
+
+.email-menu .email-folder:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.email-menu .email-folder.current-folder {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.email-menu .email-folder.current-folder i {
+    opacity: 1;
+}
+
+/* open-menu OR hover over close-menu */
+.email-menu.menu-close:hover .email-folder,
+.email-menu.menu-open .email-folder {
+    grid-template-columns: auto 176px;
+    margin-left: 0px;
+    margin-right: 16px;
+    border-radius: 0px 12px 12px 0px;
+    transition-property: margin, border-radius, grid-template-columns;
+    transition-duration: 0.15s;
+    transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+}
+
+.email-menu.menu-close:hover .email-folder i,
+.email-menu.menu-open .email-folder i {
+    margin-left: 24px;
+    transition-property: margin;
+    transition-duration: 0.15s;
+    transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+}
+
+.email-menu.menu-close:hover .email-folder-name,
+.email-menu.menu-open .email-folder-name {
+    visibility: visible;
+    margin-left: 16px;
+}
+
+.email-menu.menu-close:hover .email-menu-labels h2,
+.email-menu.menu-open .email-menu-labels h2 {
+    visibility: visible;
+    margin-left: 24px;
+}
+
+/* delay for hover */
+.email-menu.menu-close:hover .email-folder,
+.email-menu.menu-close:hover .email-folder-name,
+.email-menu.menu-close:hover .email-menu-labels h2,
+.email-menu.menu-close:hover i {
+    transition-delay:0.4s;
+}

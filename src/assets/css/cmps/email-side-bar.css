@@ -1,0 +1,48 @@
+
+/************************************************/
+/* ************* EMAIL-SIDE-BAR *************** */
+
+.email-side-bar {
+    display: grid;
+    grid-template-rows: minmax(auto, 1fr) auto;
+    grid-template-columns: 56px;
+}
+
+/* wrapper - so the icon won't crop by the padding and border */
+.email-side-bar .wrapper-icon {
+    display: inline-block;
+    box-sizing: content-box;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border-color: rgba(255,255,255,.16);
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    cursor: pointer;
+    padding: 10px;
+    margin: 8px;
+}
+
+.email-side-bar .wrapper-icon:hover {
+    background-color: rgb(71,71,71);
+}
+
+.email-side-bar .icon-google-calender,
+.email-side-bar .icon-google-keep,
+.email-side-bar .icon-google-tasks,
+.email-side-bar .icon-google-contacts,
+.email-side-bar .icon-add-white,
+.email-side-bar .svg-icon-smaller-than {
+    box-sizing: content-box;
+    width: 20px;
+    height: 20px;
+}
+
+.email-side-bar .horizontal-line {
+    display: block;
+    height: 16px;
+    width: 20px;
+    border-top-color: rgba(255, 255, 255, 0.12);
+    border-top-style: solid;
+    border-top-width: 1px;
+    margin: 16px 18px 0px 18px;
+}

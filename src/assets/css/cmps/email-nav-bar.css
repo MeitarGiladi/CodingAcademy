@@ -1,0 +1,77 @@
+/***********************************************/
+/* ************* EMAIL-NAV-BAR *************** */
+
+.email-nav-bar {
+    box-sizing: content-box;
+    /* height: 48px; */
+    padding: 8px;
+    display: grid;
+    grid-template-rows: 48px;
+    grid-template-columns: 248px minmax(344px, 1fr) auto;
+}
+
+.email-nav-bar-left {
+    margin-right: 30px;
+    opacity: 0.87;
+}
+
+.email-nav-bar-left .svg-icon-3-lines {
+    padding: 12px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.email-nav-bar-left .icon-gmail-sign {
+    margin-bottom: 4px;
+}
+
+.email-nav-bar-middle .email-nav-bar-search {
+    max-width: 720px;
+    border-radius: 24px;
+    border-color: rgba(255, 255, 255, 0.87);
+    background-color: rgb(69, 69, 70);
+    display: grid;
+    grid-template-columns: auto minmax(0px, 1fr) auto;
+}
+
+.email-nav-bar-middle .email-nav-bar-search .svg-icon-focus {
+    padding: 12px;
+}
+
+.email-nav-bar-middle .email-nav-bar-search-box {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.87);
+    border-style: none;
+    background-color: rgb(69, 69, 70);
+}
+
+.email-nav-bar-middle .email-nav-bar-search-box::placeholder {
+    color: rgba(255, 255, 255, 0.87);
+}
+
+.email-nav-bar-middle .email-nav-bar-search .svg-icon-filter {
+    padding: 11px 16px 13px 56px;
+    opacity: 0.87;
+}
+
+.email-nav-bar-right {
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.email-nav-bar-right .svg-icon-support,
+.email-nav-bar-right .svg-icon-settings,
+.email-nav-bar-right .svg-icon-apps {
+    opacity: 0.87;
+    padding: 10px;
+}
+
+.email-nav-bar-right .curr-user-img {
+    box-sizing: content-box;
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    margin-right: 4px;
+    margin-left: 4px;
+    border-radius: 50%;
+}
