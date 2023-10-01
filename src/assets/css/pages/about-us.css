@@ -1,0 +1,8 @@
+.about-us {
+    width: max(200px, 50vw);
+    height: max(200px, 50vh);
+    display: grid;
+    grid-template-rows: 70% 30%;
+    align-content: center;
+    justify-items: center;
+}

@@ -1,0 +1,17 @@
+.one-element-page-parent {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    color: rgb(95, 99, 104);
+}
+
+.one-element-page-child {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    border-color: rgb(82, 82, 82);
+    border-width: 3px;
+    border-style: solid;
+    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.2), inset -1px 0 0 rgba(255, 255, 255, 0.2), 0 0 4px 0 rgba(95, 99, 104, .6), 0 0 6px 2px rgba(95, 99, 104, .6);
+}
