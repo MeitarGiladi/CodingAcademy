@@ -36,12 +36,15 @@ export function EmailFolderMenu({ currFolder, currLabel, isFolderMenuOpen, cbFil
     // Warning - The label name might be equal to a folder name.
     return (
         <section className={"email-menu" + (isFolderMenuOpen ? " menu-open" : " menu-close")}>
-            <div className="email-menu-compose">
-                <i className="icon-mail-compose"></i>
-                <span className="mail-compose">Compose</span>
+
+            <div className="email-menu-compose-wrapper">
+                <div className="email-menu-compose">
+                    <i className="icon-mail-compose"></i>
+                    <span className="mail-compose">Compose</span>
+                </div>
             </div>
 
-            <div className="email-menu-scrollable">
+            <div className="email-menu-scrollable scrollable">
                 <div className="email-menu-folders">
                     {
                         folders.map((folder, idx) =>
@@ -54,7 +57,7 @@ export function EmailFolderMenu({ currFolder, currLabel, isFolderMenuOpen, cbFil
                     }
                 </div>
                 <div className="email-menu-labels">
-                    <br /><h2>Labels: </h2>
+                    <h2>Labels </h2>
                     {
                         labelFolders.map((label, idx) =>
                             <EmailFolder key={idx + label}

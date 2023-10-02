@@ -1,6 +1,11 @@
 /********************************************/
 /* ************* EMAIL-MENU *************** */
 
+.email-menu-compose-wrapper {
+    display: grid;
+    justify-content: start;
+}
+
 .email-menu-compose {
     background-color: white;
     color: rgb(95, 99, 104);
@@ -27,14 +32,25 @@
 }
 
 .email-menu .email-menu-scrollable {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
     height: calc(100vh - 56px - 64px);
+    overflow-y: scroll;
+}
+
+.email-menu .email-menu-scrollable::-webkit-scrollbar {
+    width: 8px;
 }
 
 .email-menu .email-menu-scrollable::-webkit-scrollbar-thumb {
-    background-color: white;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.email-menu .email-menu-scrollable:hover::-webkit-scrollbar-thumb {
+    background-color: rgb(112, 112, 112);
+}
+
+.email-menu .email-menu-scrollable::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(232, 232, 232);
 }
 
 
@@ -45,7 +61,7 @@
     align-items: center;
     border-radius: 50%;
     margin-left: 24px;
-    margin-right: 24px;
+    margin-right: 16px;
     cursor: pointer;
 }
 
@@ -59,7 +75,8 @@
 }
 
 .email-menu-labels .email-folder i {
-    filter: brightness(0) invert(1);  /* Make white */
+    /* Make white */
+    filter: brightness(0) invert(1);
 }
 
 .email-menu-labels h2 {
@@ -71,6 +88,8 @@
 .email-menu .email-folder-name {
     visibility: hidden;
     white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
 
 .email-menu .email-folder:hover {
@@ -92,7 +111,7 @@
     margin: 8px 16px 8px 8px;
     transition-property: margin, grid-template-columns;
     transition-duration: 0.15s;
-    transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .email-menu.menu-close:hover .email-menu-compose i,
@@ -100,7 +119,7 @@
     padding-left: 18px;
     transition-property: padding;
     transition-duration: 0.15s;
-    transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .email-menu.menu-close:hover .email-menu-compose .mail-compose,
@@ -110,13 +129,13 @@
 
 .email-menu.menu-close:hover .email-folder,
 .email-menu.menu-open .email-folder {
-    grid-template-columns: auto 176px;
+    grid-template-columns: auto 194px;
     margin-left: 0px;
-    margin-right: 16px;
+    margin-right: 8px;
     border-radius: 0px 12px 12px 0px;
     transition-property: margin, border-radius, grid-template-columns;
     transition-duration: 0.15s;
-    transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .email-menu.menu-close:hover .email-folder i,
@@ -124,7 +143,7 @@
     margin-left: 24px;
     transition-property: margin;
     transition-duration: 0.15s;
-    transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .email-menu.menu-close:hover .email-folder-name,
@@ -136,17 +155,15 @@
 .email-menu.menu-close:hover .email-menu-labels h2,
 .email-menu.menu-open .email-menu-labels h2 {
     visibility: visible;
-    margin-left: 24px;
+    margin: 28px 0px 12px 24px;
 }
 
-/* delay for hover */
-.email-menu.menu-close:hover .email-menu-compose,
-.email-menu.menu-close:hover .email-menu-compose i,
-.email-menu.menu-close:hover .email-menu-compose .mail-compose,
-.email-menu.menu-close:hover .email-folder,
-.email-menu.menu-close:hover .email-folder-name,
-.email-menu.menu-close:hover .email-menu-labels h2,
-.email-menu.menu-close:hover i {
-    transition-delay:0.4s;
+/* transition delays */
+.email-menu.menu-close:hover * {
+    transition-delay: 0.4s;
+}
+
+.email-menu.menu-close:hover .email-menu-compose .mail-compose {
+    transition-delay: 0.45s;
 }
 
