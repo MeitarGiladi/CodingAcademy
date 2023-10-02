@@ -119,6 +119,7 @@
 .preview-icon {
     opacity: 0.32;
     padding: 4px;
+    border-radius: 50%;
 }
 
 .email-preview-start-icons .preview-icon {
@@ -161,6 +162,5 @@
 
 .preview-icon:hover {
     border-style: none;
-    border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.2);
 }

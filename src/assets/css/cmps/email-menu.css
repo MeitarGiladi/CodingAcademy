@@ -7,17 +7,34 @@
     font-weight: 500;
     border-color: rgb(95, 99, 104);
     border-radius: 16px;
-    margin: 8px;
+    margin: 8px 16px 8px 16px;
+    /* position: relative;
+    left: 16px; */
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 40px 0px;
     grid-template-rows: 40px;
     align-items: center;
+    justify-content: start;
+}
+
+.email-menu-compose i {
+    padding: 10px;
+}
+
+.email-menu-compose .mail-compose {
+    visibility: hidden;
+    padding-right: 24px;
 }
 
 .email-menu .email-menu-scrollable {
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     scroll-behavior: smooth;
+    height: calc(100vh - 56px - 64px);
+}
+
+.email-menu .email-menu-scrollable::-webkit-scrollbar-thumb {
+    background-color: white;
 }
 
 
@@ -69,6 +86,28 @@
 }
 
 /* open-menu OR hover over close-menu */
+.email-menu.menu-close:hover .email-menu-compose,
+.email-menu.menu-open .email-menu-compose {
+    grid-template-columns: 56px auto;
+    margin: 8px 16px 8px 8px;
+    transition-property: margin, grid-template-columns;
+    transition-duration: 0.15s;
+    transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+}
+
+.email-menu.menu-close:hover .email-menu-compose i,
+.email-menu.menu-open .email-menu-compose i {
+    padding-left: 18px;
+    transition-property: padding;
+    transition-duration: 0.15s;
+    transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+}
+
+.email-menu.menu-close:hover .email-menu-compose .mail-compose,
+.email-menu.menu-open .email-menu-compose .mail-compose {
+    visibility: visible;
+}
+
 .email-menu.menu-close:hover .email-folder,
 .email-menu.menu-open .email-folder {
     grid-template-columns: auto 176px;
@@ -101,9 +140,13 @@
 }
 
 /* delay for hover */
+.email-menu.menu-close:hover .email-menu-compose,
+.email-menu.menu-close:hover .email-menu-compose i,
+.email-menu.menu-close:hover .email-menu-compose .mail-compose,
 .email-menu.menu-close:hover .email-folder,
 .email-menu.menu-close:hover .email-folder-name,
 .email-menu.menu-close:hover .email-menu-labels h2,
 .email-menu.menu-close:hover i {
     transition-delay:0.4s;
 }
+

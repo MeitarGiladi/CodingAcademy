@@ -38,7 +38,7 @@ export function EmailFolderMenu({ currFolder, currLabel, isFolderMenuOpen, cbFil
         <section className={"email-menu" + (isFolderMenuOpen ? " menu-open" : " menu-close")}>
             <div className="email-menu-compose">
                 <i className="icon-mail-compose"></i>
-                <span></span>
+                <span className="mail-compose">Compose</span>
             </div>
 
             <div className="email-menu-scrollable">
