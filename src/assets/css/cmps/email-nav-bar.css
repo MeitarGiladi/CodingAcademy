@@ -7,7 +7,7 @@
     padding: 8px;
     display: grid;
     grid-template-rows: 48px;
-    grid-template-columns: 248px minmax(344px, 1fr) auto;
+    grid-template-columns: 248px minmax(324px, 1fr) auto;
 }
 
 .email-nav-bar-left {
@@ -35,7 +35,8 @@
 }
 
 .email-nav-bar-middle .email-nav-bar-search .svg-icon-focus {
-    padding: 12px;
+    padding: 6px;
+    margin: 6px 0px 6px 6px;
 }
 
 .email-nav-bar-middle .email-nav-bar-search-box {
@@ -50,13 +51,15 @@
 }
 
 .email-nav-bar-middle .email-nav-bar-search .svg-icon-filter {
-    padding: 11px 16px 13px 56px;
+    padding: 8px;
+    margin: 3px 8px 5px 3px;
     opacity: 0.87;
 }
 
 .email-nav-bar-right {
     margin-left: 10px;
     white-space: nowrap;
+    /* align-items: center; */
 }
 
 .email-nav-bar-right .svg-icon-support,
@@ -70,8 +73,8 @@
     box-sizing: content-box;
     width: 32px;
     height: 32px;
-    padding: 6px;
-    margin-right: 4px;
-    margin-left: 4px;
+    padding: 4px;
+    margin-right: 6px;
+    margin-left: 6px;
     border-radius: 50%;
 }
