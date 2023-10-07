@@ -5,7 +5,7 @@ export function EmailDetails() {
     return (
         
         <React.Fragment>
-
+            whyyy
         </React.Fragment>
 
     )

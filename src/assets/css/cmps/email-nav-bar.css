@@ -22,6 +22,9 @@
 }
 
 .email-nav-bar-left .icon-gmail-sign {
+    box-sizing: content-box;
+    height: 40px;
+    width: 109px;
     margin-bottom: 4px;
 }
 
@@ -59,7 +62,6 @@
 .email-nav-bar-right {
     margin-left: 10px;
     white-space: nowrap;
-    /* align-items: center; */
 }
 
 .email-nav-bar-right .svg-icon-support,
@@ -67,6 +69,8 @@
 .email-nav-bar-right .svg-icon-apps {
     opacity: 0.87;
     padding: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 .email-nav-bar-right .curr-user-img {
@@ -74,7 +78,15 @@
     width: 32px;
     height: 32px;
     padding: 4px;
-    margin-right: 6px;
-    margin-left: 6px;
+    margin: 4px 6px 4px 6px;
+}
+
+.email-nav-bar svg,
+.email-nav-bar-right .curr-user-img {
     border-radius: 50%;
+}
+
+.email-nav-bar svg:hover,
+.email-nav-bar-right .curr-user-img:hover {
+    background-color: rgba(232, 234, 237, 0.08);
 }

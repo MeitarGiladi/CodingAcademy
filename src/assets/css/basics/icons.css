@@ -1,46 +1,46 @@
 
 .icon-drag {
-    content: url("//www.gstatic.com/images/icons/material/system_gm/1x/drag_indicator_white_20dp.png");
+    content: url("//www.gstatic.com/images/icons/material/system_gm/2x/drag_indicator_white_20dp.png");
 }
 
 .icon-checked {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/check_box_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/check_box_white_20dp.png");
 }
 .icon-unchecked {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/check_box_outline_blank_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/check_box_outline_blank_white_20dp.png");
 }
 
 .icon-star {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/star_fill_googyellow500_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/star_fill_googyellow500_20dp.png");
 }
 .icon-unstarred {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/star_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/star_white_20dp.png");
 }
 
 .icon-important {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/label_important_fill_googyellow500_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/label_important_fill_googyellow500_20dp.png");
 }
 .icon-unimportant {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/label_important_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/label_important_white_20dp.png");
 }
 
 .icon-archive {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/archive_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/archive_white_20dp.png");
 }
 
 .icon-delete {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/delete_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/delete_white_20dp.png");
 }
 
 .icon-mark-read {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/drafts_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/drafts_white_20dp.png");
 }
 .icon-mark-unread {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/mail_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/mail_white_20dp.png");
 }
 
 .icon-snooze {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/schedule_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/schedule_white_20dp.png");
 }
 
 .icon-google-calender {
@@ -60,79 +60,79 @@
 }
 
 .icon-add-white {
-    content: url("//www.gstatic.com/images/icons/material/system/1x/add_white_24dp.png");
+    content: url("//www.gstatic.com/images/icons/material/system/2x/add_white_24dp.png");
 }
 
 .icon-gmail-sign {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r5.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_2x_r5.png");
 }
 
 .icon-mail-compose {
-    content: url("//www.gstatic.com/images/icons/material/system_gm/1x/create_gm_grey_20dp.png");
+    content: url("//www.gstatic.com/images/icons/material/system_gm/2x/create_gm_grey_20dp.png");
 }
 
 .icon-folder-inbox {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/inbox_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/inbox_white_20dp.png");
 }
 
 .icon-folder-starred {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/star_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/star_white_20dp.png");
 }
 
 .icon-folder-important {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/label_important_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/label_important_white_20dp.png");
 }
 
 .icon-folder-sent {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/send_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/send_white_20dp.png");
 }
 
 .icon-folder-drafts {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/draft_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/draft_white_20dp.png");
 }
 
 .icon-folder-allmail {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/stacked_email_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/stacked_email_white_20dp.png");
 }
 
 .icon-folder-bin {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/delete_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/delete_white_20dp.png");
 }
 
 .icon-folder-label {
-    content: url("//www.gstatic.com/images/icons/material/system_gm_filled/1x/label_gm_grey_24dp.png");
+    content: url("//www.gstatic.com/images/icons/material/system_gm_filled/2x/label_gm_grey_24dp.png");
 }
 
 .icon-folder-inbox-filled {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/inbox_fill_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/inbox_fill_white_20dp.png");
 }
 
 .icon-folder-starred-filled {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/star_fill_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/star_fill_white_20dp.png");
 }
 
 .icon-folder-important-filled {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/label_important_fill_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/label_important_fill_white_20dp.png");
 }
 
 .icon-folder-sent-filled {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/send_fill_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/send_fill_white_20dp.png");
 }
 
 .icon-folder-drafts-filled {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/draft_fill_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/draft_fill_white_20dp.png");
 }
 
 .icon-folder-allmail-filled {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/stacked_email_fill_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/stacked_email_fill_white_20dp.png");
 }
 
 .icon-folder-bin-filled {
-    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/delete_fill_white_20dp.png");
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/delete_fill_white_20dp.png");
 }
 
 .icon-folder-label-filled {
-    content: url("//www.gstatic.com/images/icons/material/system_gm_filled/1x/label_gm_grey_24dp.png");
+    content: url("//www.gstatic.com/images/icons/material/system_gm_filled/2x/label_gm_grey_24dp.png");
 }
 
 

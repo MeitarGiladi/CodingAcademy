@@ -19,7 +19,7 @@ const STORAGE_KEY_FOLDERS = 'folders'
 const STORAGE_KEY_LABEL_FOLDERS = 'labelFolders'
 
 
-const CREATE_AGAIN = true;
+const CREATE_AGAIN = false;
 _createEmails()
 _createUserFolders()
 _createUserLabelFolders()
@@ -239,6 +239,7 @@ function _createEmails() {
                 to: 'user@appsus.com'
             }
         ]
+        console.log("str: ", emails)
         utilService.saveToStorage(STORAGE_KEY, emails)
     }
 }

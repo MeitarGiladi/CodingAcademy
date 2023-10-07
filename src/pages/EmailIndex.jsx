@@ -2,11 +2,13 @@ import { Outlet, useNavigate, createSearchParams, useParams, useSearchParams } f
 import { useState, useEffect } from 'react';
 
 import { emailService } from "../services/email.service";
+import { utilService } from "../services/util.service";
 
 import { EmailNavBar } from "../cmp/EmailNavBar";
 import { EmailFolderMenu } from "../cmp/EmailFolderMenu";
 import { EmailSideBar } from "../cmp/EmailSideBar";
 import { EmailList } from "../cmp/EmailList";
+import { EmailDetails } from "../cmp/EmailDetails";
 
 
 export function EmailIndex() {
@@ -37,12 +39,42 @@ export function EmailIndex() {
         });
     }
 
+    function displayEmail(email) {
+        console.log("yayy: ", email);
+        navigate({
+            pathname: '/mail/view/' + email.id
+        });
+    }
+
     function addEmail() {
 
     }
 
-    function delEmail() {
+    function delEmailWrapper(email) {
+        if (!email.removedAt) {
+            trashedEmail(email);
+        }
+        else if (params.folderName === "bin") {
+            deleteEmail(email);
+        }
+        else {
+            console.log("Unexpected Error - couldn't delete email");
+        }
+    }
 
+    async function trashedEmail(email) {
+        const updatedEmail = { ...email, removedAt: (new Date()).getTime() };
+        await emailService.save(updatedEmail);
+        setEmails((prevEmails) => {
+            return prevEmails.filter((em) => em.id !== email.id)
+        });
+    }
+
+    async function deleteEmail(email) {
+        await emailService.remove(email.id);
+        setEmails((prevEmails) => {
+            return prevEmails.filter((em) => em.id !== email.id)
+        });
     }
 
     async function updateFilter(filterBy) {
@@ -55,10 +87,9 @@ export function EmailIndex() {
     // navigate to the URL is not enough to render the page again because the use of 'Outlet' and 'route'.
     // We will update the filter & navigate (change url)
     function updateUrlFilter(filterBy) {
-        const newFolderPath = '/mail/' + filterBy.folder;
         const newSearchParams = emailService.getRelevantSearchParam(filterBy);
         navigate({
-            pathname: newFolderPath,
+            pathname: '/mail/' + filterBy.folder,
             search: createSearchParams(newSearchParams).toString()
         });
     }
@@ -67,11 +98,8 @@ export function EmailIndex() {
         setIsFolderMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
     }
 
-    function displayEmail(email) {
-        console.log("yayy: ", email);
-    }
 
-    console.log("params:", params)
+    console.log("params: ", params)
     return (
         <div className="email-index">
 
@@ -79,7 +107,13 @@ export function EmailIndex() {
 
             <div className="email-index-main">
                 <EmailFolderMenu currFolder={params.folderName} currLabel={currFilter.label} isFolderMenuOpen={isFolderMenuOpen} cbFilterEmails={(newFilter) => updateFilter(newFilter)} />
-                <EmailList emails={emails} cbUpdateEmail={updateEmail} cbDisplayEmail={displayEmail} />
+                <div className="email-index-main-center">
+                    {params.folderName === "view" ? (
+                        <EmailDetails />
+                    ) : (
+                        <EmailList emails={emails} cbUpdateEmail={updateEmail} cpDeleteEmail={delEmailWrapper} cbDisplayEmail={displayEmail} />
+                    )}
+                </div>
                 <EmailSideBar />
             </div>
 
