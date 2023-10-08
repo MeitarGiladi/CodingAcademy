@@ -1,5 +1,5 @@
 
-import { Link, useNavigate, useOutletContext, useParams, React } from "react-router-dom";
+import { Link, useNavigate, useOutletContext, useParams } from "react-router-dom";
 
 import { EmailPreviewMain } from "./EmailPreviewMain"
 import { EmailPreviewStart } from "./EmailPreviewStart"
@@ -8,8 +8,8 @@ import { EmailPreviewEnd } from "./EmailPreviewEnd"
 export function EmailList({ emails, cbUpdateEmail, cpDeleteEmail, cbDisplayEmail }) {
 
     return (
-        <React.Fragment>
 
+        <>
             <header className="email-list-header">
                 <i className="email-list-header-icon icon-unchecked"></i>
             </header>
@@ -29,8 +29,7 @@ export function EmailList({ emails, cbUpdateEmail, cpDeleteEmail, cbDisplayEmail
             <footer className="email-list-footer">
                 <p>list-footer</p>
             </footer>
-
-        </React.Fragment>
+        </>
 
     )
 }
