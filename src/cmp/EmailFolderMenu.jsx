@@ -44,7 +44,7 @@ export function EmailFolderMenu({ currFolder, currLabel, isFolderMenuOpen, cbFil
                 </div>
             </div>
 
-            <div className="email-menu-scrollable scrollable-big">
+            <div className="email-menu-scrollable scrollable-thin">
                 <div className="email-menu-folders">
                     {
                         folders.map((folder, idx) =>

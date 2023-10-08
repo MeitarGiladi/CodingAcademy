@@ -20,6 +20,7 @@ const STORAGE_KEY_LABEL_FOLDERS = 'labelFolders'
 
 
 const CREATE_AGAIN = false;
+
 _createEmails()
 _createUserFolders()
 _createUserLabelFolders()

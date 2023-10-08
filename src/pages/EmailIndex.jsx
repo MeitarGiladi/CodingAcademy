@@ -41,6 +41,7 @@ export function EmailIndex() {
 
     function displayEmail(email) {
         console.log("yayy: ", email);
+        updateEmail({ ...email, isRead: 1 });
         navigate({
             pathname: '/mail/view/' + email.id
         });
