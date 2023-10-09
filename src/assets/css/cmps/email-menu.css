@@ -67,7 +67,7 @@
     font-size: 16px;
     font-weight: 500;
     visibility: hidden;
-    margin: 28px 0px 12px 24px;
+    margin: 28px 0px 12px 0px;
 }
 
 .email-menu .email-folder-name {
@@ -140,6 +140,7 @@
 .email-menu.menu-close:hover .email-menu-labels h2,
 .email-menu.menu-open .email-menu-labels h2 {
     visibility: visible;
+    margin-left: 24px;
 }
 
 /* transition delays */
