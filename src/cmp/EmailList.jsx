@@ -7,29 +7,52 @@ import { EmailPreviewEnd } from "./EmailPreviewEnd"
 
 export function EmailList({ emails, cbUpdateEmail, cpDeleteEmail, cbDisplayEmail }) {
 
+    const readEmailsCount = Object.keys(emails.filter((em) => em.isRead === 1)).length;
+    const emailsCount = Object.keys(emails).length;
+
+    // document.querySelector(".email-list-footer .email-read-bar .email-read-bar-fill").computedStyleMap.width = "94%";
+
     return (
 
-        <>
+        <div className="email-list">
             <header className="email-list-header">
                 <i className="email-list-header-icon icon-unchecked"></i>
             </header>
 
-            <ul className="email-list-main">
+            <div className="email-list-scrollable scrollable-big">
+                <ul className="email-list-main">
 
-                {emails.map((em, idx) =>
-                    <li key={idx + em.id} className={"email-item" + (em.isRead === 1 ? " read-email" : "")} onClick={() => cbDisplayEmail(em)}>
-                        <EmailPreviewStart email={em} cbUpdateEmail={cbUpdateEmail} />
-                        <EmailPreviewMain email={em} />
-                        <EmailPreviewEnd email={em} cbUpdateEmail={cbUpdateEmail} cpDeleteEmail={cpDeleteEmail} />
-                    </li>
-                )}
+                    {emails.map((em, idx) =>
+                        <li key={idx + em.id} className={"email-item" + (em.isRead === 1 ? " read-email" : "")} onClick={() => cbDisplayEmail(em)}>
+                            <EmailPreviewStart email={em} cbUpdateEmail={cbUpdateEmail} />
+                            <EmailPreviewMain email={em} />
+                            <EmailPreviewEnd email={em} cbUpdateEmail={cbUpdateEmail} cpDeleteEmail={cpDeleteEmail} />
+                        </li>
+                    )}
 
-            </ul>
+                </ul>
 
-            <footer className="email-list-footer">
-                <p>list-footer</p>
-            </footer>
-        </>
+                <footer className="email-list-footer">
+                    <div>
+                        <div className="email-read-bar">
+                            <div className="email-read-bar-fill" style={{width : String(readEmailsCount / emailsCount * 100) + '%'}}></div>
+                        </div>
+                        <p>{readEmailsCount} read out of {emailsCount}</p>
+                    </div>
+                    <nav className="email-list-footer-nav">
+                        <a onClick={() => window.open("https://www.google.com/intl/en-GB/policies/terms/")}>Terms</a>
+                        <span> · </span>
+                        <a onClick={() => window.open("https://www.google.com/intl/en-GB/policies/privacy/")}>Privacy</a>
+                        <span> · </span>
+                        <a onClick={() => window.open("https://www.google.com/gmail/about/policy/")}>Programme Policies</a>
+                    </nav>
+                    <div>
+                        <span>Last account activity: </span>
+                        <span>2 minutes ago</span>
+                    </div>
+                </footer>
+            </div>
+        </div>
 
     )
 }

@@ -59,7 +59,7 @@ export function EmailFolderMenu({ currFolder, currLabel, isFolderMenuOpen, cbFil
                 <div className="email-menu-labels">
                     <h2>Labels </h2>
                     {
-                        labelFolders.map((label, idx) =>
+                        labelFolders.sort().map((label, idx) =>
                             <EmailFolder key={idx + label}
                                 folderText={label}
                                 isCurrFolder={currFolder === "label" && currLabel === label ? true : false}

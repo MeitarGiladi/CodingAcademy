@@ -19,7 +19,7 @@ const STORAGE_KEY_FOLDERS = 'folders'
 const STORAGE_KEY_LABEL_FOLDERS = 'labelFolders'
 
 
-const CREATE_AGAIN = false;
+const CREATE_AGAIN = true;
 
 _createEmails()
 _createUserFolders()
@@ -268,42 +268,7 @@ function _createUserLabelFolders() {
             "amsterdam",
             "checkins",
             "games",
-            "bills",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
-            "1",
+            "bills"
         ];
         utilService.saveToStorage(STORAGE_KEY_LABEL_FOLDERS, labelFolders)
     }

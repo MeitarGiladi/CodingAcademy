@@ -1,9 +1,16 @@
+import { useState } from 'react';
 
 export function EmailSideBar() {
 
+    const [sideBarOpen, SetSideBarOpen] = useState(true);
+
+    function toggleSideBarOpen() {
+        SetSideBarOpen((prevSideBarOpen) => !prevSideBarOpen);
+    }
+
     return (
-        <section className="email-side-bar">
-            <div>
+        <section className={"email-side-bar " + (sideBarOpen ? "bar-open" : "bar-close")}>
+            <nav className="email-side-bar-links">
                 <div className="wrapper-icon">
                     <i className="icon-google-calender" onClick={() => window.open("https://calendar.google.com/")}></i>
                 </div>
@@ -20,9 +27,9 @@ export function EmailSideBar() {
                 <div className="wrapper-icon">
                     <i className="icon-add-white" onClick={() => window.open("https://workspace.google.com/u/0/marketplace/appfinder")}></i>
                 </div>
-            </div>
+            </nav>
 
-            <div className="wrapper-icon">
+            <div className="wrapper-icon-smaller-than" onClick={toggleSideBarOpen}>
                 <svg className="svg-image svg-icon-smaller-than" viewBox="0 0 24 24">
                     <path d="M8.59,16.59L13.17,12L8.59,7.41L10,6l6,6l-6,6L8.59,16.59z"></path>
                 </svg>

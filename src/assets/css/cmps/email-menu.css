@@ -13,13 +13,12 @@
     border-color: rgb(95, 99, 104);
     border-radius: 16px;
     margin: 8px 16px 8px 16px;
-    /* position: relative;
-    left: 16px; */
     display: grid;
     grid-template-columns: 40px 0px;
     grid-template-rows: 40px;
     align-items: center;
     justify-content: start;
+    cursor: pointer;
 }
 
 .email-menu-compose i {
@@ -68,6 +67,7 @@
     font-size: 16px;
     font-weight: 500;
     visibility: hidden;
+    margin: 28px 0px 12px 24px;
 }
 
 .email-menu .email-folder-name {
@@ -140,7 +140,6 @@
 .email-menu.menu-close:hover .email-menu-labels h2,
 .email-menu.menu-open .email-menu-labels h2 {
     visibility: visible;
-    margin: 28px 0px 12px 24px;
 }
 
 /* transition delays */
