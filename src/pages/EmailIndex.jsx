@@ -39,6 +39,24 @@ export function EmailIndex() {
         });
     }
 
+    function toggleRead(ev, email) {
+        ev.stopPropagation();
+        const updatedEmail = { ...email, isRead: 1 - email.isRead };
+        updateEmail(updatedEmail);
+    }
+
+    function toggleStar(ev, email) {
+        ev.stopPropagation();
+        const updatedEmail = { ...email, isStarred: !email.isStarred };
+        updateEmail(updatedEmail);
+    }
+
+    function toggleImportant(ev, email) {
+        ev.stopPropagation();
+        const updatedEmail = { ...email, isImportant: !email.isImportant };
+        updateEmail(updatedEmail);
+    }
+
     function displayEmail(email) {
         console.log("yayy: ", email);
         updateEmail({ ...email, isRead: 1 });
@@ -99,8 +117,11 @@ export function EmailIndex() {
         setIsFolderMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
     }
 
+    function replyEmail(email) {
+        console.log("replyEmail: ", email);
+    }
 
-    console.log("params: ", params)
+
     return (
         <div className="email-index">
 
@@ -110,9 +131,17 @@ export function EmailIndex() {
                 <EmailFolderMenu currFolder={params.folderName} currLabel={currFilter.label} isFolderMenuOpen={isFolderMenuOpen} cbFilterEmails={(newFilter) => updateFilter(newFilter)} />
                 <div className="email-index-main-center">
                     {params.folderName === "view" ? (
-                        <EmailDetails />
+                        <EmailDetails email={emails.filter((em) => em.id === params.emailId)[0]}
+                            cbToggleStar={toggleStar}
+                            cbToggleImportant={toggleImportant}
+                            cbReplyEmail={replyEmail} />
                     ) : (
-                        <EmailList emails={emails} cbUpdateEmail={updateEmail} cpDeleteEmail={delEmailWrapper} cbDisplayEmail={displayEmail} />
+                        <EmailList emails={emails}
+                            cbToggleRead={toggleRead}
+                            cbToggleStar={toggleStar}
+                            cbToggleImportant={toggleImportant}
+                            cpDeleteEmail={delEmailWrapper}
+                            cbDisplayEmail={displayEmail} />
                     )}
                 </div>
                 <EmailSideBar />

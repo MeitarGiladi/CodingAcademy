@@ -5,7 +5,7 @@ import { EmailPreviewMain } from "./EmailPreviewMain"
 import { EmailPreviewStart } from "./EmailPreviewStart"
 import { EmailPreviewEnd } from "./EmailPreviewEnd"
 
-export function EmailList({ emails, cbUpdateEmail, cpDeleteEmail, cbDisplayEmail }) {
+export function EmailList({ emails, cbToggleRead, cbToggleStar, cbToggleImportant, cpDeleteEmail, cbDisplayEmail }) {
 
     const readEmailsCount = Object.keys(emails.filter((em) => em.isRead === 1)).length;
     const emailsCount = Object.keys(emails).length;
@@ -24,9 +24,9 @@ export function EmailList({ emails, cbUpdateEmail, cpDeleteEmail, cbDisplayEmail
 
                     {emails.map((em, idx) =>
                         <li key={idx + em.id} className={"email-item" + (em.isRead === 1 ? " read-email" : "")} onClick={() => cbDisplayEmail(em)}>
-                            <EmailPreviewStart email={em} cbUpdateEmail={cbUpdateEmail} />
+                            <EmailPreviewStart email={em} cbToggleStar={cbToggleStar} cbToggleImportant={cbToggleImportant} />
                             <EmailPreviewMain email={em} />
-                            <EmailPreviewEnd email={em} cbUpdateEmail={cbUpdateEmail} cpDeleteEmail={cpDeleteEmail} />
+                            <EmailPreviewEnd email={em} cbToggleRead={cbToggleRead} cpDeleteEmail={cpDeleteEmail} />
                         </li>
                     )}
 

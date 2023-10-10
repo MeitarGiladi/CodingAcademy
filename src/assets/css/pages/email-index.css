@@ -16,8 +16,8 @@
 .email-index-main-center {
     background-color: rgba(51, 51, 51, 0.8);
     border-radius: 16px;
+    overflow: hidden;
     padding: 0px;
     margin-bottom: 16px;
-    min-width: 636px; /* need to pass to parent */
 }
 

@@ -1,0 +1,109 @@
+/********************************************/
+/* ************* EMAIL-DETAILS *************** */
+
+.email-details-header {
+    height: 48px;
+}
+
+.email-details-scrollable {
+    padding-right: 5px;
+    max-height: calc(100vh - 64px - 48px - 16px);
+}
+
+.email-details-main {
+    color: black;
+    background-color: white;
+    background-clip: border-box;
+    min-height: 64ex;
+    padding-top: 20px;
+    padding-right: 16px;
+}
+
+.email-details-main .email-details-subject,
+.email-details-main .email-details-body,
+.email-details-main .email-details-footer {
+    /* margin-left:72px; */
+}
+
+.email-details-main .email-detail-icon {
+    height: 20px;
+    width: 20px;
+}
+
+.email-details-main .icon-profile-mask {
+    height: 40px;
+    width: 40px;
+}
+
+.email-details-main .email-details-subject {
+    font-size: 22px;
+    margin: 0px 0px 28px 72px;
+    display: flex;
+    align-items: center;
+}
+
+.email-details-main .email-details-subject i {
+    opacity: 0.7;
+    box-sizing: content-box;
+    padding: 0px 10px 0px 10px;
+
+}
+
+.email-details-main .email-details-subject i:hover {
+    opacity: 1;
+}
+
+.email-details-main .email-details-from {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+    align-items: start;
+}
+
+.email-details-main .email-details-from .icon-profile-mask {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.email-details-main .email-details-body {
+    margin: 13px 0px 49px 72px;
+}
+
+.email-details-main .email-details-footer {
+    margin-left: 72px;
+}
+
+.email-details-main .email-details-footer .footer-reply,
+.email-details-main .email-details-footer .footer-forward {
+    display: inline-flex;
+    align-items: center;
+    border: solid 1px rgb(116, 119, 117);
+    border-radius: 18px;
+    height: 34px;
+    padding: 0px 16px 0px 12px;
+    margin-right: 8px;
+    font-weight: 500;
+    color: rgb(68, 71, 70);
+}
+
+.email-details-main .email-details-footer .footer-reply,
+.email-details-main .email-details-footer .footer-forward {
+
+}
+
+.email-details-main .email-details-footer i {
+    margin-right: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
