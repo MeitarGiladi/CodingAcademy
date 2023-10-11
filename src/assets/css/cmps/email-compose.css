@@ -1,0 +1,49 @@
+/********************************************/
+/* ************* EMAIL-COMPOSE *************** */
+
+.email-compose-list {
+    position: absolute;
+    bottom: 0px;
+    right: 71px;
+}
+
+.email-compose-minimize,
+.email-compose-open {
+    box-shadow: 0px 8px 10px 1px rgba(0,0,0,.14), 0px 3px 14px 2px rgba(0,0,0,.12), 0px 5px 5px -3px rgba(0,0,0,.2);
+    border-radius: 8px 8px 0px 0px;
+    overflow: hidden;
+}
+
+.email-compose-minimize {
+    width: 260px;
+}
+
+.email-compose-open {
+    width: 586px;
+}
+
+.email-compose-minimize,
+.email-compose-open-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    height: 40px;
+    padding: 0px 12px 0px 16px;
+    background-color: rgb(242, 242, 242);
+    color: rgb(4, 30, 73);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.email-compose-minimize i,
+.email-compose-open-header i {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+}
+
+.email-compose-minimize i:hover,
+.email-compose-open-header i:hover {
+    background-color: rgba(68,71,70,0.078);
+}

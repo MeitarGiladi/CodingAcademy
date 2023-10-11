@@ -37,14 +37,14 @@ export function EmailDetails({ email, cbToggleStar, cbToggleImportant, cbReplyEm
                     </div>
                     <p className="email-details-body">{email.body}</p>
                     <footer className="email-details-footer">
-                        <div className="footer-reply">
+                        <button className="footer-reply">
                             <i className="icon-email-reply" onClick={(ev) => dummy(ev)}></i>
                             Reply
-                        </div>
-                        <div className="footer-forward">
+                        </button>
+                        <button className="footer-forward">
                             <i className="icon-email-forward" onClick={(ev) => dummy(ev)}></i>
                             Forward
-                        </div>
+                        </button>
                     </footer>
                 </div>
             </div>

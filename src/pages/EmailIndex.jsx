@@ -9,6 +9,7 @@ import { EmailFolderMenu } from "../cmp/EmailFolderMenu";
 import { EmailSideBar } from "../cmp/EmailSideBar";
 import { EmailList } from "../cmp/EmailList";
 import { EmailDetails } from "../cmp/EmailDetails";
+import { EmailCompose } from "../cmp/EmailCompose";
 
 
 export function EmailIndex() {
@@ -21,6 +22,7 @@ export function EmailIndex() {
     const [emails, setEmails] = useState([]);
     const [currFilter, setCurrFilter] = useState(emailService.getFilterFromParams(params.folderName, searchParams))
     const [isFolderMenuOpen, setIsFolderMenuOpen] = useState(false);
+    const [composedEmails, setComposedEmails] = useState([]);
 
     useEffect(() => {
         loadEmails(currFilter);
@@ -140,6 +142,8 @@ export function EmailIndex() {
                 </div>
                 <EmailSideBar />
             </div>
+
+            <EmailCompose composedEmails={composedEmails} />
 
         </div>
     )

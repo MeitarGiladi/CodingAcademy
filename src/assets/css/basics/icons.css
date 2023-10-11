@@ -154,6 +154,26 @@
     content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/forward_baseline_nv700_20dp.png");
 }
 
+.icon-maximize {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/rfr/ic_maximize_16px_2x.png");
+}
+
+.icon-minimize {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/rfr/ic_minimize_16px_2x.png");
+}
+
+.icon-open-fullscreen {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/rfr/ic_open_in_full_16px_2x.png");
+}
+
+.icon-close {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/rfr/ic_close_16px_2x.png");
+}
+
+.icon-delete-baseline {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/delete_baseline_nv700_20dp.png");
+}
+
 
 
 

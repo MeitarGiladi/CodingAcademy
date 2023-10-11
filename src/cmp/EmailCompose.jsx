@@ -1,12 +1,15 @@
-import React from 'react'
+
+import { EmailComposeMinimize } from "../cmp/EmailComposeMinimize";
+import { EmailComposeOpen } from "./EmailComposeOpen";
 
 export function EmailCompose() {
 
     return (
         
-        <React.Fragment>
-
-        </React.Fragment>
+        <div className="email-compose-list">
+            {/* <EmailComposeMinimize /> */}
+            <EmailComposeOpen />
+        </div>
 
     )
 }

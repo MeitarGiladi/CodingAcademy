@@ -53,6 +53,7 @@ a:hover {
 button {
     font-family: inherit;
     cursor: pointer;
+    background-color: inherit;
 
     * {
         pointer-events: none;
