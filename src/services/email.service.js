@@ -39,6 +39,11 @@ async function query(filterBy = { txt: "", isRead: "", folder: "", label: "" }) 
         if (txt) emails = emails.filter(em => (em.subject + em.body + em.from + em.to).toLowerCase().includes(txt.toLowerCase()));
         if (isRead) emails = emails.filter(em => em.isRead === isRead);
 
+        if (folder === 'view') {
+            // For viewing email from URL we need an option to get all emais from all folders, including bin & drafts.
+            return emails;
+        }
+        
         if (folder === 'bin') {
             emails = emails.filter(em => em.removedAt);
             return emails;
@@ -65,7 +70,6 @@ async function query(filterBy = { txt: "", isRead: "", folder: "", label: "" }) 
                 emails = emails.filter(em => em.isImportant);
                 break;
             case 'all-mail':
-                // emails = emails.filter(em => true);
                 break;
             case 'label':
                 emails = emails.filter(em => em.labels.indexOf(label) > -1);

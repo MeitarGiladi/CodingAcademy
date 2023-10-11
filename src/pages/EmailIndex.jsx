@@ -39,26 +39,7 @@ export function EmailIndex() {
         });
     }
 
-    function toggleRead(ev, email) {
-        ev.stopPropagation();
-        const updatedEmail = { ...email, isRead: 1 - email.isRead };
-        updateEmail(updatedEmail);
-    }
-
-    function toggleStar(ev, email) {
-        ev.stopPropagation();
-        const updatedEmail = { ...email, isStarred: !email.isStarred };
-        updateEmail(updatedEmail);
-    }
-
-    function toggleImportant(ev, email) {
-        ev.stopPropagation();
-        const updatedEmail = { ...email, isImportant: !email.isImportant };
-        updateEmail(updatedEmail);
-    }
-
     function displayEmail(email) {
-        console.log("yayy: ", email);
         updateEmail({ ...email, isRead: 1 });
         navigate({
             pathname: '/mail/view/' + email.id
@@ -100,17 +81,30 @@ export function EmailIndex() {
         setCurrFilter((prevFilter) => {
             return { ...prevFilter, ...filterBy }
         });
-        updateUrlFilter(filterBy);
-    }
-
-    // navigate to the URL is not enough to render the page again because the use of 'Outlet' and 'route'.
-    // We will update the filter & navigate (change url)
-    function updateUrlFilter(filterBy) {
+        // navigate to the URL is not enough to render the page again because we use the same 'route'.
         const newSearchParams = emailService.getRelevantSearchParam(filterBy);
         navigate({
             pathname: '/mail/' + filterBy.folder,
             search: createSearchParams(newSearchParams).toString()
         });
+    }
+
+    function toggleRead(ev, email) {
+        ev.stopPropagation();
+        const updatedEmail = { ...email, isRead: 1 - email.isRead };
+        updateEmail(updatedEmail);
+    }
+
+    function toggleStar(ev, email) {
+        ev.stopPropagation();
+        const updatedEmail = { ...email, isStarred: !email.isStarred };
+        updateEmail(updatedEmail);
+    }
+
+    function toggleImportant(ev, email) {
+        ev.stopPropagation();
+        const updatedEmail = { ...email, isImportant: !email.isImportant };
+        updateEmail(updatedEmail);
     }
 
     function toggleIsFolderMenuOpen() {

@@ -1,3 +1,5 @@
+import { utilService } from "../services/util.service"
+
 
 export function EmailDetails({ email, cbToggleStar, cbToggleImportant, cbReplyEmail }) {
 
@@ -5,6 +7,12 @@ export function EmailDetails({ email, cbToggleStar, cbToggleImportant, cbReplyEm
         ev.stopPropagation(); 
         console.log("clicked ! ", ev.target) 
     };  //dummy
+
+    if (!email) {
+        return (
+            <p style={{position: "relative", top: "30px", left: "20px"}}>Loading email...</p>
+        )
+    }
     
     return (
 
@@ -22,18 +30,19 @@ export function EmailDetails({ email, cbToggleStar, cbToggleImportant, cbReplyEm
                     </div>
                     <div className="email-details-from">
                         <i className="icon-profile-mask"></i>
-                        {email.from}
+                        <span className="from-label">{email.from}</span>
+                        <span className="email-from-time">{utilService.getTimeOfEmailDetailed(email.sentAt)}</span>
                         <i className={"email-detail-icon " + (email.isStarred ? "icon-star" : "icon-unstarred-black")} onClick={(ev) => cbToggleStar(ev, email)}></i>
                         <i className="email-detail-icon icon-email-reply" onClick={(ev) => dummy(ev)}></i>
                     </div>
                     <p className="email-details-body">{email.body}</p>
                     <footer className="email-details-footer">
                         <div className="footer-reply">
-                            <i className="email-detail-icon icon-email-reply" onClick={(ev) => dummy(ev)}></i>
+                            <i className="icon-email-reply" onClick={(ev) => dummy(ev)}></i>
                             Reply
                         </div>
                         <div className="footer-forward">
-                            <i className="email-detail-icon icon-email-forward" onClick={(ev) => dummy(ev)}></i>
+                            <i className="icon-email-forward" onClick={(ev) => dummy(ev)}></i>
                             Forward
                         </div>
                     </footer>

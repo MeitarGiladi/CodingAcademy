@@ -1,4 +1,4 @@
-import { EmailPreviewEndTime } from "./EmailPreviewEndTime"
+import { utilService } from "../services/util.service"
 
 export function EmailPreviewEnd({ email, cbToggleRead, cpDeleteEmail }) {
 
@@ -15,7 +15,7 @@ export function EmailPreviewEnd({ email, cbToggleRead, cpDeleteEmail }) {
 
     return (
         <span className="email-preview-end">
-            <EmailPreviewEndTime sentAt={email.sentAt} />
+            <time className="email-preview-end-time">{utilService.getTimeOfEmailShort(email.sentAt)}</time>
             <span className="email-preview-end-icons">
                 {/* <i className="preview-icon icon-archive" onClick={dummy}></i> */}
                 <i className="preview-icon icon-delete" onClick={(ev) => deleteEmail(ev, email)}></i>
