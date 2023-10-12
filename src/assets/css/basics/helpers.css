@@ -40,34 +40,67 @@
 }
 
 
-/* scrollable-big */
-.scrollable-big {
+/* scrollable-square-black */
+.scrollable-square-black {
     overflow-y: scroll;
 }
 
-.scrollable-big::-webkit-scrollbar {
+.scrollable-square-black::-webkit-scrollbar {
     width: 11px;
 }
 
-.scrollable-big::-webkit-scrollbar-thumb {
+.scrollable-square-black::-webkit-scrollbar-thumb {
     background-color: rgba(255,255,255,.4);
     box-shadow: 1px 1px 0px rgba(255,255,255,.20) inset;
 }
 
-.scrollable-big::-webkit-scrollbar-track:hover {
+.scrollable-square-black::-webkit-scrollbar-track:hover {
     background: rgb(66,66,66);
     box-shadow: 1px 0px 0px rgba(255,255,255,.18) inset;
 }
 
-.scrollable-big::-webkit-scrollbar-thumb:hover {
+.scrollable-square-black::-webkit-scrollbar-thumb:hover {
     background-color: rgba(255,255,255,.8);
     box-shadow: 1px 1px 1px rgba(255,255,255,.50) inset;
 }
 
-.scrollable-big::-webkit-scrollbar-thumb:active {
+.scrollable-square-black::-webkit-scrollbar-thumb:active {
     background-color: rgba(255,255,255,.9);
 }
 
-.scrollable-big::-webkit-scrollbar-track:active {
+.scrollable-square-black::-webkit-scrollbar-track:active {
+    box-shadow: 1px 1px 0px rgba(255,255,255,.20) inset;
+}
+
+
+/* scrollable-square-white */
+.scrollable-square-white {
+    overflow-y: scroll;
+}
+
+.scrollable-square-white::-webkit-scrollbar {
+    width: 11px;
+}
+
+.scrollable-square-white::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,.4);
+    box-shadow: 1px 1px 0px rgba(255,255,255,.20) inset;
+}
+
+.scrollable-square-white::-webkit-scrollbar-track:hover {
+    background: rgb(66,66,66);
+    box-shadow: 1px 0px 0px rgba(255,255,255,.18) inset;
+}
+
+.scrollable-square-white::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255,255,255,.8);
+    box-shadow: 1px 1px 1px rgba(255,255,255,.50) inset;
+}
+
+.scrollable-square-white::-webkit-scrollbar-thumb:active {
+    background-color: rgba(255,255,255,.9);
+}
+
+.scrollable-square-white::-webkit-scrollbar-track:active {
     box-shadow: 1px 1px 0px rgba(255,255,255,.20) inset;
 }

@@ -22,7 +22,7 @@ export function EmailDetails({ email, cbToggleStar, cbToggleImportant, cbReplyEm
                 <i className="icon-delete"></i>
             </header>
 
-            <div className="email-details-scrollable scrollable-big">
+            <div className="email-details-scrollable scrollable-square-black">
                 <div className="email-details-main">
                     <div className="email-details-subject">
                         {email.subject}

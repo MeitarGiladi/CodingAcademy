@@ -1,9 +1,17 @@
 
 export function EmailComposeOpen() {
 
+    function auto_grow(ev) {
+        if (ev.target.scrollHeight <= 638) {
+            ev.target.style.height = (ev.target.scrollHeight) + "px";
+        }
+        console.log(ev.target.offsetHeight);
+    }
+
     return (
 
-        <article className="email-compose-open">
+        <article className="email-compose-open email-compose-open-small">
+            {/* <article className="email-compose-open email-compose-open-fullscreen"> */}
             <header className="email-compose-open-header">
                 <span>New Message</span>
                 <i className="icon-maximize"></i>
@@ -11,11 +19,13 @@ export function EmailComposeOpen() {
                 <i className="icon-close"></i>
             </header>
             <form className="email-compose-open-main">
-                <div className="email-compose-to"></div>
-                <div className="email-compose-subject"></div>
-                <div className="email-compose-body"></div>
+                <input className="email-compose-to" type="text" placeholder="To"></input>
+                <input className="email-compose-subject" type="text" placeholder="Subject"></input>
+                <textarea className="email-compose-body scrollable-square-white" onInput={(ev) => auto_grow(ev)}></textarea >
                 <footer className="email-compose-footer">
-                    <button className="send-email">Send</button>
+                    <div className="wrapper-send-mail">
+                        <button className="send-email">Send</button>
+                    </div>
                     <i className="icon-delete-baseline"></i>
                 </footer>
             </form>

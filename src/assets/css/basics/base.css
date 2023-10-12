@@ -65,6 +65,14 @@ input {
     text-align: inherit;
 }
 
+input:focus {
+    outline: none;
+}
+
+textarea:focus {
+    outline: none;
+}
+
 .main-app {
     min-height: 100vh;
     background: rgba(0, 0, 0, 0.94);

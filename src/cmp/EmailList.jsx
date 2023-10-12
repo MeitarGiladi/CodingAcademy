@@ -19,7 +19,7 @@ export function EmailList({ emails, cbToggleRead, cbToggleStar, cbToggleImportan
                 <i className="email-list-header-icon icon-unchecked"></i>
             </header>
 
-            <div className="email-list-scrollable scrollable-big">
+            <div className="email-list-scrollable scrollable-square-black">
                 <ul className="email-list-main">
 
                     {emails.map((em, idx) =>
