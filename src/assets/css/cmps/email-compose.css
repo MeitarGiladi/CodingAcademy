@@ -20,20 +20,15 @@
 }
 
 .email-compose-open-small {
-    /* error */
-    width: 586px;
-    /* min-height: 458px; */
-    /* height: 458px; */
-    height: auto;
-    max-height: 810px;
+    width: 586px;  /* need to add line when resizing window */
 }
 
-.email-compose-open-fullscreen {
+/* .email-compose-open-fullscreen {
     width: 586px;
     min-height: 458px;
     height: auto;
     max-height: 810px;
-}
+} */
 
 .email-compose-minimize,
 .email-compose-open-header {
@@ -65,9 +60,8 @@
     background-color: white;
     color: rgb(68, 71, 70);
     padding: 0px 16px 0px 16px;
-    height: calc(100% - 40px);  /* error - 100% not working with min-height */
     display: grid;
-    grid-template-rows: auto auto minmax(286px, 1fr) auto;  /* error */
+    grid-template-rows: auto auto 1fr auto;
 }
 
 .email-compose-open-main .email-compose-to,
@@ -93,6 +87,10 @@
     font-size: 13px;
     line-height: 19.5px;
     font-family: Arial, Helvetica, sans-serif;
+    /* only for small */
+    min-height: 286px;
+    height: auto; /* need to add line when resizing window */
+    max-height: 638px;
 }
 
 .email-compose-open-main .email-compose-footer {

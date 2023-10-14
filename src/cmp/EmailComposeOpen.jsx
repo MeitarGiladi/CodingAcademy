@@ -2,8 +2,10 @@
 export function EmailComposeOpen() {
 
     function auto_grow(ev) {
+        // ev.target.style.height = 'auto';
         if (ev.target.scrollHeight <= 638) {
             ev.target.style.height = (ev.target.scrollHeight) + "px";
+            // ev.target.style.height = "1000px";
         }
         console.log(ev.target.offsetHeight);
     }

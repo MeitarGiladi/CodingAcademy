@@ -79,7 +79,7 @@
 }
 
 .scrollable-square-white::-webkit-scrollbar {
-    width: 11px;
+    width: 8px;
 }
 
 .scrollable-square-white::-webkit-scrollbar-thumb {
