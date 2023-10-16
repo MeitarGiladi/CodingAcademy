@@ -9,7 +9,7 @@ import { EmailFolderMenu } from "../cmp/EmailFolderMenu";
 import { EmailSideBar } from "../cmp/EmailSideBar";
 import { EmailList } from "../cmp/EmailList";
 import { EmailDetails } from "../cmp/EmailDetails";
-import { EmailCompose } from "../cmp/EmailCompose";
+import { EmailComposeList } from "../cmp/EmailComposeList";
 
 
 export function EmailIndex() {
@@ -143,7 +143,7 @@ export function EmailIndex() {
                 <EmailSideBar />
             </div>
 
-            <EmailCompose composedEmails={composedEmails} />
+            <EmailComposeList composedEmails={composedEmails} />
 
         </div>
     )

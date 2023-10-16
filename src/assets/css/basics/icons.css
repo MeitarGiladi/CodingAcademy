@@ -166,6 +166,10 @@
     content: url("//ssl.gstatic.com/ui/v1/icons/mail/rfr/ic_open_in_full_16px_2x.png");
 }
 
+.icon-close-fullscreen {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/rfr/ic_close_fullscreen_16px_2x.png");
+}
+
 .icon-close {
     content: url("//ssl.gstatic.com/ui/v1/icons/mail/rfr/ic_close_16px_2x.png");
 }

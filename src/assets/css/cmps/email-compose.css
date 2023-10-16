@@ -8,30 +8,15 @@
     z-index: 3;
 }
 
-.email-compose-minimize,
-.email-compose-open {
+.email-compose {
     box-shadow: 0px 8px 10px 1px rgba(0,0,0,.14), 0px 3px 14px 2px rgba(0,0,0,.12), 0px 5px 5px -3px rgba(0,0,0,.2);
     border-radius: 8px 8px 0px 0px;
     overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr;
 }
 
-.email-compose-minimize {
-    width: 260px;
-}
-
-.email-compose-open-small {
-    width: 586px;  /* need to add line when resizing window */
-}
-
-/* .email-compose-open-fullscreen {
-    width: 586px;
-    min-height: 458px;
-    height: auto;
-    max-height: 810px;
-} */
-
-.email-compose-minimize,
-.email-compose-open-header {
+.email-compose-header {
     display: grid;
     grid-template-columns: 1fr auto auto auto;
     align-items: center;
@@ -44,19 +29,17 @@
     cursor: pointer;
 }
 
-.email-compose-minimize i,
-.email-compose-open-header i {
+.email-compose-header i {
     width: 16px;
     height: 16px;
     margin-left: 4px;
 }
 
-.email-compose-minimize i:hover,
-.email-compose-open-header i:hover {
+.email-compose-header i:hover {
     background-color: rgba(68,71,70,0.078);
 }
 
-.email-compose-open-main {
+.email-compose-main {
     background-color: white;
     color: rgb(68, 71, 70);
     padding: 0px 16px 0px 16px;
@@ -64,22 +47,22 @@
     grid-template-rows: auto auto 1fr auto;
 }
 
-.email-compose-open-main .email-compose-to,
-.email-compose-open-main .email-compose-subject,
-.email-compose-open-main .email-compose-body {
+.email-compose-main .email-compose-to,
+.email-compose-main .email-compose-subject,
+.email-compose-main .email-compose-body {
     display: block;
     width: 100%;
     border: none;
     border-bottom: 1px solid rgba(100,121,143,0.122);
 }
 
-.email-compose-open-main .email-compose-to,
-.email-compose-open-main .email-compose-subject {
+.email-compose-main .email-compose-to,
+.email-compose-main .email-compose-subject {
     height: 36px;
     padding: 8px 0px 7px 0px;
 }
 
-.email-compose-open-main .email-compose-body {
+.email-compose-main .email-compose-body {
     padding: 10px 0px 9px 0px;
     white-space: normal;
     word-wrap: break-word;
@@ -87,13 +70,9 @@
     font-size: 13px;
     line-height: 19.5px;
     font-family: Arial, Helvetica, sans-serif;
-    /* only for small */
-    min-height: 286px;
-    height: auto; /* need to add line when resizing window */
-    max-height: 638px;
 }
 
-.email-compose-open-main .email-compose-footer {
+.email-compose-main .email-compose-footer {
     height: 60px;
     display: grid;
     grid-template-columns: 1fr auto;
@@ -101,7 +80,7 @@
     align-items: center;
 }
 
-.email-compose-open-main .email-compose-footer .send-email {
+.email-compose-main .email-compose-footer .send-email {
     box-sizing: content-box;
     padding: 8px 16px 8px 16px;
     height: 20px;
@@ -113,7 +92,7 @@
     font-weight: 500;
 }
 
-.email-compose-open-main .email-compose-footer .icon-delete-baseline {
+.email-compose-main .email-compose-footer .icon-delete-baseline {
     box-sizing: content-box;
     height: 20px;
     width: 20px;
@@ -122,13 +101,48 @@
     transition: all 0.15s cubic-bezier(0.4,0,0.2,1);
 }
 
-.email-compose-open-main .email-compose-footer .icon-delete-baseline:hover {
+.email-compose-main .email-compose-footer .icon-delete-baseline:hover {
     background-color: rgba(32,33,36,0.059);
     margin: 0px;
     padding: 4px;
 }
 
 
+.email-compose-open-minimize {
+    width: 260px;
+}
 
+.email-compose-open-minimize .email-compose-main {
+    display: none;
+}
+
+.email-compose-open-small {
+    width: 586px;  /* need to add line when resizing window */
+    /* height dynamically calculated */
+}
+
+.email-compose-open-small .email-compose-main .email-compose-body {
+    min-height: 286px;
+    height: auto; /* need to add line when resizing window */
+    max-height: 638px;
+}
+
+.wrapper-email-compose.open-fullscreen {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,.5);
+}
+
+.email-compose-open-fullscreen {
+    /* not accurate, but good enough */
+    width: max(600px, calc(100vw - 300px));
+    height: calc(100vh - 80px);
+}
 
 
