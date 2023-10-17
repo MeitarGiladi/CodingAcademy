@@ -2,9 +2,16 @@ import { useState } from "react";
 
 export function EmailCompose() {
 
-    const [composeWindowState, setComposeWindowState] = useState("small");
-    // const [composeWindowState, setComposeWindowState] = useState("minimize");
-    // const [composeWindowState, setComposeWindowState] = useState("fullscreen");
+    const [isFullScreenMode, setIsFullScreenMode] = useState(false);
+    const [isMinimize, setIsMinimize] = useState(false);
+
+    function getStateString() {
+        if (isMinimize)
+            return "minimize";
+        else if (isFullScreenMode)
+            return "fullscreen";
+        return "small";
+    }
 
     function auto_grow(ev) {
         if (ev.target.closest(".email-compose-open-small") &&
@@ -17,12 +24,12 @@ export function EmailCompose() {
 
     return (
 
-        <div className={"wrapper-email-compose" + (composeWindowState === "fullscreen" ? " open-fullscreen" : "")}>
-            <article className={`email-compose email-compose-open-${composeWindowState}`}>
+        <div className={"wrapper-email-compose" + (isFullScreenMode && !isMinimize ? " open-fullscreen" : "")}>
+            <article className={`email-compose email-compose-open-${getStateString()}`}>
                 <header className="email-compose-header">
                     <span>New Message</span>
-                    <i className={composeWindowState === "minimize" ? "icon-maximize" : "icon-minimize"}></i>
-                    <i className={composeWindowState !== "fullscreen" ? "icon-open-fullscreen" : "icon-close-fullscreen"}></i>
+                    <i className={isMinimize ? "icon-maximize" : "icon-minimize"}></i>
+                    <i className={isFullScreenMode ? "icon-close-fullscreen" : "icon-open-fullscreen"}></i>
                     <i className="icon-close"></i>
                 </header>
                 <form className="email-compose-main">
