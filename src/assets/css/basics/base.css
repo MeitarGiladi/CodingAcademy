@@ -79,7 +79,6 @@ textarea:focus {
 }
 
 a.active {
-    color: rgb(84, 17, 147);
     font-weight: 600;
 }
 

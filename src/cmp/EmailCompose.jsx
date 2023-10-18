@@ -22,15 +22,41 @@ export function EmailCompose() {
         console.log(ev.target.closest(".email-compose-open-small"));
     }
 
+    function toggleMinimize(ev) {
+        ev.stopPropagation();
+        setIsMinimize((prevIsMinimize) => !prevIsMinimize);
+    }
+
+    function toggleFullscreen(ev) {
+        ev.stopPropagation();
+        setIsMinimize(false);  // When the fullscreenButton clicked, the minimize affect is gone.
+        setIsFullScreenMode((prevIsFullscreen) => !prevIsFullscreen);
+    }
+
+    function closeWindow(ev) {
+        ev.stopPropagation();
+        console.log("closeWindow - ", ev);
+    }
+
+    function deleteDraft(ev) {
+        ev.stopPropagation();
+        console.log("deleteDraft - ", ev);
+    }
+
+    function sendEmail(ev) {
+        ev.stopPropagation();
+        console.log("sendEmail - ", ev);
+    }
+
     return (
 
-        <div className={"wrapper-email-compose" + (isFullScreenMode && !isMinimize ? " open-fullscreen" : "")}>
-            <article className={`email-compose email-compose-open-${getStateString()}`}>
-                <header className="email-compose-header">
+        <div className={"wrapper-email-compose" + (isFullScreenMode && !isMinimize ? " open-fullscreen" : "")} onClick={toggleMinimize}>
+            <article className={`email-compose email-compose-open-${getStateString()}`} onClick={(ev) => ev.stopPropagation()}>
+                <header className="email-compose-header" onClick={toggleMinimize}>
                     <span>New Message</span>
-                    <i className={isMinimize ? "icon-maximize" : "icon-minimize"}></i>
-                    <i className={isFullScreenMode ? "icon-close-fullscreen" : "icon-open-fullscreen"}></i>
-                    <i className="icon-close"></i>
+                    <i className={isMinimize ? "icon-maximize" : "icon-minimize"} onClick={toggleMinimize}></i>
+                    <i className={isFullScreenMode ? "icon-close-fullscreen" : "icon-open-fullscreen"} onClick={toggleFullscreen}></i>
+                    <i className="icon-close" onClose={closeWindow}></i>
                 </header>
                 <form className="email-compose-main">
                     <input className="email-compose-to" type="text" placeholder="To"></input>
