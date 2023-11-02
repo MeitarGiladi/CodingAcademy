@@ -1,32 +1,20 @@
 
 
 .home {
-    width: max(400px, 50vw);
-    height: max(400px, 50vh);
     display: grid;
-    grid-template-rows: 76% 24%;
-    align-content: center;
+    grid-template-rows: 80% 20%;
     justify-items: center;
 }
 
-.home h1 {
-    font-size: 40px;
-    margin: 30px 10px 10px 10px;
-}
-
 .home h1 img.gmail-logo-w {
-    height: 30px;
-    width: 30px;
-    margin-right: 2px;
+    height: 40px;
+    margin-left: -14px;
+    margin-right: -15px;
+    margin-bottom: -5px;
 }
 
 .home h1 img.gmail-logo-text {
     height: 60px;
     margin-bottom: -13px;
     margin-left: 6px;
-}
-
-.home nav * {
-    margin: 12px;
-    font-size: 22px;
 }

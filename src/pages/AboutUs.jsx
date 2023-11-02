@@ -4,7 +4,16 @@ export function AboutUs() {
     return (
         <div className="one-element-page-parent">
             <section className="about-us one-element-page-child">
-                <h1>About Us</h1>
+                <p>
+                    Hey there !<br/>
+                    This project is part of a CodingAcademy's professional course.<br/>
+                    Front-end essentials & React have been used to create this Gmail-Copy.<br/>
+                    <br/><br/>
+                    Meitar Giladi<br/>
+                    linkedin.com/in/meitargiladi/<br/>
+                    github.com/meitargila
+
+                </p>
                 <nav>
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="/about">About</NavLink>
