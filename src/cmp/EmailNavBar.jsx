@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 
-export function EmailNavBar({ cbToggleIsFolderMenuOpen }) {
+export function EmailNavBar({ cbToggleFolderMenuOpen }) {
 
     function dummy(ev) { console.log("clicked ! ", ev.target) };  //dummy
 
@@ -10,7 +10,7 @@ export function EmailNavBar({ cbToggleIsFolderMenuOpen }) {
     return (
         <nav className="email-nav-bar">
             <div className="email-nav-bar-left">
-                <svg className="svg-image svg-icon-3-lines" onClick={cbToggleIsFolderMenuOpen}>
+                <svg className="svg-image svg-icon-3-lines" onClick={cbToggleFolderMenuOpen}>
                     <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
                 </svg>
                 <NavLink to="/">

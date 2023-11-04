@@ -41,6 +41,20 @@ export function EmailIndex() {
         });
     }
 
+    // Changing folder or label
+    async function updateFilter(filterBy) {
+        setCurrFilter((prevFilter) => {
+            return { ...prevFilter, ...filterBy }
+        });
+        // navigate to the URL is not enough to render the page again because we use the same 'route'.
+        const newSearchParams = emailService.getRelevantSearchParam(filterBy);
+        navigate({
+            pathname: '/mail/' + filterBy.folder,
+            search: createSearchParams(newSearchParams).toString()
+        });
+    }
+
+    // Clicking on email
     function displayEmail(email) {
         updateEmail({ ...email, isRead: 1 });
         navigate({
@@ -48,10 +62,13 @@ export function EmailIndex() {
         });
     }
 
-    function addEmail() {
-
+    // Sending a new composed email
+    function sendEmail(email) {
+        console.log("sendEmail: ", email);
     }
 
+    // Clicking on 'del' button - Should we delete or send to Bin?
+    //  TODO - Should handle draft emails
     function delEmailWrapper(email) {
         if (!email.removedAt) {
             trashedEmail(email);
@@ -64,6 +81,7 @@ export function EmailIndex() {
         }
     }
 
+    // Moving the email to Bin
     async function trashedEmail(email) {
         const updatedEmail = { ...email, removedAt: (new Date()).getTime() };
         await emailService.save(updatedEmail);
@@ -72,22 +90,11 @@ export function EmailIndex() {
         });
     }
 
+    // Deleting the email
     async function deleteEmail(email) {
         await emailService.remove(email.id);
         setEmails((prevEmails) => {
             return prevEmails.filter((em) => em.id !== email.id)
-        });
-    }
-
-    async function updateFilter(filterBy) {
-        setCurrFilter((prevFilter) => {
-            return { ...prevFilter, ...filterBy }
-        });
-        // navigate to the URL is not enough to render the page again because we use the same 'route'.
-        const newSearchParams = emailService.getRelevantSearchParam(filterBy);
-        navigate({
-            pathname: '/mail/' + filterBy.folder,
-            search: createSearchParams(newSearchParams).toString()
         });
     }
 
@@ -109,7 +116,7 @@ export function EmailIndex() {
         updateEmail(updatedEmail);
     }
 
-    function toggleIsFolderMenuOpen() {
+    function toggleFolderMenuOpen() {
         setIsFolderMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
     }
 
@@ -121,7 +128,7 @@ export function EmailIndex() {
     return (
         <div className="email-index">
 
-            <EmailNavBar cbToggleIsFolderMenuOpen={toggleIsFolderMenuOpen} />
+            <EmailNavBar cbToggleFolderMenuOpen={toggleFolderMenuOpen} />
 
             <div className="email-index-main">
                 <EmailFolderMenu currFolder={params.folderName} currLabel={currFilter.label} isFolderMenuOpen={isFolderMenuOpen} cbFilterEmails={(newFilter) => updateFilter(newFilter)} />
@@ -143,7 +150,7 @@ export function EmailIndex() {
                 <EmailSideBar />
             </div>
 
-            <EmailComposeList composedEmails={composedEmails} />
+            <EmailComposeList composedEmails={composedEmails} cbSendEmail={sendEmail} cbDeleteDraftEmail={delEmailWrapper} />
 
         </div>
     )

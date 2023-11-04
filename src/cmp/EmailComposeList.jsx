@@ -1,7 +1,7 @@
 
 import { EmailCompose } from "./EmailCompose";
 
-export function EmailComposeList() {
+export function EmailComposeList(composedEmails, cbSendEmail, cbDeleteDraftEmail) {
 
     return (
         
