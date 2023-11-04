@@ -31,7 +31,7 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
-    if (!_validateEmailPermissions(updatedEntity)) throw new Error(`Not a valid email`)
+    if (!_validateEmailPermissions(newEntity)) throw new Error(`Not a valid email`)
     newEntity = { ...newEntity }
     newEntity.id = _makeId()
     return query_all(entityType).then(entities => {

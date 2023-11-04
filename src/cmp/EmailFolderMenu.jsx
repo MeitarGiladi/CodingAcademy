@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 
 import { emailService } from '../services/email.service.js'
+import { utilService } from '../services/util.service.js'
 
 import { EmailFolder } from "./EmailFolder";
 
 
-export function EmailFolderMenu({ currFolder, currLabel, isFolderMenuOpen, cbFilterEmails }) {
+export function EmailFolderMenu({ currFolder, currLabel, isFolderMenuOpen, cbFilterEmails, cbOpenComposedEmail }) {
     const [folders, setFolders] = useState([]);
     const [labelFolders, setLabelFolders] = useState([]);
 
     useEffect(() => {
-        getFolders()
+        getFolders();
         getLabelFolders();
     }, [])
 
@@ -33,12 +34,12 @@ export function EmailFolderMenu({ currFolder, currLabel, isFolderMenuOpen, cbFil
     }
 
 
-    // Warning - The label name might be equal to a folder name.
+    // TODO - Warning - The label name might be equal to a folder name.
     return (
         <section className={"email-menu" + (isFolderMenuOpen ? " menu-open" : " menu-close")}>
 
             <div className="email-menu-compose-wrapper">
-                <div className="email-menu-compose">
+                <div className="email-menu-compose" onClick={(ev) => cbOpenComposedEmail()}>
                     <i className="icon-mail-compose"></i>
                     <span className="mail-compose">Compose</span>
                 </div>

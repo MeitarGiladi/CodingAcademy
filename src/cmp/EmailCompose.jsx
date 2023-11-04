@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function EmailCompose() {
+export function EmailCompose({ email, cbSendEmail, cbDeleteDraftEmail, cbCloseWindow }) {
 
     const [isFullScreenMode, setIsFullScreenMode] = useState(false);
     const [isMinimize, setIsMinimize] = useState(false);
@@ -33,18 +33,21 @@ export function EmailCompose() {
         setIsFullScreenMode((prevIsFullscreen) => !prevIsFullscreen);
     }
 
-    function closeWindow(ev) {
+    function closeWindowWrapper(ev) {
         ev.stopPropagation();
-        console.log("closeWindow - ", ev);
+        cbCloseWindow(email);
     }
 
     function deleteDraft(ev) {
         ev.stopPropagation();
-        console.log("deleteDraft - ", ev);
+        cbDeleteDraftEmail(email);
+        cbCloseWindow(email);
     }
 
     function sendEmail(ev) {
         ev.stopPropagation();
+        cbSendEmail(email);
+        cbCloseWindow(email);
         console.log("sendEmail - ", ev);
     }
 
@@ -56,7 +59,7 @@ export function EmailCompose() {
                     <span>New Message</span>
                     <i className={isMinimize ? "icon-maximize" : "icon-minimize"} onClick={toggleMinimize}></i>
                     <i className={isFullScreenMode ? "icon-close-fullscreen" : "icon-open-fullscreen"} onClick={toggleFullscreen}></i>
-                    <i className="icon-close" onClose={closeWindow}></i>
+                    <i className="icon-close" onClick={closeWindowWrapper}></i>
                 </header>
                 <form className="email-compose-main">
                     <input className="email-compose-to" type="text" placeholder="To"></input>
@@ -64,9 +67,9 @@ export function EmailCompose() {
                     <textarea className="email-compose-body scrollable-square-white" onInput={(ev) => auto_grow(ev)}></textarea >
                     <footer className="email-compose-footer">
                         <div className="wrapper-send-mail">
-                            <button className="send-email">Send</button>
+                            <button className="send-email" onClick={sendEmail}>Send</button>
                         </div>
-                        <i className="icon-delete-baseline"></i>
+                        <i className="icon-delete-baseline" onClick={deleteDraft}></i>
                     </footer>
                 </form>
             </article>

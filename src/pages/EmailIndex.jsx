@@ -22,7 +22,7 @@ export function EmailIndex() {
     const [emails, setEmails] = useState([]);
     const [currFilter, setCurrFilter] = useState(emailService.getFilterFromParams(params.folderName, searchParams))
     const [isFolderMenuOpen, setIsFolderMenuOpen] = useState(false);
-    const [composedEmails, setComposedEmails] = useState([]);
+    const [composedEmails, setComposedEmails] = useState([]);  // If we change folder, the composedEmails should remain the same.
 
     useEffect(() => {
         loadEmails(currFilter);
@@ -55,8 +55,15 @@ export function EmailIndex() {
     }
 
     // Clicking on email
+    // If the email is draft, we need to open it as composed email
     function displayEmail(email) {
         updateEmail({ ...email, isRead: 1 });
+
+        if (email.isDraft) {
+            openComposedEmail(email);
+            return;
+        }
+
         navigate({
             pathname: '/mail/view/' + email.id
         });
@@ -68,9 +75,11 @@ export function EmailIndex() {
     }
 
     // Clicking on 'del' button - Should we delete or send to Bin?
-    //  TODO - Should handle draft emails
     function delEmailWrapper(email) {
-        if (!email.removedAt) {
+        if (email.isDraft) {
+            deleteEmail(email);
+        }
+        else if (!email.removedAt) {
             trashedEmail(email);
         }
         else if (params.folderName === "bin") {
@@ -124,6 +133,24 @@ export function EmailIndex() {
         console.log("replyEmail: ", email);
     }
 
+    async function openComposedEmail(email) {
+        let composedEmail;
+        if (email && email.isDraft) {
+            composedEmail = email;
+        } else {
+            composedEmail = await utilService.createBlankEmail();
+        }
+        setComposedEmails((prevComposedEmails) => {
+            return [...prevComposedEmails, composedEmail]
+        });
+    }
+
+    function closeComposedEmail(email) {
+        setComposedEmails((prevComposedEmails) => {
+            return prevComposedEmails.filter((em) => em.id !== email.id)
+        });
+    }
+
 
     return (
         <div className="email-index">
@@ -131,15 +158,24 @@ export function EmailIndex() {
             <EmailNavBar cbToggleFolderMenuOpen={toggleFolderMenuOpen} />
 
             <div className="email-index-main">
-                <EmailFolderMenu currFolder={params.folderName} currLabel={currFilter.label} isFolderMenuOpen={isFolderMenuOpen} cbFilterEmails={(newFilter) => updateFilter(newFilter)} />
+
+                <EmailFolderMenu
+                    currFolder={params.folderName}
+                    currLabel={currFilter.label}
+                    isFolderMenuOpen={isFolderMenuOpen}
+                    cbFilterEmails={(newFilter) => updateFilter(newFilter)}
+                    cbOpenComposedEmail={openComposedEmail} />
+
                 <div className="email-index-main-center">
                     {params.folderName === "view" ? (
-                        <EmailDetails email={emails.filter((em) => em.id === params.emailId)[0]}
+                        <EmailDetails
+                            email={emails.filter((em) => em.id === params.emailId)[0]}
                             cbToggleStar={toggleStar}
                             cbToggleImportant={toggleImportant}
                             cbReplyEmail={replyEmail} />
                     ) : (
-                        <EmailList emails={emails}
+                        <EmailList
+                            emails={emails}
                             cbToggleRead={toggleRead}
                             cbToggleStar={toggleStar}
                             cbToggleImportant={toggleImportant}
@@ -147,10 +183,16 @@ export function EmailIndex() {
                             cbDisplayEmail={displayEmail} />
                     )}
                 </div>
+
                 <EmailSideBar />
+
             </div>
 
-            <EmailComposeList composedEmails={composedEmails} cbSendEmail={sendEmail} cbDeleteDraftEmail={delEmailWrapper} />
+            <EmailComposeList
+                composedEmails={composedEmails}
+                cbSendEmail={sendEmail}
+                cbDeleteDraftEmail={delEmailWrapper}
+                cbCloseWindow={closeComposedEmail} />
 
         </div>
     )

@@ -1,8 +1,10 @@
+import { emailService } from "./email.service";
 
 export const utilService = {
     padTwo,
     saveToStorage,
     loadFromStorage,
+    createBlankEmail,
     getTimeOfEmailShort,
     getTimeOfEmailDetailed,
     getTimeOfEmailRelative
@@ -15,6 +17,10 @@ const SEC_IN_YEAR = 365 * SEC_IN_DAY;
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 
+function padTwo(num) {
+    return String(num).padStart(2, '0');
+}
+
 function saveToStorage(key, value) {
     localStorage[key] = JSON.stringify(value);
 }
@@ -24,8 +30,21 @@ function loadFromStorage(key, defaultValue = null) {
     return JSON.parse(value);
 }
 
-function padTwo(num) {
-    return String(num).padStart(2, '0');
+function createBlankEmail() {
+    const email = {
+        subject: '',  // needed
+        body: '',
+        isRead: 0,
+        isStarred: false,
+        isImportant: false,
+        isDraft: true,  // change when send
+        sentAt: (new Date()).getTime(),  // change when send
+        removedAt: null,
+        labels: [],
+        from: emailService.getCurruser().email,
+        to: ''  // needed
+    };
+    return emailService.save(email);
 }
 
 

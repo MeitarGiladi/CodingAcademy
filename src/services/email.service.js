@@ -40,7 +40,8 @@ async function query(filterBy = { txt: "", isRead: "", folder: "", label: "" }) 
         if (isRead) emails = emails.filter(em => em.isRead === isRead);
 
         if (folder === 'view') {
-            // For viewing email from URL we need an option to get all emais from all folders, including bin & drafts.
+            // For viewing email from URL we need an option to get all emails from all folders, including bin & drafts.
+            // TODO - How can we make sure 1 user cannot see drafts of another user?
             return emails;
         }
         
@@ -48,13 +49,13 @@ async function query(filterBy = { txt: "", isRead: "", folder: "", label: "" }) 
             emails = emails.filter(em => em.removedAt);
             return emails;
         }
-        emails = emails.filter(em => !em.removedAt);  // We want to see deleted emails onyl at the Bin.
+        emails = emails.filter(em => !em.removedAt);  // We want to see deleted emails only at the 'Bin'.
 
         if (folder === 'drafts') {
             emails = emails.filter(em => em.isDraft);
             return emails;
         }
-        emails = emails.filter(em => !em.isDraft);  // Important, so user cannot see drafts of other user (written for the first user).
+        emails = emails.filter(em => !em.isDraft);  // We want to see draft emails only at the 'Draft'.
 
         switch (folder) {
             case 'inbox':
@@ -154,7 +155,7 @@ function _createEmails() {
                 isImportant: false,
                 isDraft: false,
                 sentAt: 1551133930594,
-                removedAt: null, //for later use
+                removedAt: null,
                 labels: ["games"],
                 from: 'momo@momo.com',
                 to: 'user@appsus.com'
@@ -168,7 +169,7 @@ function _createEmails() {
                 isImportant: false,
                 isDraft: false,
                 sentAt: 1551133931700,
-                removedAt: null, //for later use
+                removedAt: null,
                 labels: [],
                 from: 'user@appsus.com',
                 to: 'momo@momo.com'
@@ -182,7 +183,7 @@ function _createEmails() {
                 isImportant: true,
                 isDraft: false,
                 sentAt: 1551133940594,
-                removedAt: null, //for later use
+                removedAt: null,
                 labels: ["checkins", "games"],
                 from: 'bla@momo.com',
                 to: 'user@appsus.com'
@@ -196,7 +197,7 @@ function _createEmails() {
                 isImportant: false,
                 isDraft: false,
                 sentAt: 1551133939594,
-                removedAt: null, //for later use
+                removedAt: null,
                 labels: [],
                 from: 'bla@momo.com',
                 to: 'user@appsus.com'
@@ -210,7 +211,7 @@ function _createEmails() {
                 isImportant: false,
                 isDraft: false,
                 sentAt: 1551133940594,
-                removedAt: null, //for later use
+                removedAt: null,
                 labels: [],
                 from: 'bla@momo.com',
                 to: 'hey@appsus.com'
@@ -224,7 +225,7 @@ function _createEmails() {
                 isImportant: true,
                 isDraft: false,
                 sentAt: 1551133939594,
-                removedAt: null, //for later use
+                removedAt: null,
                 labels: [],
                 from: 'bla@momo.com',
                 to: 'way@appsus.com'
@@ -238,7 +239,7 @@ function _createEmails() {
                 isImportant: true,
                 isDraft: false,
                 sentAt: 1551133939594,
-                removedAt: null, //for later use
+                removedAt: null,
                 labels: [],
                 from: 'bla@momo.com',
                 to: 'user@appsus.com'

@@ -10,8 +10,6 @@ export function EmailList({ emails, cbToggleRead, cbToggleStar, cbToggleImportan
     const readEmailsCount = Object.keys(emails.filter((em) => em.isRead === 1)).length;
     const emailsCount = Object.keys(emails).length;
 
-    // document.querySelector(".email-list-footer .email-read-bar .email-read-bar-fill").computedStyleMap.width = "94%";
-
     return (
 
         <div className="email-list">
@@ -22,8 +20,8 @@ export function EmailList({ emails, cbToggleRead, cbToggleStar, cbToggleImportan
             <div className="email-list-scrollable scrollable-square-black">
                 <ul className="email-list-main">
 
-                    {emails.map((em, idx) =>
-                        <li key={idx + em.id} className={"email-item" + (em.isRead === 1 ? " read-email" : "")} onClick={() => cbDisplayEmail(em)}>
+                    {emails.map((em) =>
+                        <li key={em.id} className={"email-item" + (em.isRead === 1 ? " read-email" : "")} onClick={() => cbDisplayEmail(em)}>
                             <EmailPreviewStart email={em} cbToggleStar={cbToggleStar} cbToggleImportant={cbToggleImportant} />
                             <EmailPreviewMain email={em} />
                             <EmailPreviewEnd email={em} cbToggleRead={cbToggleRead} cpDeleteEmail={cpDeleteEmail} />
