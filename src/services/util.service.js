@@ -17,7 +17,7 @@ const SEC_IN_YEAR = 365 * SEC_IN_DAY;
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 
-function padTwo(num) {
+function padTwo(num) { // TODO - Might have a problem here
     return String(num).padStart(2, '0');
 }
 
@@ -59,7 +59,7 @@ function getTimeOfEmailShort(sentAt) {
         const emDate = new Date(sentAt);
         const emDateMinutes = padTwo(emDate.getMinutes());
         const emDateHours = padTwo(emDate.getHours());
-        const emDateDay = padTwo(emDate.getDay());
+        const emDateDay = padTwo(emDate.getDay());  // TODO - Might have a problem here
         const emDateMonth = padTwo(emDate.getMonth());
         const emDateYear = emDate.getYear();
 
