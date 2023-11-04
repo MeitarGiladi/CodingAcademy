@@ -18,8 +18,10 @@ export function EmailDetails({ email, cbToggleStar, cbToggleImportant, cbReplyEm
 
         <div className="email-details">
             <header className="email-details-header">
+                <i className="icon-go-back"></i>
                 <i className="icon-delete"></i>
-                <i className="icon-delete"></i>
+                <i className="icon-mark-unread"></i>
+                <i className="icon-labels"></i>
             </header>
 
             <div className="email-details-scrollable scrollable-square-black">

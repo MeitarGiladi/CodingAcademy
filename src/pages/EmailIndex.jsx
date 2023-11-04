@@ -1,5 +1,5 @@
 import { Outlet, useNavigate, createSearchParams, useParams, useSearchParams } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { emailService } from "../services/email.service";
 import { utilService } from "../services/util.service";
@@ -23,6 +23,8 @@ export function EmailIndex() {
     const [currFilter, setCurrFilter] = useState(emailService.getFilterFromParams(params.folderName, searchParams))
     const [isFolderMenuOpen, setIsFolderMenuOpen] = useState(false);
     const [composedEmails, setComposedEmails] = useState([]);  // If we change folder, the composedEmails should remain the same.
+
+    const lastEmailFolder = useRef("inbox");
 
     useEffect(() => {
         loadEmails(currFilter);
@@ -63,6 +65,8 @@ export function EmailIndex() {
             openComposedEmail(email);
             return;
         }
+
+        lastEmailFolder.current = params.folderName;
 
         navigate({
             pathname: '/mail/view/' + email.id

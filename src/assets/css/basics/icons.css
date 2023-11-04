@@ -178,6 +178,13 @@
     content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/delete_baseline_nv700_20dp.png");
 }
 
+.icon-labels {
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/label_white_20dp.png");
+}
+
+.icon-go-back{
+    content: url("//ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/arrow_back_white_20dp.png");
+}
 
 
 
