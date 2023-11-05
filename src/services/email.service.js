@@ -149,7 +149,7 @@ function _createEmails() {
             {
                 id: 'e1',
                 subject: 'Miss you!',
-                body: 'Would love to catch up sometimes',
+                body: 'Would love to catch up sometimes \nLove',
                 isRead: 1,
                 isStarred: false,
                 isImportant: false,

@@ -44,11 +44,15 @@ export function EmailIndex() {
     }
 
     // Changing folder or label
-    async function updateFilter(filterBy) {
+    function updateFilter(filterBy) {
         setCurrFilter((prevFilter) => {
             return { ...prevFilter, ...filterBy }
         });
         // navigate to the URL is not enough to render the page again because we use the same 'route'.
+        navigateFolder(filterBy);
+    }
+
+    function navigateFolder(filterBy) {
         const newSearchParams = emailService.getRelevantSearchParam(filterBy);
         navigate({
             pathname: '/mail/' + filterBy.folder,
@@ -133,17 +137,38 @@ export function EmailIndex() {
         setIsFolderMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
     }
 
-    function replyEmail(email) {
-        console.log("replyEmail: ", email);
+    function closeEmailDetails(email=null, option=null) {
+        if (email && option) {
+            switch (option) {
+                case "unread":
+                    const updatedEmail = { ...email, isRead: 0 };
+                    updateEmail(updatedEmail);
+                    break;
+                case "delete":
+                    delEmailWrapper(email);
+                    break;
+                default:
+                    break;
+            }
+        }
+        navigateFolder(currFilter);
     }
 
     async function openComposedEmail(email) {
+
+        if (email && email.isDraft === false) {
+            console.log("Cannot edit non-draft emails");
+            return;
+        }
+
         let composedEmail;
-        if (email && email.isDraft) {
+        if (email && email.id) {
             composedEmail = email;
         } else {
-            composedEmail = await utilService.createBlankEmail();
+            // Make sure the email has an ID
+            composedEmail = await utilService.createNewEmail(email);
         }
+
         setComposedEmails((prevComposedEmails) => {
             return [...prevComposedEmails, composedEmail]
         });
@@ -167,7 +192,7 @@ export function EmailIndex() {
                     currFolder={params.folderName}
                     currLabel={currFilter.label}
                     isFolderMenuOpen={isFolderMenuOpen}
-                    cbFilterEmails={(newFilter) => updateFilter(newFilter)}
+                    cbFilterEmails={updateFilter}
                     cbOpenComposedEmail={openComposedEmail} />
 
                 <div className="email-index-main-center">
@@ -176,7 +201,8 @@ export function EmailIndex() {
                             email={emails.filter((em) => em.id === params.emailId)[0]}
                             cbToggleStar={toggleStar}
                             cbToggleImportant={toggleImportant}
-                            cbReplyEmail={replyEmail} />
+                            cbComposeEmail={openComposedEmail}
+                            cbGoBack={closeEmailDetails} />
                     ) : (
                         <EmailList
                             emails={emails}

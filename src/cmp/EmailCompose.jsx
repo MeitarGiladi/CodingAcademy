@@ -62,9 +62,9 @@ export function EmailCompose({ email, cbSendEmail, cbDeleteDraftEmail, cbCloseWi
                     <i className="icon-close" onClick={closeWindowWrapper}></i>
                 </header>
                 <form className="email-compose-main">
-                    <input className="email-compose-to" type="text" placeholder="To"></input>
-                    <input className="email-compose-subject" type="text" placeholder="Subject"></input>
-                    <textarea className="email-compose-body scrollable-square-white" onInput={(ev) => auto_grow(ev)}></textarea >
+                    <input className="email-compose-to" type="text" placeholder="To" value={email.to}></input>
+                    <input className="email-compose-subject" type="text" placeholder="Subject" value={email.subject}></input>
+                    <textarea className="email-compose-body scrollable-square-white" value={email.body} onInput={(ev) => auto_grow(ev)}></textarea >
                     <footer className="email-compose-footer">
                         <div className="wrapper-send-mail">
                             <button className="send-email" onClick={sendEmail}>Send</button>

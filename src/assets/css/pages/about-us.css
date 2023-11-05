@@ -2,6 +2,7 @@
     display: grid;
     grid-template-rows: 40% 40% 20%;
     justify-items: center;
+    text-align: center;
 }
 
 .about-us p {

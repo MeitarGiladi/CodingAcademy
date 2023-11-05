@@ -4,7 +4,7 @@ export const utilService = {
     padTwo,
     saveToStorage,
     loadFromStorage,
-    createBlankEmail,
+    createNewEmail,
     getTimeOfEmailShort,
     getTimeOfEmailDetailed,
     getTimeOfEmailRelative
@@ -30,8 +30,8 @@ function loadFromStorage(key, defaultValue = null) {
     return JSON.parse(value);
 }
 
-function createBlankEmail() {
-    const email = {
+function createNewEmail(emailProps) {
+    const newEmail = {
         subject: '',  // needed
         body: '',
         isRead: 0,
@@ -44,7 +44,17 @@ function createBlankEmail() {
         from: emailService.getCurruser().email,
         to: ''  // needed
     };
-    return emailService.save(email);
+
+    if (emailProps) {
+        for (const prop in newEmail) {
+            // We change only the valid props. 
+            if (prop in emailProps) {
+                newEmail[prop] = emailProps[prop];
+            }
+        }
+    }
+
+    return emailService.save(newEmail);
 }
 
 
