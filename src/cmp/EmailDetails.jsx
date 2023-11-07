@@ -11,7 +11,7 @@ export function EmailDetails({ email, cbToggleStar, cbToggleImportant, cbCompose
     function replayEmail(ev, isForward = false) {
         ev.stopPropagation();
         const newEmail = {
-            from: emailService.getCurruser().email,
+            from: emailService.getCurruser(),
             subject: "RE:" + email.subject,
             body: "\n\n------------------------------------------------------------\n" +
                 email.from + "\n" +

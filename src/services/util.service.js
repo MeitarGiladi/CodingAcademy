@@ -2,8 +2,6 @@ import { emailService } from "./email.service";
 
 export const utilService = {
     padTwo,
-    saveToStorage,
-    loadFromStorage,
     createNewEmail,
     getTimeOfEmailShort,
     getTimeOfEmailDetailed,
@@ -21,15 +19,6 @@ function padTwo(num) { // TODO - Might have a problem here
     return String(num).padStart(2, '0');
 }
 
-function saveToStorage(key, value) {
-    localStorage[key] = JSON.stringify(value);
-}
-
-function loadFromStorage(key, defaultValue = null) {
-    var value = localStorage[key] || defaultValue;
-    return JSON.parse(value);
-}
-
 function createNewEmail(emailProps) {
     const newEmail = {
         subject: '',  // needed
@@ -41,7 +30,7 @@ function createNewEmail(emailProps) {
         sentAt: (new Date()).getTime(),  // change when send
         removedAt: null,
         labels: [],
-        from: emailService.getCurruser().email,
+        from: emailService.getCurruser(),
         to: ''  // needed
     };
 
