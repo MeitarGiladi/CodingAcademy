@@ -46,9 +46,11 @@ export function EmailCompose({ email, cbSendEmail, cbDeleteDraftEmail, cbCloseWi
 
     function sendEmail(ev) {
         ev.stopPropagation();
-        cbSendEmail(email);
+        if (!cbSendEmail(email)) {
+            console.log("Subject and recipient required.");  // TODO - popup message
+            return;
+        }
         cbCloseWindow(email);
-        console.log("sendEmail - ", ev);
     }
 
     return (
@@ -62,9 +64,9 @@ export function EmailCompose({ email, cbSendEmail, cbDeleteDraftEmail, cbCloseWi
                     <i className="icon-close" onClick={closeWindowWrapper}></i>
                 </header>
                 <form className="email-compose-main">
-                    <input className="email-compose-to" type="text" placeholder="To" value={email.to}></input>
-                    <input className="email-compose-subject" type="text" placeholder="Subject" value={email.subject}></input>
-                    <textarea className="email-compose-body scrollable-square-white" value={email.body} onInput={(ev) => auto_grow(ev)}></textarea >
+                    <input className="email-compose-to" type="text" placeholder="To" defaultValue={email.to}></input>
+                    <input className="email-compose-subject" type="text" placeholder="Subject" defaultValue={email.subject}></input>
+                    <textarea className="email-compose-body scrollable-square-white" defaultValue={email.body} onInput={(ev) => auto_grow(ev)}></textarea >
                     <footer className="email-compose-footer">
                         <div className="wrapper-send-mail">
                             <button className="send-email" onClick={sendEmail}>Send</button>

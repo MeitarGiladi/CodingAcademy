@@ -52,6 +52,7 @@ export function EmailIndex() {
         navigateFolder(filterBy);
     }
 
+
     function navigateFolder(filterBy) {
         const newSearchParams = emailService.getRelevantSearchParam(filterBy);
         navigate({
@@ -64,14 +65,11 @@ export function EmailIndex() {
     // If the email is draft, we need to open it as composed email
     function displayEmail(email) {
         updateEmail({ ...email, isRead: 1 });
-
         if (email.isDraft) {
             openComposedEmail(email);
             return;
         }
-
         lastEmailFolder.current = params.folderName;
-
         navigate({
             pathname: '/mail/view/' + email.id
         });
@@ -79,7 +77,19 @@ export function EmailIndex() {
 
     // Sending a new composed email
     function sendEmail(email) {
-        console.log("sendEmail: ", email);
+        // validate email is ready for sending
+        if (!email.subject || !email.to) {
+            return false;
+        }
+        // Add & edit relevant fields
+        const newEmail = { ...email }
+        newEmail.isDraft = false;
+        newEmail.sentAt = (new Date()).getTime();
+        // Save email in 'sent'
+        emailService.save(newEmail);
+        // Send email to other user
+
+        return true;
     }
 
     // Clicking on 'del' button - Should we delete or send to Bin?
@@ -137,7 +147,7 @@ export function EmailIndex() {
         setIsFolderMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
     }
 
-    function closeEmailDetails(email=null, option=null) {
+    function closeEmailDetails(email = null, option = null) {
         if (email && option) {
             switch (option) {
                 case "unread":
@@ -155,12 +165,10 @@ export function EmailIndex() {
     }
 
     async function openComposedEmail(email) {
-
         if (email && email.isDraft === false) {
             console.log("Cannot edit non-draft emails");
             return;
         }
-
         let composedEmail;
         if (email && email.id) {
             composedEmail = email;
@@ -168,7 +176,6 @@ export function EmailIndex() {
             // Make sure the email has an ID
             composedEmail = await utilService.createNewEmail(email);
         }
-
         setComposedEmails((prevComposedEmails) => {
             return [...prevComposedEmails, composedEmail]
         });
