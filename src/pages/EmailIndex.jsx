@@ -87,8 +87,8 @@ export function EmailIndex() {
         newEmail.sentAt = (new Date()).getTime();
         // Save email in 'sent'
         emailService.save(newEmail);
-        // Send email to other user
-
+        // Send email to recipient user
+        emailService.sendEmail(newEmail.to, newEmail);
         return true;
     }
 

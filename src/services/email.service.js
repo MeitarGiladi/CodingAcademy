@@ -7,6 +7,7 @@ export const emailService = {
     query,
     save,
     remove,
+    sendEmail,
     getById,
     getFolders,
     getLabelFolders,
@@ -96,13 +97,10 @@ function save(emailToSave) {
     }
 }
 
-// function createEmail(model = '', type = '', batteryStatus = 100) {
-//     return {
-//         model,
-//         batteryStatus,
-//         type
-//     }
-// }
+function sendEmail(recipient, email) {
+    // TODO
+    console.log("send: ", recipient, email);
+}
 
 function getFolders() {
     return dbUtilService.loadFromStorage(STORAGE_KEY_FOLDERS);
