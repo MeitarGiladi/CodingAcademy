@@ -1,13 +1,21 @@
-import { dbUtilService } from './db-util.service.js'
+import {
+    STORAGE_KEY_LOGGED_USER,
+    STORAGE_KEY_FOLDERS,
+    STORAGE_KEY_USERS,
+    STORAGE_SUB_KEY_EMAILS,
+    STORAGE_SUB_KEY_LABELS,
+    POST_TYPE_USER_DATA,
+    POST_TYPE_SEND_EMAIL,
+    POST_TYPE_CHANGE_USER,
+    saveToStorage,
+    loadFromStorage
+} from './db-util.service.js'
 
 
 export const dbInitStorageService = {
     createDatabase
 }
 
-const STORAGE_KEY_LOGGED_USER = dbUtilService.STORAGE_KEY_LOGGED_USER
-const STORAGE_KEY_FOLDERS = dbUtilService.STORAGE_KEY_FOLDERS
-const STORAGE_KEY_USERS = dbUtilService.STORAGE_KEY_USERS
 
 function createDatabase(overwrite) {
     createUserFolders(overwrite)
@@ -17,7 +25,7 @@ function createDatabase(overwrite) {
 
 
 function createUserFolders(overwrite) {
-    if (overwrite || !dbUtilService.loadFromStorage(STORAGE_KEY_FOLDERS)) {
+    if (overwrite || !loadFromStorage(STORAGE_KEY_FOLDERS)) {
         const folders = [
             { name: "inbox", text: "Inbox", iconClass: "icon-folder-inbox" },
             { name: "starred", text: "Starred", iconClass: "icon-folder-starred" },
@@ -27,21 +35,21 @@ function createUserFolders(overwrite) {
             { name: "all-mail", text: "All Mail", iconClass: "icon-folder-allmail" },
             { name: "bin", text: "Bin", iconClass: "icon-folder-bin" }
         ];
-        dbUtilService.saveToStorage(STORAGE_KEY_FOLDERS, folders)
+        saveToStorage(STORAGE_KEY_FOLDERS, folders)
     }
 }
 
 function createLoggedInUser(overwrite) {
-    if (overwrite || !dbUtilService.loadFromStorage(STORAGE_KEY_LOGGED_USER)) {
-        const loggedInUser = 'user1@appsus.com';
-        dbUtilService.saveToStorage(STORAGE_KEY_LOGGED_USER, loggedInUser)
+    if (overwrite || !loadFromStorage(STORAGE_KEY_LOGGED_USER)) {
+        const loggedInUser = 'user1@gmail.com';
+        saveToStorage(STORAGE_KEY_LOGGED_USER, loggedInUser)
     }
 }
 
 function createUsersData(overwrite) {
-    if (overwrite || !dbUtilService.loadFromStorage(STORAGE_KEY_USERS)) {
+    if (overwrite || !loadFromStorage(STORAGE_KEY_USERS)) {
         const users_data = {
-            'user1@appsus.com': {
+            'user1@gmail.com': {
                 fullname: 'Mahatma Appsus',
                 labels: ["amsterdam",
                     "checkins",
@@ -60,7 +68,7 @@ function createUsersData(overwrite) {
                         removedAt: null,
                         labels: ["amsterdam"],
                         from: 'momo@momo.com',
-                        to: 'user1@appsus.com'
+                        to: 'user1@gmail.com'
                     },
                     {
                         id: 'e2',
@@ -73,7 +81,7 @@ function createUsersData(overwrite) {
                         sentAt: 1551133931700,
                         removedAt: null,
                         labels: ["amsterdam"],
-                        from: 'user1@appsus.com',
+                        from: 'user1@gmail.com',
                         to: 'momo@momo.com'
                     },
                     {
@@ -88,7 +96,7 @@ function createUsersData(overwrite) {
                         removedAt: null,
                         labels: ["checkins", "games"],
                         from: 'bla@momo.com',
-                        to: 'user1@appsus.com'
+                        to: 'user1@gmail.com'
                     },
                     {
                         id: 'e4',
@@ -102,7 +110,7 @@ function createUsersData(overwrite) {
                         removedAt: null,
                         labels: ["games"],
                         from: 'bla@momo.com',
-                        to: 'user1@appsus.com'
+                        to: 'user1@gmail.com'
                     },
                     {
                         id: 'e5',
@@ -115,7 +123,7 @@ function createUsersData(overwrite) {
                         sentAt: 1551133940594,
                         removedAt: null,
                         labels: [],
-                        from: 'user1@appsus.com',
+                        from: 'user1@gmail.com',
                         to: 'hey@appsus.com'
                     },
                     {
@@ -129,7 +137,7 @@ function createUsersData(overwrite) {
                         sentAt: 1551133939594,
                         removedAt: null,
                         labels: [],
-                        from: 'user1@appsus.com',
+                        from: 'user1@gmail.com',
                         to: 'way@appsus.com'
                     },
                     {
@@ -144,7 +152,7 @@ function createUsersData(overwrite) {
                         removedAt: null,
                         labels: [],
                         from: 'bla@momo.com',
-                        to: 'user1@appsus.com'
+                        to: 'user1@gmail.com'
                     }
                 ]
             },
@@ -185,7 +193,7 @@ function createUsersData(overwrite) {
                 ]
             }
         };
-        dbUtilService.saveToStorage(STORAGE_KEY_USERS, users_data)
+        saveToStorage(STORAGE_KEY_USERS, users_data)
     }
 }
 

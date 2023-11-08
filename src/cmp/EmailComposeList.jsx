@@ -1,7 +1,7 @@
 
 import { EmailCompose } from "./EmailCompose";
 
-export function EmailComposeList({ composedEmails, cbSendEmail, cbDeleteDraftEmail, cbCloseWindow }) {
+export function EmailComposeList({ composedEmails, cbSendEmail, cbSaveDraft, cbDeleteDraftEmail, cbCloseWindow }) {
 
     return (
 
@@ -11,6 +11,7 @@ export function EmailComposeList({ composedEmails, cbSendEmail, cbDeleteDraftEma
                     key={em.id}
                     email={em}
                     cbSendEmail={cbSendEmail}
+                    cbSaveDraft={cbSaveDraft}
                     cbDeleteDraftEmail={cbDeleteDraftEmail}
                     cbCloseWindow={cbCloseWindow} />
             )}

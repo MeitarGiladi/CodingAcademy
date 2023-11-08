@@ -52,7 +52,6 @@ export function EmailIndex() {
         navigateFolder(filterBy);
     }
 
-
     function navigateFolder(filterBy) {
         const newSearchParams = emailService.getRelevantSearchParam(filterBy);
         navigate({
@@ -174,8 +173,10 @@ export function EmailIndex() {
             composedEmail = email;
         } else {
             // Make sure the email has an ID
+            console.log("email before: ", email)
             composedEmail = await utilService.createNewEmail(email);
         }
+        console.log("hey: ", composedEmail)
         setComposedEmails((prevComposedEmails) => {
             return [...prevComposedEmails, composedEmail]
         });
@@ -191,7 +192,7 @@ export function EmailIndex() {
     return (
         <div className="email-index">
 
-            <EmailNavBar cbToggleFolderMenuOpen={toggleFolderMenuOpen} />
+            <EmailNavBar cbToggleFolderMenuOpen={toggleFolderMenuOpen} cbUpdateFilter={updateFilter} />
 
             <div className="email-index-main">
 
@@ -228,6 +229,7 @@ export function EmailIndex() {
             <EmailComposeList
                 composedEmails={composedEmails}
                 cbSendEmail={sendEmail}
+                cbSaveDraft={updateEmail}
                 cbDeleteDraftEmail={delEmailWrapper}
                 cbCloseWindow={closeComposedEmail} />
 

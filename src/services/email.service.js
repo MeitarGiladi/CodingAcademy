@@ -1,6 +1,17 @@
 import { storageService } from './async-storage.service.js'
 import { dbInitStorageService } from './db-init-storage.service.js'
-import { dbUtilService } from './db-util.service.js'
+import {
+    STORAGE_KEY_LOGGED_USER,
+    STORAGE_KEY_FOLDERS,
+    STORAGE_KEY_USERS,
+    STORAGE_SUB_KEY_EMAILS,
+    STORAGE_SUB_KEY_LABELS,
+    POST_TYPE_USER_DATA,
+    POST_TYPE_SEND_EMAIL,
+    POST_TYPE_CHANGE_USER,
+    saveToStorage,
+    loadFromStorage
+} from './db-util.service.js'
 
 
 export const emailService = {
@@ -13,16 +24,14 @@ export const emailService = {
     getLabelFolders,
     getCurruser,
     getFilterFromParams,
-    getRelevantSearchParam
+    getRelevantSearchParam,
+    changeUser
 }
 
-const STORAGE_KEY_LOGGED_USER = dbUtilService.STORAGE_KEY_LOGGED_USER
-const STORAGE_KEY_FOLDERS = dbUtilService.STORAGE_KEY_FOLDERS
-const STORAGE_SUB_KEY_EMAILS = dbUtilService.STORAGE_SUB_KEY_EMAILS
-const STORAGE_SUB_KEY_LABELS = dbUtilService.STORAGE_SUB_KEY_LABELS
 
 
-dbInitStorageService.createDatabase(true);
+const OVERWRITE_DATABASE = false;
+dbInitStorageService.createDatabase(OVERWRITE_DATABASE);
 
 
 async function query(filterBy = { txt: "", isRead: "", folder: "", label: "" }) {
@@ -93,7 +102,7 @@ function save(emailToSave) {
     if (emailToSave.id) {
         return storageService.put(STORAGE_SUB_KEY_EMAILS, emailToSave)
     } else {
-        return storageService.post(STORAGE_SUB_KEY_EMAILS, emailToSave)
+        return storageService.post(POST_TYPE_USER_DATA, emailToSave, STORAGE_SUB_KEY_EMAILS)
     }
 }
 
@@ -103,11 +112,11 @@ function sendEmail(recipient, email) {
 }
 
 function getFolders() {
-    return dbUtilService.loadFromStorage(STORAGE_KEY_FOLDERS);
+    return loadFromStorage(STORAGE_KEY_FOLDERS);
 }
 
 function getCurruser() {
-    return dbUtilService.loadFromStorage(STORAGE_KEY_LOGGED_USER);
+    return loadFromStorage(STORAGE_KEY_LOGGED_USER);
 }
 
 function getLabelFolders() {
@@ -135,6 +144,11 @@ function getRelevantSearchParam(filterBy) {
     if (filterBy.isRead) newSearchParam.isRead = filterBy.isRead;
     if (filterBy.folder === "label") newSearchParam.label = filterBy.label;  // If "folder == label" we want the 'label' param.
     return newSearchParam;
+}
+
+function changeUser(username) {
+    storageService.post(POST_TYPE_CHANGE_USER, username);
+    console.log("logged in - ", username);  // TODO popup
 }
 
 
