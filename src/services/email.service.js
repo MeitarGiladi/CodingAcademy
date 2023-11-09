@@ -50,8 +50,6 @@ async function query(filterBy = { txt: "", isRead: "", folder: "", label: "" }) 
         if (isRead) emails = emails.filter(em => em.isRead === isRead)
 
         if (folder === 'view') {
-            // For viewing email from URL we need an option to get all emails from all folders, including bin & drafts.
-            // TODO - How can we make sure 1 user cannot see drafts of another user?
             return emails
         }
 
@@ -124,7 +122,7 @@ function addLabel(labelName) {
 }
 
 function removeLabel(labelName) {
-    return storageService.remove(STORAGE_SUB_KEY_LABELS, labelName) // TODO - fix
+    return storageService.remove(STORAGE_SUB_KEY_LABELS, labelName)
 }
 
 function getFolders() {

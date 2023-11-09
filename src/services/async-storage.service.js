@@ -70,13 +70,22 @@ async function put(entityType, updatedEntity) {
 }
 
 // Delete email or label
-async function remove(entityType, entityId) {
-    return query(entityType).then(entities => {
-        const idx = entities.findIndex(entity => entity.id === entityId)
-        if (idx < 0) throw new Error(`Remove failed, cannot find entity with id: ${entityId} in: ${entityType}`)
-        entities.splice(idx, 1)
-        _saveUserData(entityType, entities)
-    })
+async function remove(entityType, entityData) {
+    switch (entityType) {
+        case STORAGE_SUB_KEY_EMAILS:
+            return query(entityType).then(entities => {
+                const idx = entities.findIndex(entity => entity.id === entityData)
+                if (idx < 0) throw new Error(`Remove failed, cannot find entity with id: ${entityData} in: ${entityType}`)
+                entities.splice(idx, 1)
+                _saveUserData(entityType, entities)
+            })
+        case STORAGE_SUB_KEY_LABELS:
+            return query(entityType).then(entities => {
+                _saveUserData(entityType, entities.filter((label) => label != entityData))
+            })
+        default:
+            console.log("Not a valid type to remove")
+    }
 }
 
 /////// Private functions ///////
@@ -92,8 +101,11 @@ async function _post_new_email(newEmail) {
 }
 
 async function _post_new_label(newLabel) {
-    // TODO - validate that there aren't any duplications
     return query(STORAGE_SUB_KEY_LABELS).then(entities => {
+        if (entities.find(newLabel)) {
+            console.log("Already has this label - ", newLabel)
+            return newLabel
+        }
         entities.push(newLabel)
         _saveUserData(STORAGE_SUB_KEY_LABELS, entities)
         return newLabel
