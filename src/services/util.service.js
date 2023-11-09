@@ -12,7 +12,6 @@ export const utilService = {
 const SEC_IN_HOUR = 60 * 60
 const SEC_IN_DAY = 24 * SEC_IN_HOUR
 const SEC_IN_YEAR = 365 * SEC_IN_DAY
-const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
 
 function padTwo(num) { // TODO - Might have a problem here
@@ -49,7 +48,7 @@ function createNewEmail(emailProps) {
 
 function getTimeOfEmailShort(sentAt) {
 
-    const timeDiff = Date.now() - sentAt
+    const timeDiff = (Date.now() - sentAt) / 1000
 
     let calcTime
     if (timeDiff < 0)
@@ -58,14 +57,15 @@ function getTimeOfEmailShort(sentAt) {
         const emDate = new Date(sentAt)
         const emDateMinutes = padTwo(emDate.getMinutes())
         const emDateHours = padTwo(emDate.getHours())
-        const emDateDay = padTwo(emDate.getDay())  // TODO - Might have a problem here
-        const emDateMonth = padTwo(emDate.getMonth())
-        const emDateYear = emDate.getYear()
+        const emDateDay = padTwo(emDate.getDate())
+        const emDateMonth = padTwo(emDate.getMonth() + 1)
+        const emDateMonthStr = emDate.toLocaleString('en-IL', { month: 'short' })
+        const emDateYear = emDate.getFullYear()
 
         if (timeDiff < SEC_IN_DAY) {
             calcTime = `${emDateHours}:${emDateMinutes}`
         } else if (timeDiff < SEC_IN_YEAR) {
-            calcTime = `${emDateDay} ${MONTH_NAMES[emDate.getMonth()]}`
+            calcTime = `${emDateDay} ${emDateMonthStr}`
         } else {
             calcTime = `${emDateDay}/${emDateMonth}/${emDateYear}`
         }
@@ -76,7 +76,7 @@ function getTimeOfEmailShort(sentAt) {
 
 function getTimeOfEmailDetailed(sentAt) {
 
-    const timeDiff = Date.now() - sentAt
+    const timeDiff = (Date.now() - sentAt) / 1000
 
     let calcTime
     if (timeDiff < 0)
@@ -85,10 +85,10 @@ function getTimeOfEmailDetailed(sentAt) {
         const emDate = new Date(sentAt)
         const emDateMinutes = padTwo(emDate.getMinutes())
         const emDateHours = padTwo(emDate.getHours())
-        const emDateDayNum = padTwo(emDate.getDay())
+        const emDateDayNum = padTwo(emDate.getDate())
         const emDateDayStr = emDate.toLocaleString('en-IL', { weekday: 'short' })
         const emDateMonthStr = emDate.toLocaleString('en-IL', { month: 'short' })
-        const emDateYear = emDate.getYear()
+        const emDateYear = emDate.getFullYear()
         const relativeTime = getTimeOfEmailRelative(sentAt)
 
         if (timeDiff < SEC_IN_HOUR * 15) {
@@ -107,7 +107,7 @@ function getTimeOfEmailDetailed(sentAt) {
 
 function getTimeOfEmailRelative(sentAt) {
 
-    const timeDiff = Date.now() - sentAt
+    const timeDiff = (Date.now() - sentAt) / 1000
 
     let calcTime
     if (timeDiff < 0) {
