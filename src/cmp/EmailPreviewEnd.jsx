@@ -3,13 +3,13 @@ import { utilService } from "../services/util.service"
 export function EmailPreviewEnd({ email, cbToggleRead, cpDeleteEmail }) {
 
     function dummy(ev) { 
-        ev.stopPropagation(); 
+        ev.stopPropagation() 
         console.log("clicked ! ", ev.target) 
-    };  //dummy
+    }  //dummy
 
     function deleteEmail(ev, email) {
-        ev.stopPropagation();
-        cpDeleteEmail(email);
+        ev.stopPropagation()
+        cpDeleteEmail(email)
     }
 
 

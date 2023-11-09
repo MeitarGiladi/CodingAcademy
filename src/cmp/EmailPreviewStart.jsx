@@ -3,10 +3,10 @@
 export function EmailPreviewStart({ email, cbToggleStar, cbToggleImportant }) {
 
     function dummy(ev) { 
-        ev.stopPropagation(); 
+        ev.stopPropagation() 
         console.log("clicked ! ", ev.target) 
-    };  //dummy
-    const isSelected = false;  //dummy
+    }  //dummy
+    const isSelected = false  //dummy
 
     return (
         <span className="email-preview-start">

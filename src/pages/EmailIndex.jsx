@@ -1,191 +1,189 @@
-import { Outlet, useNavigate, createSearchParams, useParams, useSearchParams } from "react-router-dom";
-import { useState, useEffect, useRef } from 'react';
+import { Outlet, useNavigate, createSearchParams, useParams, useSearchParams } from "react-router-dom"
+import { useState, useEffect, useRef } from 'react'
 
-import { emailService } from "../services/email.service";
-import { utilService } from "../services/util.service";
+import { emailService } from "../services/email.service"
+import { utilService } from "../services/util.service"
 
-import { EmailNavBar } from "../cmp/EmailNavBar";
-import { EmailFolderMenu } from "../cmp/EmailFolderMenu";
-import { EmailSideBar } from "../cmp/EmailSideBar";
-import { EmailList } from "../cmp/EmailList";
-import { EmailDetails } from "../cmp/EmailDetails";
-import { EmailComposeList } from "../cmp/EmailComposeList";
+import { EmailNavBar } from "../cmp/EmailNavBar"
+import { EmailFolderMenu } from "../cmp/EmailFolderMenu"
+import { EmailSideBar } from "../cmp/EmailSideBar"
+import { EmailList } from "../cmp/EmailList"
+import { EmailDetails } from "../cmp/EmailDetails"
+import { EmailComposeList } from "../cmp/EmailComposeList"
 
 
 export function EmailIndex() {
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    const params = useParams();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const params = useParams()
+    const [searchParams, setSearchParams] = useSearchParams()
 
-    const [emails, setEmails] = useState([]);
+    const [emails, setEmails] = useState([])
     const [currFilter, setCurrFilter] = useState(emailService.getFilterFromParams(params.folderName, searchParams))
-    const [isFolderMenuOpen, setIsFolderMenuOpen] = useState(false);
-    const [composedEmails, setComposedEmails] = useState([]);  // If we change folder, the composedEmails should remain the same.
+    const [isFolderMenuOpen, setIsFolderMenuOpen] = useState(false)
+    const [composedEmails, setComposedEmails] = useState([])  // If we change folder, the composedEmails should remain the same.
 
-    const lastEmailFolder = useRef("inbox");
+    const lastEmailFolder = useRef("inbox")
 
     useEffect(() => {
-        loadEmails(currFilter);
-    }, [currFilter]);
+        loadEmails(currFilter)
+    }, [currFilter])
 
     async function loadEmails(filterBy) {
-        const updatedEmails = await emailService.query(filterBy);
-        setEmails(updatedEmails);
-        setSearchParams(emailService.getRelevantSearchParam(filterBy));
+        const updatedEmails = await emailService.query(filterBy)
+        setEmails(updatedEmails)
+        setSearchParams(emailService.getRelevantSearchParam(filterBy))
     }
 
     async function updateEmail(email) {
-        const updatedEmail = await emailService.save(email);
+        const updatedEmail = await emailService.save(email)
         setEmails((prevEmails) => {
             return prevEmails.map((em) => (em.id === updatedEmail.id ? updatedEmail : em))
-        });
+        })
     }
 
     // Changing folder or label
     function updateFilter(filterBy) {
         setCurrFilter((prevFilter) => {
             return { ...prevFilter, ...filterBy }
-        });
+        })
         // navigate to the URL is not enough to render the page again because we use the same 'route'.
-        navigateFolder(filterBy);
+        navigateFolder(filterBy)
     }
 
     function navigateFolder(filterBy) {
-        const newSearchParams = emailService.getRelevantSearchParam(filterBy);
+        const newSearchParams = emailService.getRelevantSearchParam(filterBy)
         navigate({
             pathname: '/mail/' + filterBy.folder,
             search: createSearchParams(newSearchParams).toString()
-        });
+        })
     }
 
     // Clicking on email
     // If the email is draft, we need to open it as composed email
     function displayEmail(email) {
-        updateEmail({ ...email, isRead: 1 });
+        updateEmail({ ...email, isRead: 1 })
         if (email.isDraft) {
-            openComposedEmail(email);
-            return;
+            openComposedEmail(email)
+            return
         }
-        lastEmailFolder.current = params.folderName;
+        lastEmailFolder.current = params.folderName
         navigate({
             pathname: '/mail/view/' + email.id
-        });
+        })
     }
 
     // Sending a new composed email
     function sendEmail(email) {
         // validate email is ready for sending
         if (!email.subject || !email.to) {
-            return false;
+            return false
         }
         // Add & edit relevant fields
         const newEmail = { ...email }
-        newEmail.isDraft = false;
-        newEmail.sentAt = (new Date()).getTime();
+        newEmail.isDraft = false
+        newEmail.sentAt = (new Date()).getTime()
         // Save email in 'sent'
-        emailService.save(newEmail);
+        emailService.save(newEmail)
         // Send email to recipient user
-        emailService.sendEmail(newEmail.to, newEmail);
-        return true;
+        emailService.sendEmail(newEmail.to, newEmail)
+        return true
     }
 
     // Clicking on 'del' button - Should we delete or send to Bin?
     function delEmailWrapper(email) {
         if (email.isDraft) {
-            deleteEmail(email);
+            deleteEmail(email)
         }
         else if (!email.removedAt) {
-            trashedEmail(email);
+            trashedEmail(email)
         }
         else if (params.folderName === "bin") {
-            deleteEmail(email);
+            deleteEmail(email)
         }
         else {
-            console.log("Unexpected Error - couldn't delete email");
+            console.log("Unexpected Error - couldn't delete email")
         }
     }
 
     // Moving the email to Bin
     async function trashedEmail(email) {
-        const updatedEmail = { ...email, removedAt: (new Date()).getTime() };
-        await emailService.save(updatedEmail);
+        const updatedEmail = { ...email, removedAt: (new Date()).getTime() }
+        await emailService.save(updatedEmail)
         setEmails((prevEmails) => {
             return prevEmails.filter((em) => em.id !== email.id)
-        });
+        })
     }
 
     // Deleting the email
     async function deleteEmail(email) {
-        await emailService.remove(email.id);
+        await emailService.remove(email.id)
         setEmails((prevEmails) => {
             return prevEmails.filter((em) => em.id !== email.id)
-        });
+        })
     }
 
     function toggleRead(ev, email) {
-        ev.stopPropagation();
-        const updatedEmail = { ...email, isRead: 1 - email.isRead };
-        updateEmail(updatedEmail);
+        ev.stopPropagation()
+        const updatedEmail = { ...email, isRead: 1 - email.isRead }
+        updateEmail(updatedEmail)
     }
 
     function toggleStar(ev, email) {
-        ev.stopPropagation();
-        const updatedEmail = { ...email, isStarred: !email.isStarred };
-        updateEmail(updatedEmail);
+        ev.stopPropagation()
+        const updatedEmail = { ...email, isStarred: !email.isStarred }
+        updateEmail(updatedEmail)
     }
 
     function toggleImportant(ev, email) {
-        ev.stopPropagation();
-        const updatedEmail = { ...email, isImportant: !email.isImportant };
-        updateEmail(updatedEmail);
+        ev.stopPropagation()
+        const updatedEmail = { ...email, isImportant: !email.isImportant }
+        updateEmail(updatedEmail)
     }
 
     function toggleFolderMenuOpen() {
-        setIsFolderMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
+        setIsFolderMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen)
     }
 
     function closeEmailDetails(email = null, option = null) {
         if (email && option) {
             switch (option) {
                 case "unread":
-                    const updatedEmail = { ...email, isRead: 0 };
-                    updateEmail(updatedEmail);
-                    break;
+                    const updatedEmail = { ...email, isRead: 0 }
+                    updateEmail(updatedEmail)
+                    break
                 case "delete":
-                    delEmailWrapper(email);
-                    break;
+                    delEmailWrapper(email)
+                    break
                 default:
-                    break;
+                    break
             }
         }
-        navigateFolder(currFilter);
+        navigateFolder(currFilter)
     }
 
     async function openComposedEmail(email) {
         if (email && email.isDraft === false) {
-            console.log("Cannot edit non-draft emails");
-            return;
+            console.log("Cannot edit non-draft emails")
+            return
         }
-        let composedEmail;
+        let composedEmail
         if (email && email.id) {
-            composedEmail = email;
+            composedEmail = email
         } else {
             // Make sure the email has an ID
-            console.log("email before: ", email)
-            composedEmail = await utilService.createNewEmail(email);
+            composedEmail = await utilService.createNewEmail(email)
         }
-        console.log("hey: ", composedEmail)
         setComposedEmails((prevComposedEmails) => {
             return [...prevComposedEmails, composedEmail]
-        });
+        })
     }
 
     function closeComposedEmail(email) {
         setComposedEmails((prevComposedEmails) => {
             return prevComposedEmails.filter((em) => em.id !== email.id)
-        });
+        })
     }
 
 

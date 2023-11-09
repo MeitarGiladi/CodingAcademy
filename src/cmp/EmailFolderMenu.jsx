@@ -1,28 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 import { emailService } from '../services/email.service.js'
 import { utilService } from '../services/util.service.js'
 
-import { EmailFolder } from "./EmailFolder";
+import { EmailFolder } from "./EmailFolder"
 
 
 export function EmailFolderMenu({ currFolder, currLabel, isFolderMenuOpen, cbFilterEmails, cbOpenComposedEmail }) {
-    const [folders, setFolders] = useState([]);
-    const [labelFolders, setLabelFolders] = useState([]);
+    const [folders, setFolders] = useState([])
+    const [labelFolders, setLabelFolders] = useState([])
 
     useEffect(() => {
-        getFolders();
-        getLabelFolders();
+        getFolders()
+        getLabelFolders()
     }, [])
 
     async function getFolders() {
-        const updatedFolders = await emailService.getFolders();
-        setFolders(updatedFolders);
+        const updatedFolders = await emailService.getFolders()
+        setFolders(updatedFolders)
     }
 
     async function getLabelFolders() {
-        const updatedLabels = await emailService.getLabelFolders();
-        setLabelFolders(updatedLabels);
+        const updatedLabels = await emailService.getLabelFolders()
+        setLabelFolders(updatedLabels)
     }
 
     function changeFolder(folderName, isLabel = false) {

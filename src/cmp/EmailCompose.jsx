@@ -1,20 +1,20 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react"
 
 export function EmailCompose({ email, cbSendEmail, cbSaveDraft, cbDeleteDraftEmail, cbCloseWindow }) {
 
-    const [isFullScreenMode, setIsFullScreenMode] = useState(false);
-    const [isMinimize, setIsMinimize] = useState(false);
+    const [isFullScreenMode, setIsFullScreenMode] = useState(false)
+    const [isMinimize, setIsMinimize] = useState(false)
 
-    const [updatedValues, setUpdatedValues] = useState({});
+    const [updatedValues, setUpdatedValues] = useState({})
 
-    const intervalIdRef = useRef();
+    const intervalIdRef = useRef()
 
     // useEffect(() => {
     //     intervalIdRef.current = setInterval(() => {
-    //         saveUpdatedDraft();
+    //         saveUpdatedDraft()
     //     }, 5000)
     //     return () => {
-    //         clearInterval(intervalIdRef.current);
+    //         clearInterval(intervalIdRef.current)
     //     }
     // }, [])
 
@@ -22,76 +22,76 @@ export function EmailCompose({ email, cbSendEmail, cbSaveDraft, cbDeleteDraftEma
     //     // It doesn't contain the updated value
     //     // Why doesn't it work the same way as here- 
     //     // https://www.w3schools.com/react/react_forms.asp
-    //     const updatedDraftEmail = { ...email, ...updatedValues };
-    //     console.log("Saved draft - ", updatedDraftEmail, updatedValues);
-    //     cbSaveDraft(updatedDraftEmail);
+    //     const updatedDraftEmail = { ...email, ...updatedValues }
+    //     console.log("Saved draft - ", updatedDraftEmail, updatedValues)
+    //     cbSaveDraft(updatedDraftEmail)
     // }
 
     useEffect(() => {
         intervalIdRef.current = setTimeout(() => {
-            const updatedDraftEmail = { ...email, ...updatedValues };
-            console.log("Saved draft - ", updatedDraftEmail, updatedValues);
-            cbSaveDraft(updatedDraftEmail);
+            const updatedDraftEmail = { ...email, ...updatedValues }
+            console.log("Saved draft - ", updatedDraftEmail, updatedValues)
+            cbSaveDraft(updatedDraftEmail)
         }, 5000)
         return () => {
-            clearInterval(intervalIdRef.current);
+            clearInterval(intervalIdRef.current)
         }
     }, [updatedValues])
 
 
     function handleChange(ev) {
-        const name = ev.target.name;
-        const value = ev.target.value;
-        setUpdatedValues((values) => ({ ...values, [name]: value }));
+        const name = ev.target.name
+        const value = ev.target.value
+        setUpdatedValues((values) => ({ ...values, [name]: value }))
     }
 
     function getStateString() {
         if (isMinimize)
-            return "minimize";
+            return "minimize"
         else if (isFullScreenMode)
-            return "fullscreen";
-        return "small";
+            return "fullscreen"
+        return "small"
     }
 
     function auto_grow(ev) {
         if (ev.target.closest(".email-compose-open-small") &&
             ev.target.scrollHeight <= 638) {
-            ev.target.style.height = (ev.target.scrollHeight) + "px";
+            ev.target.style.height = (ev.target.scrollHeight) + "px"
         }
-        // console.log(ev.target.offsetHeight);
-        // console.log(ev.target.closest(".email-compose-open-small"));
+        // console.log(ev.target.offsetHeight)
+        // console.log(ev.target.closest(".email-compose-open-small"))
     }
 
     function toggleMinimize(ev) {
-        ev.stopPropagation();
-        setIsMinimize((prevIsMinimize) => !prevIsMinimize);
+        ev.stopPropagation()
+        setIsMinimize((prevIsMinimize) => !prevIsMinimize)
     }
 
     function toggleFullscreen(ev) {
-        ev.stopPropagation();
-        setIsMinimize(false);  // When the fullscreenButton clicked, the minimize affect is gone.
-        setIsFullScreenMode((prevIsFullscreen) => !prevIsFullscreen);
+        ev.stopPropagation()
+        setIsMinimize(false)  // When the fullscreenButton clicked, the minimize affect is gone.
+        setIsFullScreenMode((prevIsFullscreen) => !prevIsFullscreen)
     }
 
     function closeWindowWrapper(ev) {
-        ev.stopPropagation();
-        cbCloseWindow(email);
+        ev.stopPropagation()
+        cbCloseWindow(email)
     }
 
     function deleteDraft(ev) {
-        ev.stopPropagation();
-        cbDeleteDraftEmail(email);
-        cbCloseWindow(email);
+        ev.stopPropagation()
+        cbDeleteDraftEmail(email)
+        cbCloseWindow(email)
     }
 
     function sendEmail(ev) {
-        ev.stopPropagation();
-        const updatedDraftEmail = { ...email, ...updatedValues };
+        ev.stopPropagation()
+        const updatedDraftEmail = { ...email, ...updatedValues }
         if (!cbSendEmail(updatedDraftEmail)) {
-            console.log("Subject and recipient required.");  // TODO - popup message
-            return;
+            console.log("Subject and recipient required.")  // TODO - popup message
+            return
         }
-        cbCloseWindow(updatedDraftEmail);
+        cbCloseWindow(updatedDraftEmail)
     }
 
     return (

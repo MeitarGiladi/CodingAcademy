@@ -1,20 +1,20 @@
-import { NavLink } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom"
+import { useState, useEffect, useRef } from "react"
 
 
 export function EmailNavBar({ cbToggleFolderMenuOpen, cbUpdateFilter }) {
 
-    const [textToSearch, setTextToSearch] = useState("");
+    const [textToSearch, setTextToSearch] = useState("")
 
-    function dummy(ev) { console.log("clicked ! ", ev.target) };  //dummy
+    function dummy(ev) { console.log("clicked ! ", ev.target) }  //dummy
 
     function handleTextChange(ev) {
-        setTextToSearch(ev.target.value);
+        setTextToSearch(ev.target.value)
     }
 
     function handleSearchKeyDown(ev) {
         if (ev.key === 'Enter') {
-            cbUpdateFilter({ txt: textToSearch });        
+            cbUpdateFilter({ txt: textToSearch })        
         }
     }
 

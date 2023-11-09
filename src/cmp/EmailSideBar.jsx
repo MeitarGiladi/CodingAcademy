@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
 export function EmailSideBar() {
 
-    const [sideBarOpen, SetSideBarOpen] = useState(true);
+    const [sideBarOpen, SetSideBarOpen] = useState(true)
 
     function toggleSideBarOpen() {
-        SetSideBarOpen((prevSideBarOpen) => !prevSideBarOpen);
+        SetSideBarOpen((prevSideBarOpen) => !prevSideBarOpen)
     }
 
     return (

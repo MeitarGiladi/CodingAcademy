@@ -4,7 +4,8 @@ import {
     STORAGE_KEY_USERS,
     STORAGE_SUB_KEY_EMAILS,
     STORAGE_SUB_KEY_LABELS,
-    POST_TYPE_USER_DATA,
+    POST_TYPE_NEW_EMAIL,
+    POST_TYPE_NEW_LABEL,
     POST_TYPE_SEND_EMAIL,
     POST_TYPE_CHANGE_USER,
     saveToStorage,
@@ -34,14 +35,14 @@ function createUserFolders(overwrite) {
             { name: "drafts", text: "Drafts", iconClass: "icon-folder-drafts" },
             { name: "all-mail", text: "All Mail", iconClass: "icon-folder-allmail" },
             { name: "bin", text: "Bin", iconClass: "icon-folder-bin" }
-        ];
+        ]
         saveToStorage(STORAGE_KEY_FOLDERS, folders)
     }
 }
 
 function createLoggedInUser(overwrite) {
     if (overwrite || !loadFromStorage(STORAGE_KEY_LOGGED_USER)) {
-        const loggedInUser = 'user1@gmail.com';
+        const loggedInUser = 'user1@gmail.com'
         saveToStorage(STORAGE_KEY_LOGGED_USER, loggedInUser)
     }
 }
@@ -192,7 +193,7 @@ function createUsersData(overwrite) {
                     }
                 ]
             }
-        };
+        }
         saveToStorage(STORAGE_KEY_USERS, users_data)
     }
 }

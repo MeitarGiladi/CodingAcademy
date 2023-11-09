@@ -9,7 +9,7 @@ export function EmailDetails({ email, cbToggleStar, cbToggleImportant, cbCompose
     }
     
     function replayEmail(ev, isForward = false) {
-        ev.stopPropagation();
+        ev.stopPropagation()
         const newEmail = {
             from: emailService.getCurruser(),
             subject: "RE:" + email.subject,
@@ -17,9 +17,9 @@ export function EmailDetails({ email, cbToggleStar, cbToggleImportant, cbCompose
                 email.from + "\n" +
                 utilService.getTimeOfEmailDetailed(email.sentAt) + "\n\n" +
                 email.body
-        };
-        if (!isForward) newEmail.to = email.from;
-        cbComposeEmail(newEmail);
+        }
+        if (!isForward) newEmail.to = email.from
+        cbComposeEmail(newEmail)
     }
 
 

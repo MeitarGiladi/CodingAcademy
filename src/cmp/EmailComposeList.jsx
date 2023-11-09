@@ -1,5 +1,5 @@
 
-import { EmailCompose } from "./EmailCompose";
+import { EmailCompose } from "./EmailCompose"
 
 export function EmailComposeList({ composedEmails, cbSendEmail, cbSaveDraft, cbDeleteDraftEmail, cbCloseWindow }) {
 

@@ -1,5 +1,5 @@
 
-import { Link, useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { Link, useNavigate, useOutletContext, useParams } from "react-router-dom"
 
 import { EmailPreviewMain } from "./EmailPreviewMain"
 import { EmailPreviewStart } from "./EmailPreviewStart"
@@ -7,8 +7,8 @@ import { EmailPreviewEnd } from "./EmailPreviewEnd"
 
 export function EmailList({ emails, cbToggleRead, cbToggleStar, cbToggleImportant, cpDeleteEmail, cbDisplayEmail }) {
 
-    const readEmailsCount = Object.keys(emails.filter((em) => em.isRead === 1)).length;
-    const emailsCount = Object.keys(emails).length;
+    const readEmailsCount = Object.keys(emails.filter((em) => em.isRead === 1)).length
+    const emailsCount = Object.keys(emails).length
 
     return (
 
@@ -57,7 +57,7 @@ export function EmailList({ emails, cbToggleRead, cbToggleStar, cbToggleImportan
 
 
 // https://stackoverflow.com/questions/2385113/howto-div-with-onclick-inside-another-div-with-onclick-javascript
-// window.event.stopPropagation();
+// window.event.stopPropagation()
 
 // Why am I using <i> tag for ICONs?
 // https://stackoverflow.com/questions/11135261/what-are-the-advantages-disadvantages-of-using-the-i-tag-for-icons-instead-of

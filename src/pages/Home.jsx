@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom"
-import { useState } from 'react';
+import { useState } from 'react'
 
-import { emailService } from "../services/email.service";
+import { emailService } from "../services/email.service"
 
 
 
 
 export function Home() {
 
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState("")
 
 
     return (
