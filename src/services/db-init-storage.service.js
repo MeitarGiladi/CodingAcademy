@@ -67,7 +67,7 @@ function createUsersData(overwrite) {
                         isStarred: true,
                         isImportant: true,
                         isDraft: false,
-                        sentAt: dateTime - 100000000,
+                        sentAt: dateTime - 1000000000,
                         removedAt: null,
                         labels: ["amsterdam"],
                         from: 'momo@momo.com',
